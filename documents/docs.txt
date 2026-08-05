@@ -1,0 +1,16 @@
+# Compliance Mgmt File 1 (all modules and initial works)
+
+https://docs.google.com/document/d/1ATmhp_2JK1FI77Zs1ZVbD_XwF4bJOpqB69aUfOPI3TM/edit?tab=t.0
+
+# Platform Integrations Docs research
+
+https://docs.google.com/document/d/1k_sd-RHbUtRlhAflGynne1WauzworyjMWSKtXK99XG0/edit?tab=t.0
+
+# Sheets for steampipe integrations and progress
+
+https://docs.google.com/spreadsheets/d/1GSwLNwA62PYLBABVUPiykALFS2RoYxd3YqJzxVgOiJ0/edit?gid=0#gid=0
+
+# Sheets for Identity Mapping for Steampipe integrations
+
+https://docs.google.com/spreadsheets/d/1CNFe8GpX8lrQ-s7pjG2iYY1rSdRyy2qQRuShGJYg1zQ/edit?gid=0#gid=0
+
