@@ -1,0 +1,9 @@
+select
+  name,
+  state,
+  instance_type,
+  database_version,
+  machine_type,
+  location
+from
+  gcp_sql_database_instance;

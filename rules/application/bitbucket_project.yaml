@@ -1,0 +1,22 @@
+source_table: bitbucket_project
+canonical_category: Application
+provider: Bitbucket
+canonical_id_template: $.uuid or $.key or $.name
+
+mappings:
+  display_name: $.name or $.key or $.uuid
+  description: $.description
+  workspace_slug: $.workspace_slug
+  owner_display_name: $.owner_display_name
+  key: $.key
+  is_private: $.is_private
+  created_at: $.created
+
+required_canonical_fields:
+  - display_name
+
+defaults:
+  source_system: bitbucket
+
+version: 1
+last_modified: '2026-08-03'

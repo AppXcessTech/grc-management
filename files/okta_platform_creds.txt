@@ -1,0 +1,16 @@
+00YIkL71iB3AcTXxFoybu4YRQ85bb0nf_tD9xqvdIF
+daviejohn123@gmail.com:John@123
+celesiajacob@gmail.com:Celesia@123
+charles@appxcess.com : eRpVd03iUf3UpDis
+charles@appxcess.com : 5c9a5F6F (OKTA)
+
+
+
+curl -X POST http://localhost:8000/api/auth/sso/okta/configure \
+  -H "Authorization: Bearer <super_admin_jwt>" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "okta_domain": "dev-123456.okta.com",
+    "client_id": "0oa...",
+    "client_secret": "..."
+  }'

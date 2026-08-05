@@ -1,0 +1,288 @@
+1. People Assets
+Employees
+Contractors
+Consultants
+Interns
+Temporary Staff
+Third-Party Users
+Vendor Users
+Service Accounts
+Shared Accounts
+Privileged Accounts
+Administrators
+Developers
+Security Personnel
+
+
+2. Endpoint Devices
+Laptops & Workstations
+Windows Laptops
+macOS Laptops
+Linux Workstations
+Desktop Computers
+Mobile Devices
+iPhones
+Android Phones
+Tablets
+Rugged Devices
+Specialized Devices
+Kiosks
+Point-of-Sale Systems
+Meeting Room Systems
+Executive Devices
+
+
+3. Servers & Compute Resources
+Physical Servers
+Application Servers
+Database Servers
+File Servers
+Backup Servers
+Domain Controllers
+Virtual Machines
+VMware VMs
+Hyper-V VMs
+Cloud VMs
+Cloud Compute
+EC2 Instances
+Azure Virtual Machines
+Google Compute Engine
+Container Hosts
+
+4. Cloud Resources
+AWS
+Accounts
+Organizations
+IAM Users
+IAM Roles
+Security Groups
+EC2 Instances
+S3 Buckets
+RDS Databases
+Lambda Functions
+VPCs
+Subnets
+CloudTrail
+Config
+KMS Keys
+Azure
+Subscriptions
+Resource Groups
+Virtual Machines
+Storage Accounts
+Key Vaults
+VNets
+
+
+GCP
+Projects
+Compute Instances
+Cloud Storage
+BigQuery
+IAM Policies
+
+5. Network Assets
+Firewalls
+Routers
+Switches
+Wireless Access Points
+VPN Gateways
+Load Balancers
+IDS/IPS Appliances
+SD-WAN Devices
+DNS Servers
+Proxy Servers
+Cloud Related
+AWS VPCs
+Security Groups
+Network ACLs
+Azure VNets
+GCP VPC Networks
+
+6. Storage Assets
+File Servers
+NAS Devices
+SAN Devices
+Cloud Storage
+Backup Repositories
+Archive Systems
+External Hard Drives
+USB Storage Devices
+
+7. Database Assets
+PostgreSQL
+MySQL
+MariaDB
+Microsoft SQL Server
+Oracle
+MongoDB
+Cassandra
+Redis
+DynamoDB
+Snowflake
+BigQuery
+Data Lakes
+
+8. SaaS Applications
+Productivity
+Microsoft 365
+Google Workspace
+Slack
+Teams
+Zoom
+Business Systems
+Salesforce
+HubSpot
+Zoho CRM
+ERP Systems
+Engineering
+GitHub
+GitLab
+Jira
+Confluence
+HR
+BambooHR
+Zoho People
+Workday
+Finance
+QuickBooks
+Xero
+NetSuite
+
+9. Source Code & Development Assets
+Git Repositories
+GitHub Organizations
+GitLab Groups
+Bitbucket Projects
+Build Pipelines
+CI/CD Systems
+Artifact Repositories
+Container Registries
+Infrastructure-as-Code Repositories
+
+
+
+
+
+10. Security Assets
+Identity Systems
+Okta
+Entra ID
+Google Identity
+Endpoint Security
+CrowdStrike
+SentinelOne
+Microsoft Defender
+MDM
+Intune
+Jamf
+Kandji
+Vulnerability Management
+Tenable
+Qualys
+Rapid7
+Monitoring
+Datadog
+Splunk
+ELK
+Sentry
+Security Operations
+SIEM Platforms
+SOAR Platforms
+Threat Intelligence Platforms
+
+11. Information Assets
+Customer Information
+Customer Records
+Contracts
+Support Tickets
+Internal Information
+Policies
+Procedures
+Risk Assessments
+Audit Reports
+Meeting Notes
+Intellectual Property
+Source Code
+Architecture Diagrams
+Product Designs
+Patents
+Trade Secrets
+Financial Information
+Invoices
+Budgets
+Financial Statements
+
+12. Cryptographic Assets
+Encryption Keys
+Certificates
+TLS Certificates
+SSH Keys
+API Keys
+Secrets
+Tokens
+KMS Keys
+
+13. Vendor & Third-Party Assets
+Vendors
+Suppliers
+Service Providers
+MSPs
+Cloud Providers
+Contractors
+External Auditors
+
+14. Physical Assets
+Offices
+Data Centers
+Server Rooms
+Storage Rooms
+Filing Cabinets
+Security Cameras
+Access Control Systems
+Badge Systems
+
+15. Communication Assets
+Corporate Email
+Slack Workspaces
+Teams Tenants
+Zoom Accounts
+VoIP Systems
+Phone Systems
+
+16. Backup & Recovery Assets
+Backup Systems
+Backup Repositories
+Recovery Infrastructure
+Disaster Recovery Sites
+Replication Systems
+
+17. Compliance Assets
+Policies
+Procedures
+Controls
+Risks
+Audit Findings
+Evidence Records
+Training Records
+Vendor Assessments
+
+18. AI & Emerging Technology Assets
+ChatGPT Enterprise
+Claude
+Gemini
+Copilot
+AI Agents
+AI APIs
+AI Training Data
+AI Prompt Repositories
+
+19. Business Process Assets
+Onboarding Process
+Offboarding Process
+Incident Response Process
+Change Management Process
+Access Review Process
+Vendor Management Process
+Risk Management Process
+

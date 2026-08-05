@@ -1,0 +1,9 @@
+select
+  name,
+  cleanup_policy_dry_run,
+  create_time,
+  format,
+  kms_key_name,
+  mode
+from
+  gcp_artifact_registry_repository;

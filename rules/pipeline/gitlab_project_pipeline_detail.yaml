@@ -1,0 +1,22 @@
+source_table: gitlab_project_pipeline_detail
+canonical_category: Pipeline
+provider: GitLab
+canonical_id_template: $.id or $.sha
+
+mappings:
+  display_name: $.ref or $.id
+  status: $.status
+  ref: $.ref
+  sha: $.sha
+  created_at: $.created_at
+  updated_at: $.updated_at
+  web_url: $.web_url
+
+required_canonical_fields:
+  - display_name
+
+defaults:
+  source_system: gitlab
+
+version: 1
+last_modified: '2026-07-30'

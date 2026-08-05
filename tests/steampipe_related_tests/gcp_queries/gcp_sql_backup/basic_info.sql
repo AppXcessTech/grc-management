@@ -1,0 +1,11 @@
+select
+  id,
+  instance_name,
+  description,
+  status,
+  end_time,
+  enqueued_time,
+  start_time,
+  window_start_time
+from
+  gcp_sql_backup;

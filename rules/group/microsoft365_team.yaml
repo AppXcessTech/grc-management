@@ -1,0 +1,20 @@
+source_table: microsoft365_team
+canonical_category: Group
+provider: Microsoft 365
+canonical_id_template: $.id or $.display_name
+
+mappings:
+  display_name: $.display_name or $.id
+  description: $.description
+  visibility: $.visibility
+  created_date_time: $.created_date_time
+  web_url: $.web_url
+
+required_canonical_fields:
+  - display_name
+
+defaults:
+  source_system: microsoft_365
+
+version: 1
+last_modified: '2026-07-29'

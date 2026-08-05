@@ -1,0 +1,9 @@
+select
+  id,
+  access_analyzer_arn,
+  analyzed_at,
+  resource_type,
+  status,
+  is_public
+from
+  aws_accessanalyzer_finding;

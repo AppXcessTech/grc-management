@@ -1,0 +1,21 @@
+source_table: okta_group_owner
+canonical_category: Group
+provider: Okta
+canonical_id_template: $.group_id or $.owner.id or $.owner.name
+
+mappings:
+  display_name: $.owner.name or $.owner.displayName or $.group_id
+  group_id: $.group_id
+  owner_id: $.owner.id
+  owner_name: $.owner.name
+  owner_type: $.owner.type
+  owner_display_name: $.owner.displayName
+
+required_canonical_fields:
+  - display_name
+
+defaults:
+  source_system: okta
+
+version: 1
+last_modified: '2026-07-27'

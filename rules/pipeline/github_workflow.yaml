@@ -1,0 +1,17 @@
+source_table: github_workflow
+canonical_category: Pipeline
+provider: GitHub
+token_type: fine_grained
+canonical_id_template: $.node_id or $.id or $.name or $.repository_full_name
+
+mappings:
+  display_name: $.name or $.repository_full_name or $.node_id
+
+required_canonical_fields:
+  - display_name
+
+defaults:
+  source_system: github
+
+version: 1
+last_modified: '2026-07-28'

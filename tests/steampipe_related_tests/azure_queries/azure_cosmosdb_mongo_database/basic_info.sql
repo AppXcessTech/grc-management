@@ -1,0 +1,9 @@
+select
+  name,
+  autoscale_settings_max_throughput,
+  throughput,
+  account_name,
+  region,
+  resource_group
+from
+  azure_cosmosdb_mongo_database;

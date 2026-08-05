@@ -1,0 +1,9 @@
+select
+  name,
+  display_name,
+  project,
+  location
+from
+  gcp_billing_account
+where
+  open;

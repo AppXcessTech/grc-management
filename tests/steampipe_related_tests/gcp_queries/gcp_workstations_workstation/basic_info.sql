@@ -1,0 +1,11 @@
+select
+  name,
+  display_name,
+  state,
+  host,
+  create_time,
+  uid,
+  location,
+  project
+from
+  gcp_workstations_workstation;

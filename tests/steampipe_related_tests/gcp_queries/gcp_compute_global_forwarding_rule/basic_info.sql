@@ -1,0 +1,9 @@
+select
+  name,
+  id,
+  ip_address,
+  ip_protocol,
+  port_range,
+  target
+from
+  gcp_compute_global_forwarding_rule;

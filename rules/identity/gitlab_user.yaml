@@ -1,0 +1,22 @@
+source_table: gitlab_user
+canonical_category: Identity
+provider: GitLab
+canonical_id_template: $.id or $.username or $.email
+
+mappings:
+  display_name: $.username or $.name or $.email or $.id
+  email: $.email
+  admin: $.admin
+  blocked: $.blocked
+  state: $.state
+  created_at: $.created_at
+  last_activity_at: $.last_activity_at
+
+required_canonical_fields:
+  - display_name
+
+defaults:
+  source_system: gitlab
+
+version: 1
+last_modified: '2026-07-30'

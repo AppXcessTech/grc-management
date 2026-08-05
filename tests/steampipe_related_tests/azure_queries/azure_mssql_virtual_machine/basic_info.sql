@@ -1,0 +1,10 @@
+select
+  id,
+  name,
+  type,
+  provisioning_state,
+  sql_image_offer,
+  sql_server_license_type,
+  region
+from
+  azure_mssql_virtual_machine;

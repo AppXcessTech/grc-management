@@ -1,0 +1,32 @@
+curl -X POST "https://accounts.zoho.in/oauth/v2/token"   -d "code=" -d "client_id=" -d "client_secret=" -d "grant_type=authorization_code"
+
+The Above will give a response with a refresh token
+
+curl -X POST "https://accounts.zoho.in/oauth/v2/token"   -d "refresh_token=" -d "client_id=" -d "client_secret=" -d "grant_type=refresh_token"
+
+The above will give a response with access token, use that and include it below for all the operations listed
+
+
+1) Get Device List
+
+curl --request GET \
+  --url https://www.mdm.manageengine.in/api/v1/mdm/devices \
+  --header 'Authorization: Zoho-oauthtoken 1000.41d9xxxxxxxxxxxxxxxxxxxxxxxxc2d1.8fccxxxxxxxxxxxxxxxxxxxxxxxx125f'
+
+MDMOnDemand.MDMInventory.READ
+
+2) Get Device Details
+
+curl --request GET \
+  --url https://www.mdm.manageengine.in/api/v1/mdm/devices/9007199254741000 \
+  --header 'Authorization: Zoho-oauthtoken 1000.41d9xxxxxxxxxxxxxxxxxxxxxxxxc2d1.8fccxxxxxxxxxxxxxxxxxxxxxxxx125f'
+
+MDMOnDemand.MDMInventory.READ
+
+3) Get Device Privacy
+
+curl --request GET \
+  --url https://www.mdm.manageengine.in/api/v1/mdm/devices/9007199254741000/privacy \
+  --header 'Authorization: Zoho-oauthtoken 1000.41d9xxxxxxxxxxxxxxxxxxxxxxxxc2d1.8fccxxxxxxxxxxxxxxxxxxxxxxxx125f'
+
+MDMOnDemand.MDMUser.READ

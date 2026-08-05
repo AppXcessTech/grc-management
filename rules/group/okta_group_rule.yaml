@@ -1,0 +1,21 @@
+source_table: okta_group_rule
+canonical_category: Group
+provider: Okta
+canonical_id_template: $.id or $.name
+
+mappings:
+  display_name: $.name or $.id
+  description: $.description
+  status: $.status
+  rule_type: $.type
+  conditions: $.conditions
+  actions: $.actions
+
+required_canonical_fields:
+  - display_name
+
+defaults:
+  source_system: okta
+
+version: 1
+last_modified: '2026-07-27'

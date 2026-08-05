@@ -1,0 +1,22 @@
+source_table: okta_authenticator
+canonical_category: Policy
+provider: Okta
+canonical_id_template: $.id or $.name or $.key
+
+mappings:
+  display_name: $.name or $.key or $.id
+  authenticator_key: $.key
+  authenticator_type: $.type
+  status: $.status
+  settings: $.settings
+  created: $.created
+  last_updated: $.last_updated
+
+required_canonical_fields:
+  - display_name
+
+defaults:
+  source_system: okta
+
+version: 1
+last_modified: '2026-07-27'

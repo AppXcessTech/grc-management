@@ -1,0 +1,11 @@
+select
+  name,
+  exponential_buckets_options_growth_factor,
+  exponential_buckets_options_num_finite_buckets,
+  exponential_buckets_options_scale,
+  linear_buckets_options_num_finite_buckets,
+  linear_buckets_options_offset,
+  linear_buckets_options_width,
+  explicit_buckets_options_bounds
+from
+  gcp_logging_metric;

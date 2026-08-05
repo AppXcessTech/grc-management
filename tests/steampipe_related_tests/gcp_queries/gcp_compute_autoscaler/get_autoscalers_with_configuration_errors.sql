@@ -1,0 +1,12 @@
+select
+  name,
+  description,
+  self_link,
+  status,
+  location,
+  akas,
+  recommended_size
+from
+  gcp_compute_autoscaler
+where
+  status = 'ERROR';

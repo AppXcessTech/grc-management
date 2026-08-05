@@ -1,0 +1,9 @@
+select
+  vpc_id,
+  cidr_block,
+  host(cidr_block),
+  broadcast(cidr_block),
+  netmask(cidr_block),
+  network(cidr_block)
+from
+  aws_vpc;

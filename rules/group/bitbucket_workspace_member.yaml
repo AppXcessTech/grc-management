@@ -1,0 +1,19 @@
+source_table: bitbucket_workspace_member
+canonical_category: Group
+provider: Bitbucket
+canonical_id_template: $.uuid or $.account_id or $.display_name
+
+mappings:
+  display_name: $.display_name or $.account_id or $.uuid
+  account_id: $.account_id
+  workspace_slug: $.workspace_slug
+  email: $.email
+
+required_canonical_fields:
+  - display_name
+
+defaults:
+  source_system: bitbucket
+
+version: 1
+last_modified: '2026-08-03'

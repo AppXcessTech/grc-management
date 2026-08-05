@@ -1,0 +1,17 @@
+source_table: github_community_profile
+canonical_category: Repository
+provider: GitHub
+token_type: fine_grained
+canonical_id_template: $.repository_full_name
+
+mappings:
+  display_name: $.repository_full_name
+
+required_canonical_fields:
+  - display_name
+
+defaults:
+  source_system: github
+
+version: 2
+last_modified: '2026-07-28'

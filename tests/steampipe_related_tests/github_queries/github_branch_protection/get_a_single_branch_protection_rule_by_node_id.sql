@@ -1,0 +1,22 @@
+select
+  node_id,
+  matching_branches,
+  is_admin_enforced,
+  allows_deletions,
+  allows_force_pushes,
+  blocks_creations,
+  creator_login,
+  dismisses_stale_reviews,
+  lock_allows_fetch_and_merge,
+  lock_branch,
+  require_last_push_approval,
+  requires_approving_reviews,
+  requires_commit_signatures,
+  restricts_pushes,
+  push_allowance_apps,
+  push_allowance_apps,
+  push_allowance_users
+from
+  github_branch_protection
+where
+  node_id = 'BPR_xxXXXX0X0X0XXXX0';

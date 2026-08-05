@@ -1,0 +1,10 @@
+select
+  name,
+  description,
+  self_link,
+  instance_group,
+  location,
+  akas,
+  project
+from
+  gcp_compute_instance_group_manager;

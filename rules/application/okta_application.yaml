@@ -1,0 +1,23 @@
+source_table: okta_application
+canonical_category: Application
+provider: Okta
+canonical_id_template: $.id or $.name or $.label
+
+mappings:
+  display_name: $.label or $.name or $.id
+  status: $.status
+  sign_on_mode: $.signOnMode
+  features: $.features
+  settings: $.settings
+  created: $.created
+  last_updated: $.last_updated
+  app_type: $.name
+
+required_canonical_fields:
+  - display_name
+
+defaults:
+  source_system: okta
+
+version: 1
+last_modified: '2026-07-27'

@@ -1,0 +1,26 @@
+source_table: bitbucket_my_repository
+canonical_category: Repository
+provider: Bitbucket
+canonical_id_template: $.uuid or $.full_name or $.name
+
+mappings:
+  display_name: $.full_name or $.name or $.uuid
+  description: $.description
+  owner_display_name: $.owner_display_name
+  workspace_slug: $.workspace_slug
+  project_key: $.project_key
+  is_private: $.is_private
+  language: $.language
+  size: $.size
+  created_on: $.created_on
+  updated_on: $.updated_on
+  web_url: $.self_link or $.links.html.href
+
+required_canonical_fields:
+  - display_name
+
+defaults:
+  source_system: bitbucket
+
+version: 1
+last_modified: '2026-08-03'

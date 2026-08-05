@@ -1,0 +1,66 @@
+ManageEngine@123
+
+
+# 1000.1P49KMXNLKLWWIUY6WNF75AHH6AR5B -> Client ID
+# 55decc3068955bc63b7fbe748f9bdc5044419572d0 -> Client Secret
+
+
+
+MDMOnDemand.MDMInventory.READ
+MDMOnDemand.MDMUser.READ
+
+
+# 1000.91e89e69fa4968c66d343d8d97d6d461.84a8f1e37b357535e8b8cf3aa447d42b
+
+
+# 1000.da91786f5f49d3524dc974db6104ad2e.8a8c6c67ad9d35c0aa0adb6f8a022a25
+
+
+code -> 1000.4322fb32cfb8ac246dabaf27ccd0fef6.18b4ee5b5e5779a50023c556f0392c19
+
+
+Refresh Token -> 1000.62ac1f13d8bc23ce881ab64cc7b774fb.726b9919c956b97754ae8bf0fbc5a7f7
+
+
+Access Token -> 1000.6c02798d3b9be5612269dd52333cabf5.aa33edb385f49496f0e881aebfc85aa0
+
+
+curl -X POST "https://accounts.zoho.in/oauth/v2/token"   -d "code=1000.4322fb32cfb8ac246dabaf27ccd0fef6.18b4ee5b5e5779a50023c556f0392c19"   -d "client_id=1000.1P49KMXNLKLWWIUY6WNF75AHH6AR5B"   -d "client_secret=55decc3068955bc63b7fbe748f9bdc5044419572d0"   -d "grant_type=authorization_code"
+
+curl -X POST "https://accounts.zoho.in/oauth/v2/token"   -d "code=1000.4322fb32refresh_token=1000.62ac1f13d8bc23ce881ab64cc7b774fb.726b9919c956b97754ae8bf0fbc5a7f7"   -d "client_id=1000.1P49KMXNLKLWWIUY6WNF75AHH6AR5B"   -d "client_secret=55decc3068955bc63b7fbe748f9bdc5044419572d0"   -d "grant_type=refresh_token"
+
+
+
+
+debian@debian:~/appxcess/tests/production$ curl -X POST "https://accounts.zoho.in/oauth/v2/token"   -d "code=1000.3f5cb5eaaa8ccb1f64129063702228ad.2e92b609bf30bf84892ed564426f8e61"   -d "client_id=1000.1P49KMXNLKLWWIUY6WNF75AHH6AR5B"   -d "client_secret=55decc3068955bc63b7fbe748f9bdc5044419572d0"   -d "grant_type=authorization_code"
+{"access_token":"1000.7aa2a5427696bf1d2046597bf182cb4f.ec0db0f7d3fc42a47fc57ed9c2eb2278","refresh_token":"1000.7846f0b26d0bcc2e9470fcd16a8cd763.2246c99a5896d5154ad8fce73bc0003f","scope":"MDMOnDemand.MDMInventory.READ","api_domain":"https://www.zohoapis.in","token_type":"Bearer","expires_in":3600}debian@debian:~/appxcess/curl -X POST "https://accounts.zoho.in/oauth/v2/token"   -d "code=1000.4322fb32refresh_token>
+^C
+debian@debian:~/appxcess/tests/production$ curl -X POST "https://accounts.zoho.in/oauth/v2/token"   -d "refresh_token=1000.7846f0b26d0bcc2e9470fcd16a8cd763.2246c99a5896d5154ad8fce73bc0003f"   -d "client_id=1000.1P49KMXNLKLWWIUY6WNF75AHH6AR5B"   -d "client_secret=55decc3068955bc63b7fbe748f9bdc5044419572d0"   -d "grant_type=refresh_token"
+{"access_token":"1000.ed1ed5cb957f9c15fd310b87fb4dc512.d737be242b60d54b10ce705db1337860","scope":"MDMOnDemand.MDMInventory.READ","api_domain":"https://www.zohoapis.in","token_type":"Beardebian@debian:~/appxcess/tests/production$ curl -X GET https://mdm.manageengine.in/api/v1/mdm/devices -H "Authorization: Zoho-oauthtoken 1000.ed1ed5cb957f9c15fd310b87fb4dc512.d737be242b60d54b10ce705db1337860"
+{"metadata":{"total_record_count":"1"},"devices":[{"managed_status":"2","device_id":"50487000000095019","battery_level":"37.0","is_supervised":false,"os_version":"15","is_lost_mode_enabled":false,"serial_number":"","device_type":"1","owned_by":"2","is_removed":"false","product_name":"SM-A146B","device_name":"Philip James_SM-A146B","platform_type":"android","imei":["--","--"],"model":"SM-A146B","customer_name":"testing123","customer_id":"50487000000093014","udid":"545c3d36a99f0ecf","last_contact_time":"1782782744097","platform_type_id":"2","user":{"user_email":"philipjames3604@gmail.com","user_id":"50487000000093247","user_name":"Philip James"},"device_capacity":"50.23"}],"delta-token":"aHR0cHM6Ly9tZG0ubWFuYWdlZW5naW5lLmluOjQ0My9hcGkvdjEvbWRtL2RldmljZXM6OjE3ODI3OTA4MTUxOTY%3D"}debian@debian:~/appxcess/tests/production$ 
+
+
+
+1) Get Device List
+
+curl --request GET \
+  --url https://www.mdm.manageengine.in/api/v1/mdm/devices \
+  --header 'Authorization: Zoho-oauthtoken 1000.41d9xxxxxxxxxxxxxxxxxxxxxxxxc2d1.8fccxxxxxxxxxxxxxxxxxxxxxxxx125f'
+
+MDMOnDemand.MDMInventory.READ
+
+2) Get Device Details
+
+curl --request GET \
+  --url https://www.mdm.manageengine.in/api/v1/mdm/devices/9007199254741000 \
+  --header 'Authorization: Zoho-oauthtoken 1000.41d9xxxxxxxxxxxxxxxxxxxxxxxxc2d1.8fccxxxxxxxxxxxxxxxxxxxxxxxx125f'
+
+MDMOnDemand.MDMInventory.READ
+
+3) Get Device  for users
+
+curl --request GET \
+  --url https://www.mdm.manageengine.in/api/v1/mdm/users/devices \
+  --header 'Authorization: Zoho-oauthtoken 1000.41d9xxxxxxxxxxxxxxxxxxxxxxxxc2d1.8fccxxxxxxxxxxxxxxxxxxxxxxxx125f'
+
+MDMOnDemand.MDMUser.READ

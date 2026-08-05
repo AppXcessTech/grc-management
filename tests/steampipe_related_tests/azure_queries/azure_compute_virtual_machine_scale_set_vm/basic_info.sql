@@ -1,0 +1,10 @@
+select
+  name,
+  scale_set_name,
+  instance_id,
+  id,
+  vm_id,
+  region,
+  resource_group
+from
+  azure_compute_virtual_machine_scale_set_vm;

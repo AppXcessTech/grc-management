@@ -1,0 +1,9 @@
+select
+  name,
+  id,
+  provisioning_state,
+  creation_date,
+  sku_tier,
+  region
+from
+  azure_container_registry;

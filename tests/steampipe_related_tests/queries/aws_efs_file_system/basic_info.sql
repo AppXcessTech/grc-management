@@ -1,0 +1,13 @@
+select
+  name,
+  file_system_id,
+  owner_id,
+  automatic_backups,
+  creation_token,
+  creation_time,
+  life_cycle_state,
+  number_of_mount_targets,
+  performance_mode,
+  throughput_mode
+from
+  aws_efs_file_system;

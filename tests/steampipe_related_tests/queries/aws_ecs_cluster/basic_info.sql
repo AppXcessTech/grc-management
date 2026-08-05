@@ -1,0 +1,9 @@
+select
+  cluster_arn,
+  cluster_name,
+  active_services_count,
+  attachments,
+  attachments_status,
+  status
+from
+  aws_ecs_cluster;

@@ -1,0 +1,11 @@
+select
+  address,
+  id,
+  address_type,
+  creation_timestamp,
+  ip_version,
+  status,
+  subnetwork,
+  location
+from
+  gcp_compute_address;

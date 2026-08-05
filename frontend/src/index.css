@@ -1,0 +1,12 @@
+/* Clear default Vite styles */
+body {
+  margin: 0;
+  display: flex;
+  place-items: initial;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+#root {
+  width: 100%;
+}

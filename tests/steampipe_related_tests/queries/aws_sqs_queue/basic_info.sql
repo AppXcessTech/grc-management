@@ -1,0 +1,9 @@
+select
+  title,
+  delay_seconds,
+  max_message_size,
+  receive_wait_time_seconds,
+  message_retention_seconds,
+  visibility_timeout_seconds
+from
+  aws_sqs_queue;

@@ -1,0 +1,183 @@
+{
+ "columns": [
+  {
+   "name": "name",
+   "data_type": "text"
+  },
+  {
+   "name": "region",
+   "data_type": "text"
+  }
+ ],
+ "rows": [
+  {
+   "name": "24mtc.co",
+   "region": "us-east-1"
+  },
+  {
+   "name": "selfawareness.org",
+   "region": "us-east-1"
+  },
+  {
+   "name": "akshayaagroup.com",
+   "region": "us-east-1"
+  },
+  {
+   "name": "selfawarenesscentre.org",
+   "region": "us-east-1"
+  },
+  {
+   "name": "acroz.ai",
+   "region": "us-east-1"
+  },
+  {
+   "name": "almytivideos",
+   "region": "us-east-1"
+  },
+  {
+   "name": "touchcap.com.my",
+   "region": "us-east-1"
+  },
+  {
+   "name": "vokalsolutions.com",
+   "region": "ap-southeast-1"
+  },
+  {
+   "name": "croar.co",
+   "region": "us-east-1"
+  },
+  {
+   "name": "pumotechnovation.my",
+   "region": "us-east-1"
+  },
+  {
+   "name": "aquarian.24mtc.co",
+   "region": "us-east-1"
+  },
+  {
+   "name": "nexgenskills.my",
+   "region": "us-east-1"
+  },
+  {
+   "name": "aquariangroup.co",
+   "region": "us-east-1"
+  },
+  {
+   "name": "appxcess.com",
+   "region": "us-east-1"
+  },
+  {
+   "name": "lsessentials.com.my",
+   "region": "us-east-1"
+  },
+  {
+   "name": "academik.ai-uploads",
+   "region": "us-east-1"
+  },
+  {
+   "name": "appxcess-media",
+   "region": "us-east-1"
+  },
+  {
+   "name": "social-media-automation-n8n",
+   "region": "us-east-1"
+  },
+  {
+   "name": "tradebot.uploads",
+   "region": "us-east-1"
+  },
+  {
+   "name": "appxcesstesting",
+   "region": "us-east-1"
+  },
+  {
+   "name": "lunarseputeh",
+   "region": "us-east-1"
+  },
+  {
+   "name": "coa-workflow",
+   "region": "us-east-1"
+  },
+  {
+   "name": "lmsdatanet",
+   "region": "us-east-1"
+  },
+  {
+   "name": "acroz-components",
+   "region": "us-east-1"
+  },
+  {
+   "name": "aws-cloudtrail-logs-533266996320-c51e7aac",
+   "region": "us-east-1"
+  },
+  {
+   "name": "selfawarenessstorage",
+   "region": "us-east-1"
+  },
+  {
+   "name": "aws-cloudtrail-logs-533266996320-9bc30156",
+   "region": "ap-southeast-1"
+  },
+  {
+   "name": "testingacrozai",
+   "region": "us-east-1"
+  },
+  {
+   "name": "datanettest",
+   "region": "us-east-1"
+  },
+  {
+   "name": "croar",
+   "region": "us-east-1"
+  },
+  {
+   "name": "preovoloslewin",
+   "region": "us-east-1"
+  },
+  {
+   "name": "n8n-postergeneration-images",
+   "region": "us-east-1"
+  },
+  {
+   "name": "blog-images-appxcess",
+   "region": "us-east-1"
+  },
+  {
+   "name": "diva-globalize-website-testing",
+   "region": "us-east-1"
+  },
+  {
+   "name": "cdk-hnb659fds-assets-533266996320-us-east-1",
+   "region": "us-east-1"
+  },
+  {
+   "name": "appxcesstestingbucket",
+   "region": "us-east-1"
+  },
+  {
+   "name": "datanet-blogs",
+   "region": "us-east-1"
+  },
+  {
+   "name": "datanet-website-testing",
+   "region": "us-east-1"
+  },
+  {
+   "name": "cityofadalentolms",
+   "region": "us-east-1"
+  },
+  {
+   "name": "archplanner",
+   "region": "us-east-1"
+  },
+  {
+   "name": "aquariangroup",
+   "region": "us-east-1"
+  },
+  {
+   "name": "elasticbeanstalk-us-east-1-533266996320",
+   "region": "us-east-1"
+  }
+ ]
+}
+

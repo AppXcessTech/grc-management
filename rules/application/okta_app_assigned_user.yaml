@@ -1,0 +1,20 @@
+source_table: okta_app_assigned_user
+canonical_category: Application
+provider: Okta
+canonical_id_template: $.id or $.app_id or $.user_id
+
+mappings:
+  display_name: $.app_id or $.user_id or $.id
+  app_id: $.app_id
+  user_id: $.user_id
+  scope: $.scope
+  status: $.status
+
+required_canonical_fields:
+  - display_name
+
+defaults:
+  source_system: okta
+
+version: 1
+last_modified: '2026-07-27'

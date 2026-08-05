@@ -1,0 +1,11 @@
+select
+  id,
+  arn,
+  email,
+  joined_method,
+  joined_timestamp,
+  name,
+  status,
+  tags
+from
+  aws_organizations_account;

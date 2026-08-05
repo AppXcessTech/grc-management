@@ -1,0 +1,18 @@
+source_table: bitbucket_workspace
+canonical_category: Organization
+provider: Bitbucket
+canonical_id_template: $.uuid or $.slug or $.name
+
+mappings:
+  display_name: $.name or $.slug or $.uuid
+  slug: $.slug
+  is_private: $.is_private
+
+required_canonical_fields:
+  - display_name
+
+defaults:
+  source_system: bitbucket
+
+version: 1
+last_modified: '2026-08-03'

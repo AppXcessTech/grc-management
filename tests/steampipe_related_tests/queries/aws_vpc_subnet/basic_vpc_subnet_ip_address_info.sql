@@ -1,0 +1,10 @@
+select
+  vpc_id,
+  subnet_id,
+  cidr_block,
+  assign_ipv6_address_on_creation,
+  map_customer_owned_ip_on_launch,
+  map_public_ip_on_launch,
+  ipv6_cidr_block_association_set
+from
+  aws_vpc_subnet;

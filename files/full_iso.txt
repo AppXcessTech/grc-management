@@ -1,0 +1,411 @@
+================================================================================
+ISO/IEC 27001 COMPLIANCE CHECKLIST
+================================================================================
+
+
+================================================================================
+SECTION A: MANDATORY DOCUMENTATION AND RECORDS
+================================================================================
+
+--------------------------------------------------------------------------------
+4.3 | ISMS Scope
+--------------------------------------------------------------------------------
+Status Options: [ ] Specified  [ ] In draft  [ ] Done
+
+The ISMS scope clarifies the boundaries of the certified ISMS in relation to the
+context or business situation of the organization (e.g. certain business units,
+sites or departments), and its information risks and security requirements plus
+any imposed by third parties (e.g. laws and regulations plus contractual
+obligations and often, in a group structure, strategies and policies
+mandated/imposed by HQ). Security must be taken into account whenever information
+crosses scope boundaries. A high-level business-driven strategy or vision
+statement (either made or at least formally endorsed/signed-off by senior
+management) is one way to crystallize both the scope and purpose of the ISMS,
+and can be useful for awareness/promotional purposes too.
+
+--------------------------------------------------------------------------------
+5.2 | Information Security Policy
+--------------------------------------------------------------------------------
+Status Options: [ ] Specified  [ ] In draft  [ ] Done
+
+The information security policy (or policies) lays out and confirm senior
+management's commitment to (a) the organization's information security objectives
+and (b) continuous improvement of the ISMS ... and often much more. Senior
+management may prefer to mandate a single, succinct, broad/overarching
+governance-type policy (formally satisfying the ISO requirement), supported by a
+suite of detailed information risk, security, compliance, privacy and other
+policies, procedures, guidelines etc. (see A5.1.1) or you may take a different
+approach.
+
+--------------------------------------------------------------------------------
+6.1.2 | Information Security Risk Assessment — Process Documentation
+--------------------------------------------------------------------------------
+Status Options: [ ] Specified  [ ] In draft  [ ] Done
+
+It is up to you to determine precisely what is appropriate for your organization
+using clause 6.1.2 as a guideline plus ISO/IEC 27005 and ISO 31000. The auditors
+expect a structured and repeatable process i.e. a documented risk assessment
+procedure explaining how you identify, analyze (e.g. identify potential
+consequences and probabilities of occurrence), evaluate (e.g. use specified
+criteria for risk acceptance) and prioritize your information risks (e.g. using
+risk levels), with periodic reviews/updates to reflect gradual changes plus ad
+hoc reviews/updates in response to step-changes in your information risks. You
+should also make available relevant reports, entries in your risk register with
+risk descriptions, identified risk owners etc. and metrics to demonstrate its
+operation.
+
+--------------------------------------------------------------------------------
+6.1.3 | Information Security Risk Treatment — (d) Statement of Applicability
+--------------------------------------------------------------------------------
+Status Options: [ ] Specified  [ ] In draft  [ ] Done
+
+The Statement of Applicability (SoA) lays out the information risk and security
+controls that are relevant and applicable to your organization's ISMS, as
+determined by your risk assessments or as required by laws, regulations or good
+practice. Cross-reference them against the controls recommended in ISO/IEC 27001
+Annex A and ISO/IEC 27002, plus any alternative/supplementary sources such as
+NIST SP800-53, ISO 31000, ISO/IEC 20000, ISO 22301 and 22313, IT-Grundschutz,
+the ISF Standard of Good Practice, assorted privacy laws and principles etc.
+Clarify whether the controls recommended in ISO/IEC 27001 Annex A are in scope
+and appropriate to your organization, if not providing reasoned justifications
+(e.g. strategic management decisions, formally recorded) to convince the auditors
+that you haven't simply neglected, ignored or arbitrarily excluded them.
+
+--------------------------------------------------------------------------------
+6.1.3 | Information Security Risk Treatment — Risk Treatment Process
+--------------------------------------------------------------------------------
+Status Options: [ ] Specified  [ ] In draft  [ ] Done
+
+Again it is up to you to determine precisely what is appropriate for your
+organization, using clause 6.1.3 plus guidance from ISO/IEC 27005 and ISO 31000.
+Risk treatment decisions (e.g. selecting treatments including applicable controls)
+and the actions arising (e.g. implementing the controls or sharing risks) may be
+an integral part of the risk assessment process, or a distinct activity or phase.
+It could be a dedicated activity for information risk, or an integral part of
+enterprise risk management etc. Typical evidence includes a written policy and/or
+procedure for consistently deciding on and implementing appropriate information
+risk treatments. Convince the auditors that the process is operating correctly by
+providing relevant reports, your Risk Treatment Plan, entries in your risk
+register, metrics etc. You may prefer some sort of list, matrix or database
+structure, a program or project plan, or something else to explain the process
+through which information risks are being or to be controlled.
+
+--------------------------------------------------------------------------------
+6.2 | Information Security Objectives and Plans
+--------------------------------------------------------------------------------
+Status Options: [ ] Specified  [ ] In draft  [ ] Done
+
+The ISO requirement to "retain documented information on the information security
+objectives" is vague too, so once more you have some latitude. A good approach is
+to start with the organization's high level business objectives, deriving
+information risk and security objectives from them. These can be supported by
+lower level control objectives and controls and metrics (6.2b).
+
+--------------------------------------------------------------------------------
+7.2 | Competence
+--------------------------------------------------------------------------------
+Status Options: [ ] Specified  [ ] In draft  [ ] Done
+
+You know the drill: interpret the vague requirement to "retain documented
+information as evidence of competence" as you see fit – for example, you may rely
+on HR records documenting the relevant experience, skills, qualifications,
+training courses etc. just for the core ISMS people within your information risk
+and security management function, or extend the net to include all the information
+risk, security, governance, privacy, business continuity and compliance-related
+people (and possibly others such as security awareness and training professionals,
+departmental information security/privacy reps, business/security analysts,
+penetration testers etc., perhaps even consultants, contractors and advisors). In
+time you might develop a skills matrix (relating people to roles according to
+their skill sets etc.), maybe even a RASCI table (showing, for each key
+information risk and security-related process or decision, which functions, roles
+or people are Responsible, Accountable, Supportive, Consulted or Informed). We
+recommend keeping it simple, for certification purposes. You can always do more
+later on.
+
+--------------------------------------------------------------------------------
+8.1 | Operational Planning and Control — Procedures
+--------------------------------------------------------------------------------
+Status Options: [ ] Specified  [ ] In draft  [ ] Done
+
+Make what you will of the requirement to "keep documented information to the
+extent necessary to have confidence that the processes have been carried out as
+planned". Generally speaking, this implies management information concerning the
+ISMS such as budgets and headcounts and progress reports containing relevant
+metrics, information risk and security strategies, plans, policies, procedures and
+guidelines, plus related compliance activities to check/measure, enforce and
+reinforce compliance, plus records generated by or information arising from the
+procedures/activities, and other stuff such as post incident reports, security
+test reports, security product evaluations, vulnerability assessments, business
+impact assessments, preventive or corrective actions, security architectures and
+designs ... much of which we have already noted or is covered under Annex A.
+Although the details will vary between organizations, it should be plainly evident
+(painfully obvious!) from the documentation that the ISMS is in normal operation,
+business-as-usual. Simply convince the certification auditors that the ISMS is
+operating sweetly.
+
+--------------------------------------------------------------------------------
+8.2 | Risk Assessment Results
+--------------------------------------------------------------------------------
+Status Options: [ ] Specified  [ ] In draft  [ ] Done
+
+Information should be generated routinely by the risk assessment process noted in
+section 6.1.2. Examples include risk assessment reports, risk metrics, prioritized
+lists of risks, information risk inventories or catalogs or information risk
+entries in corporate risk inventories/catalogs etc. You may have meeting
+notices/invitations, minutes of meetings, risk workshop reports, rough notes from
+discussions arising, formal memoranda, emails expressing concerns about certain
+risks, or whatever. Again, collate sufficient material evidence to reassure the
+auditors that the process is generating useful outputs about information risks.
+
+--------------------------------------------------------------------------------
+8.3 | Risk Treatment Results
+--------------------------------------------------------------------------------
+Status Options: [ ] Specified  [ ] In draft  [ ] Done
+
+How are you going to prove that identified information risks are being 'treated'
+in accordance with the process and decisions made? Your Risk Treatment Plan might
+usefully reference evidence/records confirming that risks have been and are being
+duly treated, such as control test reports, penetration test reports, control
+implementation project plans plus milestones and closure documents, purchasing and
+financial records for capital expenditure, metrics showing a reduction in the
+frequency and/or severity of the corresponding incidents etc., management review
+and audit reports, emails from management congratulating the ISMS team and
+awarding large bonuses etc. Particularly where substantial risks are accepted
+(including residual risks), there should be evidence such as signatures of the
+relevant risk or asset owners formally acknowledging that (thereby accepting
+accountability for any incidents arising!).
+
+--------------------------------------------------------------------------------
+9.1 | Metrics
+--------------------------------------------------------------------------------
+Status Options: [ ] Specified  [ ] In draft  [ ] Done
+
+The ISMS generates various metrics that are used to monitor and drive information
+risks, controls and the ISMS itself in the intended direction. Evidence here
+includes security metrics in reports, systems, dashboards, presentations etc.,
+plus proof that the metrics are being duly noted and acted upon e.g. memos,
+emails or rough notes expressing concern about adverse trends or thanks for
+positive trends; comments scribbled on printed reports; action plans; minutes of
+meetings etc.
+
+--------------------------------------------------------------------------------
+9.2 | ISMS Internal Audits
+--------------------------------------------------------------------------------
+Status Options: [ ] Specified  [ ] In draft  [ ] Done
+
+ISMS internal audit reports are the obvious evidence here, documenting the main
+audit findings, conclusions and recommendations, often in the form of
+Nonconformity/Corrective Action Reports. Supporting evidence is also advisable
+concerning the audit process including audit programs or plans or calendars,
+budgets and auditor man-day allocations, audit scopes, audit working paper files
+with detailed audit findings and evidence (such as completed checklists), audit
+recommendations, agreed action plans and closure notes etc. The certification
+auditors may want to interview/chat to the ISMS auditors about the ISMS and/or
+issues raised in their reports.
+
+--------------------------------------------------------------------------------
+9.3 | ISMS Management Reviews
+--------------------------------------------------------------------------------
+Status Options: [ ] Specified  [ ] In draft  [ ] Done
+
+ISMS management review reports, obviously, perhaps also calendars/plans, budgets,
+scopes, working papers with evidence, recommendations, action plans, closure notes
+etc. The certification auditors may want to interview/chat to relevant Top
+Management and managers about the ISMS and/or issues raised in their reports.
+
+--------------------------------------------------------------------------------
+10.1 | Nonconformities and Corrective Actions
+--------------------------------------------------------------------------------
+Status Options: [ ] Specified  [ ] In draft  [ ] Done
+
+'Nonconformities' are (partially or wholly) unsatisfied requirements, including
+those within ISO/IEC 27001, plus strategies, policies, procedures, guidelines,
+laws, regulations and contracts. They may be documented in the form of issues,
+events, incidents, audit and review findings, complaints, or simply as
+"nonconformities" (e.g. on a Nonconformity/Corrective Action Report NCAR form).
+The certification auditors need to be convinced that nonconformities are being
+routinely and systematically identified, raised/reported, addressed and resolved,
+by reviewing (their sample of) relevant documentary evidence. Make it easier for
+them by maintaining a register or index of nonconformities, along with the
+neatly-filed evidence of actions undertaken in response to the nonconformities
+such as: root-cause analysis; reaction to the nonconformity such as immediate
+containment or correction; final results of the corrective action including review
+of its effectiveness and completion/closure/sign-off for the nonconformity.
+
+
+================================================================================
+SECTION B: ADDITIONAL DOCUMENTATION, RECORDS AND EVIDENCE
+================================================================================
+(Main body of ISO/IEC 27001)
+
+--------------------------------------------------------------------------------
+4.1 | Organization and Context
+--------------------------------------------------------------------------------
+Status Options: [ ] Specified  [ ] In draft  [ ] Done
+
+Identify yourself. Use a diagram and show an organizational chart as to where
+your team and operation resides and who are the Top Management stake holders.
+Represent both the technical team and the business team.
+The procedure for holding a strategy meeting (or similar) where internal and
+external issues relevant to the ISMS are discussed.
+Minutes of a strategy meeting (or similar) where management discussed various
+internal and external issues that were relevant to the ISMS – preferably within
+the past year.
+While the minutes will provide evidence of the process being followed, the
+process itself may also be documented.
+
+--------------------------------------------------------------------------------
+4.2 | Interested Parties
+--------------------------------------------------------------------------------
+Status Options: [ ] Specified  [ ] In draft  [ ] Done
+
+Some sort of list of stakeholders in the ISMS, updated periodically (implying a
+procedure to formulate and maintain the list). This may include or reference lists
+of laws, regulations, contracts, agreements etc. that are relevant i.e. concern
+risks to and requirements for the security/protection/control of information.
+Internal corporate stakeholders in the ISMS should also be identified, including
+not just those who direct and oversee the ISMS but also those who depend on its
+correct operation ('customers' of the ISMS).
+
+--------------------------------------------------------------------------------
+4.4 | ISMS
+--------------------------------------------------------------------------------
+Status Options: [ ] Specified  [ ] In draft  [ ] Done
+
+Your ISO/IEC 27001 compliance certificate from an accredited auditor is or will
+be the ultimate evidence of this! Meanwhile, your ISMS has a raft of documented
+policies, procedures, guidelines etc. These are best kept in order, under control
+and available to all who need them, for example on an intranet site, Document
+Management System or Governance Risk Compliance system.
+
+--------------------------------------------------------------------------------
+5.1 | Leadership
+--------------------------------------------------------------------------------
+Status Options: [ ] Specified  [ ] In draft  [ ] Done
+
+Evidence of management commitment to the ISMS may include their obvious interest
+and active involvement in the certification audit and other important ISMS
+activities (e.g. risk workshops), adequate budgets, approval of various formal
+documents (including budgets, expenditure and overspend/contingency), explicit
+reference to information risk and security in strategies and plans etc.
+Communications from senior management to all staff are excellent evidence (see
+also 7.4 below), for example when the certification efforts are launched
+(announcing the strategy, explaining key targets, stating who leads the effort and
+directing everyone to support the ISMS). Further communications should be issued
+for example about the certification audits, award of the certificate etc.,
+reinforcing the ongoing efforts to use, maintain and improve the ISMS. The
+seniority level or rank of the most senior information risk and security person
+(e.g. CISO or ISM), and the breadth of scope of the ISMS, are also strong
+indications of how seriously management takes this.
+
+--------------------------------------------------------------------------------
+5.3 | Roles and Responsibilities
+--------------------------------------------------------------------------------
+Status Options: [ ] Specified  [ ] In draft  [ ] Done
+
+The level or rank of the most senior information risk and security person (e.g.
+CISO or ISM) relative to other departments/functions, and the breadth of scope
+of the ISMS (e.g. buried within IT, limited to one or more specific business
+units or organization-wide), are strong indications of just how seriously
+management takes this information risk and security stuff. The governance
+arrangements are generally documented in organization charts showing reporting
+lines, role/job descriptions, vacancy notices etc.
+
+--------------------------------------------------------------------------------
+6.1.1 | Actions to Address Risks and Opportunities
+--------------------------------------------------------------------------------
+Status Options: [ ] Specified  [ ] In draft  [ ] Done
+
+The ISMS is intended to help the organization manage its information risks and
+security controls systematically, on an ongoing basis. Evidence may include
+strategy documents, vision statements, minutes of ISMS management meetings,
+corrective actions completed, management and audit recommendations actioned,
+improving metrics etc. In time, the continued success of the ISMS should more or
+less speak for itself.
+
+--------------------------------------------------------------------------------
+7.1 | Resources
+--------------------------------------------------------------------------------
+Status Options: [ ] Specified  [ ] In draft  [ ] Done
+
+ISMS resources are primarily people (Full Time Equivalents, headcount or list of
+permanent employees plus consultants, contractors, advisors, interns, temps etc.)
+and budgets. Note that the true expenses/costs of information risk and security,
+and the benefits, are distributed widely throughout the organization across all
+the activities that involve information: however, it is much simpler (and usually
+sufficient) to account purely for the Information Risk and Security Management
+function operating and managing the ISMS. Talk to your finance department about
+which accounting codes and reports to use.
+
+--------------------------------------------------------------------------------
+7.3 | Awareness
+--------------------------------------------------------------------------------
+Status Options: [ ] Specified  [ ] In draft  [ ] Done
+
+Evidence for the security awareness activities includes any relevant procedures
+and standards, awareness materials (posters, presentations, briefings, web pages,
+leaflets, quizzes, competitions, training course notes, lists of rewards/prizes
+issued etc.) and metrics (e.g. records of attendance and feedback scores from
+awareness events, awareness survey and test results, and details of the ongoing
+investments in security awareness and training).
+
+--------------------------------------------------------------------------------
+7.4 | Communication
+--------------------------------------------------------------------------------
+Status Options: [ ] Specified  [ ] In draft  [ ] Done
+
+The requirement is very vague here. Think about what you communicate regarding
+the ISMS (e.g. some sort of launch event, and a celebration when you are
+certified), to whom, when and how, and gather relevant evidence about it –
+emails, notices, reports, metrics etc. Document the internal communications
+processes as well as collecting evidence that shows them in operation.
+
+--------------------------------------------------------------------------------
+7.5.1 | General Documentation
+--------------------------------------------------------------------------------
+Status Options: [ ] Specified  [ ] In draft  [ ] Done
+
+This very checklist, once completed and supported by the referenced documentation
+and records, is a simple way to demonstrate to the auditors the nature, breadth,
+volume and quality of information concerning and generated by your ISMS. In
+addition to using this as part of your preparation for certification, you might
+like to maintain it indefinitely as a living record of your ISMS documentation,
+or perhaps migrate everything to a Document Management System with the
+functionality to track and report on all the documentation. ISMS documents need
+to be reviewed and updated periodically, with the reviews, changes and
+re-authorization being noted within in the documents themselves and/or in the DMS.
+
+--------------------------------------------------------------------------------
+7.5.2 | Creating and Updating Docs
+--------------------------------------------------------------------------------
+Status Options: [ ] Specified  [ ] In draft  [ ] Done
+
+A set of document templates for all the ISMS documents is a simple way to make
+sure they all have the standard document or version control information (such as
+the revision history, and any authorizations or mandates), as well as making them
+more consistent.
+
+--------------------------------------------------------------------------------
+7.5.3 | Control of Docs
+--------------------------------------------------------------------------------
+Status Options: [ ] Specified  [ ] In draft  [ ] Done
+
+Document management systems and webservers can generate reports of access rights,
+document status etc. for policies, procedures and guidelines etc. Emails,
+management reports, review and audit reports, metrics reports etc. generally state
+their own distribution on the cover or may use classification rules or managed
+distribution lists.
+
+--------------------------------------------------------------------------------
+10.2 | Continual Improvement
+--------------------------------------------------------------------------------
+Status Options: [ ] Specified  [ ] In draft  [ ] Done
+
+Documentary evidence for continual improvement of the ISMS includes the reports
+of reviews, audits, incidents, corrective actions, ISMS strategy/planning and
+management meetings plus assorted metrics demonstrating positive trends
+(hopefully!).
+
+================================================================================
+END OF CHECKLIST
+================================================================================

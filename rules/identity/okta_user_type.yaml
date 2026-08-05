@@ -1,0 +1,21 @@
+source_table: okta_user_type
+canonical_category: Identity
+provider: Okta
+canonical_id_template: $.id or $.display_name or $.name
+
+mappings:
+  display_name: $.display_name or $.name or $.id
+  description: $.description
+  created: $.created
+  last_updated: $.last_updated
+  display_name_field: $.display_name
+  type: $.type
+
+required_canonical_fields:
+  - display_name
+
+defaults:
+  source_system: okta
+
+version: 1
+last_modified: '2026-07-27'

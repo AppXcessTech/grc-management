@@ -1,0 +1,17 @@
+source_table: github_organization_external_identity
+canonical_category: Identity
+provider: GitHub
+token_type: classic
+canonical_id_template: "{guid}"
+
+mappings:
+  display_name: $.user_login or $.organization
+
+required_canonical_fields:
+  - display_name
+
+defaults:
+  source_system: github
+
+version: 2
+last_modified: '2026-07-28'

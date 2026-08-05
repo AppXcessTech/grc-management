@@ -1,0 +1,24 @@
+source_table: gitlab_project_job
+canonical_category: Pipeline
+provider: GitLab
+canonical_id_template: $.id or $.name
+
+mappings:
+  display_name: $.name or $.id
+  status: $.status
+  stage: $.stage
+  ref: $.ref
+  sha: $.sha
+  user_username: $.user_username
+  runner_description: $.runner_description
+  created_at: $.created_at
+  web_url: $.web_url
+
+required_canonical_fields:
+  - display_name
+
+defaults:
+  source_system: gitlab
+
+version: 1
+last_modified: '2026-07-30'

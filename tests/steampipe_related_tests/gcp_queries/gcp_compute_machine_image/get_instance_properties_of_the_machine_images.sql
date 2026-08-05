@@ -1,0 +1,26 @@
+select
+  name,
+  id,
+  instance_properties -> 'advancedMachineFeatures' as advanced_machine_features,
+  instance_properties ->> 'canIpForward' as can_ip_forward,
+  instance_properties -> 'confidentialInstanceConfig' as confidential_instance_config,
+  instance_properties ->> 'description' as description,
+  instance_properties -> 'disks' as disks,
+  instance_properties -> 'guestAccelerators' as guest_accelerators,
+  instance_properties ->> 'keyRevocationActionType' as key_revocation_action_type,
+  instance_properties -> 'labels' as labels,
+  instance_properties ->> 'machineType' as machine_type,
+  instance_properties -> 'metadata' as metadata,
+  instance_properties -> 'minCpuPlatform' as min_cpu_platform,
+  instance_properties -> 'networkInterfaces' as network_interfaces,
+  instance_properties -> 'networkPerformanceConfig' as network_performance_config,
+  instance_properties -> 'privateIpv6GoogleAccess' as private_ipv6_google_access,
+  instance_properties ->> 'reservationAffinity' as reservation_affinity,
+  instance_properties -> 'resourceManagerTags' as resource_manager_tags,
+  instance_properties -> 'resourcePolicies' as resource_policies,
+  instance_properties -> 'scheduling' as scheduling,
+  instance_properties -> 'serviceAccounts' as service_accounts,
+  instance_properties -> 'shieldedInstanceConfig' as shielded_instance_config,
+  instance_properties -> 'tags' as tags
+from
+  gcp_compute_machine_image;

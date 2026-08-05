@@ -1,0 +1,9 @@
+select
+  name,
+  healthy_threshold,
+  health_check_interval,
+  health_check_target,
+  health_check_timeout,
+  unhealthy_threshold
+from
+  aws_ec2_classic_load_balancer;

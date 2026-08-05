@@ -1,0 +1,18 @@
+source_table: aws_vpc_flow_log
+canonical_category: Logging
+provider: AWS
+canonical_id_template: $.flow_log_id
+
+mappings:
+  display_name: $.flow_log_id
+  region: $.region
+  account_id: $.account_id
+
+required_canonical_fields:
+  - display_name
+
+defaults:
+  source_system: aws
+
+version: 1
+last_modified: '2026-07-30'

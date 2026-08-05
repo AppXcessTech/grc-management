@@ -1,0 +1,13 @@
+select
+  allow_users_to_change_password,
+  expire_passwords,
+  hard_expiry,
+  max_password_age,
+  minimum_password_length,
+  password_reuse_prevention,
+  require_lowercase_characters,
+  require_numbers,
+  require_symbols,
+  require_uppercase_characters
+from
+  aws_iam_account_password_policy;

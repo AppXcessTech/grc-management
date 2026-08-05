@@ -1,0 +1,12 @@
+select
+  id,
+  name,
+  location_type,
+  status,
+  cluster_ipv4_cidr,
+  max_pods_per_node,
+  current_node_count,
+  endpoint,
+  location
+from
+  gcp_kubernetes_cluster;

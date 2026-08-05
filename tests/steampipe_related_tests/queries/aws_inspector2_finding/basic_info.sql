@@ -1,0 +1,9 @@
+select
+  arn,
+  description,
+  fix_available,
+  inspector_score,
+  severity,
+  finding_account_id
+from
+  aws_inspector2_finding;

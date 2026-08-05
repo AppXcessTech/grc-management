@@ -1,0 +1,13 @@
+select
+  instance_id,
+  instance_state,
+  placement_affinity,
+  placement_group_id,
+  placement_group_name,
+  placement_availability_zone,
+  placement_host_id,
+  placement_host_resource_group_arn,
+  placement_partition_number,
+  placement_tenancy
+from
+  aws_ec2_instance;

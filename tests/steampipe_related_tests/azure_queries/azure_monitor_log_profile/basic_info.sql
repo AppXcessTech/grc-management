@@ -1,0 +1,9 @@
+select
+  id,
+  name,
+  storage_account_id,
+  service_bus_rule_id,
+  locations,
+  retention_policy
+from
+  azure_monitor_log_profile;

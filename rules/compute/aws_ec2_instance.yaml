@@ -1,0 +1,25 @@
+source_table: aws_ec2_instance
+canonical_category: Compute
+provider: AWS
+canonical_id_template: $.arn
+
+mappings:
+  display_name: $.arn
+
+  region: "$.region"
+  account_id: "$.account_id"
+  status: "$.instance_state"
+  instance_type: "$.instance_type"
+  public_ip: "$.public_ip_address"
+  private_ip: "$.private_ip_address"
+  launched_at: "$.launch_time"
+
+required_canonical_fields:
+  - display_name
+  - status
+
+defaults:
+  source_system: aws
+
+version: 2
+last_modified: '2026-08-03'

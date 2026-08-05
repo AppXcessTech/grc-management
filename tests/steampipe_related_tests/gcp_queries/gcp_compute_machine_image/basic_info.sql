@@ -1,0 +1,9 @@
+select
+  name,
+  id,
+  description,
+  creation_timestamp,
+  guest_flush,
+  source_instance
+from
+  gcp_compute_machine_image;

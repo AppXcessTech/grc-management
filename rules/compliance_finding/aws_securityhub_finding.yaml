@@ -1,0 +1,18 @@
+source_table: aws_securityhub_finding
+canonical_category: ComplianceFinding
+provider: AWS
+canonical_id_template: $.arn
+
+mappings:
+  display_name: $.arn
+  region: $.region
+  account_id: $.account_id
+
+required_canonical_fields:
+  - display_name
+
+defaults:
+  source_system: aws
+
+version: 1
+last_modified: '2026-07-30'

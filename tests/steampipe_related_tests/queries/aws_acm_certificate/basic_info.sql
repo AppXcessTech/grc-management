@@ -1,0 +1,9 @@
+select
+  certificate_arn,
+  domain_name,
+  failure_reason,
+  in_use_by,
+  status,
+  key_algorithm
+from
+  aws_acm_certificate;

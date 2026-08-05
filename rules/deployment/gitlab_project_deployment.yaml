@@ -1,0 +1,23 @@
+source_table: gitlab_project_deployment
+canonical_category: Deployment
+provider: GitLab
+canonical_id_template: $.id or $.iid or $.sha
+
+mappings:
+  display_name: $.deployable_name or $.ref or $.id
+  status: $.status
+  environment_name: $.environment_name
+  ref: $.ref
+  sha: $.sha
+  user_username: $.user_username
+  created_at: $.created_at
+  updated_at: $.updated_at
+
+required_canonical_fields:
+  - display_name
+
+defaults:
+  source_system: gitlab
+
+version: 1
+last_modified: '2026-07-30'

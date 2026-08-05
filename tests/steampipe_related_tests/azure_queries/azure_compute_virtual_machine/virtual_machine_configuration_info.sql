@@ -1,0 +1,12 @@
+select
+  name,
+  power_state,
+  private_ips,
+  public_ips,
+  vm_id,
+  size,
+  os_type,
+  image_offer,
+  image_sku
+from
+  azure_compute_virtual_machine;

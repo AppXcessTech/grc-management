@@ -1,0 +1,9 @@
+select
+  title,
+  id,
+  company_name,
+  created_at,
+  criticality,
+  confidence
+from
+  aws_securityhub_finding;

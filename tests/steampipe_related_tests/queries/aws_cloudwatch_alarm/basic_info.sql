@@ -1,0 +1,10 @@
+select
+  name,
+  state_value,
+  metric_name,
+  actions_enabled,
+  comparison_operator,
+  namespace,
+  statistic
+from
+  aws_cloudwatch_alarm;

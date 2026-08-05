@@ -1,0 +1,9 @@
+select
+  name,
+  id,
+  kind,
+  enable_inbound_forwarding,
+  enable_logging,
+  target_name_servers
+from
+  gcp_dns_policy;

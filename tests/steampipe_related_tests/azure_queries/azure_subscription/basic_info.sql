@@ -1,0 +1,10 @@
+select
+  id,
+  subscription_id,
+  display_name,
+  tenant_id,
+  state,
+  authorization_source,
+  subscription_policies
+from
+  azure_subscription;

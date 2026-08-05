@@ -1,0 +1,10 @@
+select
+  name,
+  role_arn,
+  status,
+  recording_group,
+  status_recording,
+  akas,
+  title
+from
+  aws_config_configuration_recorder;

@@ -1,0 +1,17 @@
+source_table: github_branch_protection
+canonical_category: Policy
+provider: GitHub
+token_type: fine_grained
+canonical_id_template: $.node_id or $.id or $.repository_full_name or $.pattern
+
+mappings:
+  display_name: $.repository_full_name or $.pattern or $.node_id
+
+required_canonical_fields:
+  - display_name
+
+defaults:
+  source_system: github
+
+version: 1
+last_modified: '2026-07-28'

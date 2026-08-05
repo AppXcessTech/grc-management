@@ -1,0 +1,21 @@
+source_table: okta_trusted_origin
+canonical_category: Policy
+provider: Okta
+canonical_id_template: $.id or $.name
+
+mappings:
+  display_name: $.name or $.id
+  origin: $.origin
+  origin_type: $.type
+  status: $.status
+  created: $.created
+  last_updated: $.last_updated
+
+required_canonical_fields:
+  - display_name
+
+defaults:
+  source_system: okta
+
+version: 1
+last_modified: '2026-07-27'

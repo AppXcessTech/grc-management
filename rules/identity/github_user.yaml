@@ -1,0 +1,17 @@
+source_table: github_user
+canonical_category: Identity
+provider: GitHub
+token_type: classic
+canonical_id_template: $.node_id or $.id or $.login or $.name
+
+mappings:
+  display_name: $.login or $.name or $.node_id
+
+required_canonical_fields:
+  - display_name
+
+defaults:
+  source_system: github
+
+version: 1
+last_modified: '2026-07-28'

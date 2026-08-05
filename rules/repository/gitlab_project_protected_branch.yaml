@@ -1,0 +1,21 @@
+source_table: gitlab_project_protected_branch
+canonical_category: Repository
+provider: GitLab
+canonical_id_template: $.id or $.name
+
+mappings:
+  display_name: $.name or $.id
+  allow_force_push: $.allow_force_push
+  code_owner_approval_required: $.code_owner_approval_required
+  push_access_levels: $.push_access_levels
+  merge_access_levels: $.merge_access_levels
+  unprotect_access_levels: $.unprotect_access_levels
+
+required_canonical_fields:
+  - display_name
+
+defaults:
+  source_system: gitlab
+
+version: 1
+last_modified: '2026-07-30'

@@ -1,0 +1,10 @@
+select
+  i.instance_id,
+  vols -> 'Ebs' ->> 'VolumeId' as vol_id,
+  vol.encrypted
+from
+  aws_ec2_instance as i
+  cross join jsonb_array_elements(block_device_mappings) as vols
+  join aws_ebs_volume as vol on vol.volume_id = vols -> 'Ebs' ->> 'VolumeId'
+where
+  not vol.encrypted;

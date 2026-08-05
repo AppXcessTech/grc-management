@@ -1,0 +1,11 @@
+select
+  vpc_id,
+  is_default,
+  cidr_block,
+  state,
+  account_id,
+  region
+from
+  aws_vpc
+where
+  is_default;

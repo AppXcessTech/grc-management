@@ -1,0 +1,10 @@
+select
+  name,
+  client,
+  client_version,
+  create_time,
+  creator,
+  generation,
+  launch_stage
+from
+  gcp_cloud_run_job;

@@ -1,0 +1,11 @@
+select
+  name,
+  mode,
+  format,
+  satisfies_pzs,
+  description,
+  create_time
+from
+  gcp_artifact_registry_repository
+where
+  satisfies_pzs;

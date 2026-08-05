@@ -1,0 +1,19 @@
+source_table: microsoft365_team_member
+canonical_category: Identity
+provider: Microsoft 365
+canonical_id_template: $.member_id or $.team_id
+
+mappings:
+  display_name: $.member_id or $.team_name
+  team_id: $.team_id
+  team_name: $.team_name
+  tenant_id: $.tenant_id
+
+required_canonical_fields:
+  - display_name
+
+defaults:
+  source_system: microsoft_365
+
+version: 1
+last_modified: '2026-07-29'

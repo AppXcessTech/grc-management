@@ -1,0 +1,10 @@
+select
+  name,
+  display_name,
+  create_time,
+  update_time,
+  uid,
+  location,
+  project
+from
+  gcp_workstations_workstation_cluster;

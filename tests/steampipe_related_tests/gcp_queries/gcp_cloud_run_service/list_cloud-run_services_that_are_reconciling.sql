@@ -1,0 +1,14 @@
+select
+  name,
+  description,
+  client,
+  client_version,
+  create_time,
+  creator,
+  generation,
+  launch_stage,
+  reconciling
+from
+  gcp_cloud_run_service
+where
+  reconciling;

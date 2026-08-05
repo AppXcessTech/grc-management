@@ -1,0 +1,20 @@
+source_table: gitlab_project_container_registry
+canonical_category: ContainerRegistry
+provider: GitLab
+canonical_id_template: $.id or $.path or $.name
+
+mappings:
+  display_name: $.name or $.path or $.id
+  path: $.path
+  location: $.location
+  created_at: $.created_at
+  cleanup_policy_started_at: $.cleanup_policy_started_at
+
+required_canonical_fields:
+  - display_name
+
+defaults:
+  source_system: gitlab
+
+version: 1
+last_modified: '2026-07-30'

@@ -1,0 +1,24 @@
+source_table: gitlab_my_project
+canonical_category: Repository
+provider: GitLab
+canonical_id_template: $.id or $.full_path or $.name
+
+mappings:
+  display_name: $.full_path or $.name or $.id
+  description: $.description
+  visibility: $.visibility
+  default_branch: $.default_branch
+  web_url: $.web_url
+  archived: $.archived
+  created_at: $.created_at
+  star_count: $.star_count
+  namespace_full_path: $.namespace_full_path
+
+required_canonical_fields:
+  - display_name
+
+defaults:
+  source_system: gitlab
+
+version: 1
+last_modified: '2026-07-30'

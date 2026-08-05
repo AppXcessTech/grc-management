@@ -1,0 +1,21 @@
+source_table: bitbucket_branch_restriction
+canonical_category: Policy
+provider: Bitbucket
+canonical_id_template: $.id or $.self_link or $.repository_full_name
+
+mappings:
+  display_name: $.repository_full_name or $.kind or $.value or $.id
+  repository_full_name: $.repository_full_name
+  kind: $.kind
+  value: $.value
+  type: $.type
+  web_url: $.self_link
+
+required_canonical_fields:
+  - display_name
+
+defaults:
+  source_system: bitbucket
+
+version: 1
+last_modified: '2026-08-03'

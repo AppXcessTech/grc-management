@@ -1,0 +1,9 @@
+select
+  display_name,
+  id,
+  description,
+  visibility,
+  created_date_time,
+  web_url
+from
+  microsoft365_team;

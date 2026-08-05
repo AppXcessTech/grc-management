@@ -1,0 +1,8 @@
+admin@hybrid.com : <password> -> Super Admin
+alex@gmail.com : lACflNvk5ITiBPDO -> Auditor
+jacob@gmail.com : GV4_Y3V1VP0UVx4Z -> Compliance Admin
+fred@gmail.com : 5KL_czuMT3O08e4k -> Security Auditor
+ada@gmail.com : Qx1TQkM7YQKK69Mw -> Employee
+charles@gmail.com : IYEKkLVGnFElzqRm -> Vendor User
+test@gmail.com : abJm8_CX8F2NGWI- -> Read Only
+philip@appxcess.com : y4PQw6OEHSpqMh5E -> Super admin (SSO check)

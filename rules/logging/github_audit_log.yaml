@@ -1,0 +1,17 @@
+source_table: github_audit_log
+canonical_category: Logging
+provider: GitHub
+token_type: classic
+canonical_id_template: $.id or $.user_login or $.organization
+
+mappings:
+  display_name: $.action or $.user_login or $.organization
+
+required_canonical_fields:
+  - display_name
+
+defaults:
+  source_system: github
+
+version: 2
+last_modified: '2026-07-28'

@@ -1,0 +1,30 @@
+1) Creation of Multi department structure "/api/organizations/{org_slug}/departments"
+2) Business Units Creation (UI and Backend) "/api/organizations/{org_slug}/bunits"
+3) Subsidiaries (UI and Backend) "/api/organizations/{org_slug}/subsidiaries"
+
+
+Acme Corporation
+│
+├── Departments
+│   ├── IT
+│   ├── HR
+│   ├── Finance
+│   └── Legal
+│
+├── Business Units
+│   ├── Consumer Products
+│   ├── Enterprise Solutions
+│   └── Managed Services
+│
+└── Subsidiaries
+    ├── Acme India Pvt Ltd
+    ├── Acme Singapore Pte Ltd
+    └── Acme Europe GmbH
+
+Authentication -> JWT for now but will implement SSO and OAuth2 soon
+
+SWOT analysis.
+Strength, Weakness, Opportunities, Threats.
+
+
+1) Create a user role and admin role for the customer org

@@ -1,0 +1,19 @@
+source_table: gcp_audit_policy
+canonical_category: Logging
+provider: GCP
+canonical_id_template: $.id or $.name or $.self_link or $.title
+
+mappings:
+  display_name: $.name or $.Name or $.id or $.self_link or $.title
+  region: $.region
+  account_id: $.account_id
+  project: $.project
+
+required_canonical_fields:
+  - display_name
+
+defaults:
+  source_system: gcp
+
+version: 1
+last_modified: '2026-07-30'

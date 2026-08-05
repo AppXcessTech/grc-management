@@ -1,0 +1,31 @@
+source_table: gitlab_group_hook
+canonical_category: Webhook
+provider: GitLab
+canonical_id_template: $.id or $.url
+
+mappings:
+  display_name: $.url or $.id
+  push_events: $.push_events
+  push_events_branch_filter: $.push_events_branch_filter
+  issues_events: $.issues_events
+  confidential_issues_events: $.confidential_issues_events
+  merge_requests_events: $.merge_requests_events
+  tag_push_events: $.tag_push_events
+  note_events: $.note_events
+  confidential_note_events: $.confidential_note_events
+  job_events: $.job_events
+  pipeline_events: $.pipeline_events
+  wiki_page_events: $.wiki_page_events
+  deployment_events: $.deployment_events
+  releases_events: $.releases_events
+  subgroup_events: $.subgroup_events
+  created_at: $.created_at
+
+required_canonical_fields:
+  - display_name
+
+defaults:
+  source_system: gitlab
+
+version: 1
+last_modified: '2026-07-30'

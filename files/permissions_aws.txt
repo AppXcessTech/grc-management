@@ -1,0 +1,416 @@
+GRC Policy 1 - Governance
+ 
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "IAMFull",
+      "Effect": "Allow",
+      "Action": [
+        "iam:GenerateCredentialReport",
+        "iam:GetCredentialReport",
+        "iam:ListUsers",
+        "iam:GetUser",
+        "iam:ListRoles",
+        "iam:GetRole",
+        "iam:ListPolicies",
+        "iam:GetPolicy",
+        "iam:GetPolicyVersion",
+        "iam:ListMFADevices",
+        "iam:ListVirtualMFADevices",
+        "iam:GetAccountSummary",
+        "iam:GetAccountPasswordPolicy",
+        "iam:GetAccountAuthorizationDetails",
+        "iam:ListAccessKeys",
+        "iam:GetAccessKeyLastUsed",
+        "iam:ListAttachedUserPolicies",
+        "iam:ListAttachedRolePolicies",
+        "iam:ListAttachedGroupPolicies",
+        "iam:ListUserPolicies",
+        "iam:GetUserPolicy",
+        "iam:ListRolePolicies",
+        "iam:GetRolePolicy",
+        "iam:ListGroupPolicies",
+        "iam:GetGroupPolicy",
+        "iam:ListGroups",
+        "iam:GetGroup",
+        "iam:ListGroupsForUser",
+        "iam:GetLoginProfile",
+        "iam:ListSSHPublicKeys",
+        "iam:GetSSHPublicKey",
+        "iam:ListServiceSpecificCredentials",
+        "iam:ListSAMLProviders",
+        "iam:GetSAMLProvider",
+        "iam:ListOpenIDConnectProviders",
+        "iam:GetOpenIDConnectProvider",
+        "iam:ListInstanceProfiles",
+        "iam:GetInstanceProfile",
+        "iam:ListPoliciesGrantingServiceAccess",
+        "iam:ListEntitiesForPolicy",
+        "iam:GetContextKeysForPrincipalPolicy",
+        "iam:SimulatePrincipalPolicy",
+        "iam:ListServerCertificates"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Sid": "AccessAnalyzer",
+      "Effect": "Allow",
+      "Action": [
+        "access-analyzer:ListAnalyzers",
+        "access-analyzer:ListFindings",
+        "access-analyzer:GetFinding",
+        "access-analyzer:GetAnalyzer"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Sid": "OrganizationsAccountStructure",
+      "Effect": "Allow",
+      "Action": [
+        "organizations:DescribeOrganization",
+        "organizations:DescribeAccount",
+        "organizations:ListAccounts",
+        "organizations:ListRoots",
+        "organizations:ListOrganizationalUnitsForParent",
+        "organizations:ListPolicies",
+        "organizations:ListPoliciesForTarget",
+        "organizations:DescribePolicy",
+        "organizations:ListTagsForResource"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Sid": "ResourceInventoryTagging",
+      "Effect": "Allow",
+      "Action": [
+        "tag:GetResources",
+        "tag:GetTagKeys",
+        "tag:GetTagValues"
+      ],
+      "Resource": "*"
+    }
+  ]
+}
+ 
+GRC Policy 2 -> Infrastructure
+ 
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "SecurityGroupsVPC",
+      "Effect": "Allow",
+      "Action": [
+        "ec2:DescribeSecurityGroups",
+        "ec2:DescribeSecurityGroupRules",
+        "ec2:DescribeVpcs",
+        "ec2:DescribeVpcEndpoints",
+        "ec2:DescribeSubnets",
+        "ec2:DescribeRouteTables",
+        "ec2:DescribeNetworkAcls",
+        "ec2:DescribeNetworkInterfaces",
+        "ec2:DescribeFlowLogs",
+        "ec2:DescribeInternetGateways",
+        "ec2:DescribeNatGateways",
+        "ec2:DescribeAddresses",
+        "ec2:DescribeVpcPeeringConnections",
+        "ec2:DescribeTransitGateways",
+        "ec2:DescribeTransitGatewayAttachments"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Sid": "EC2Instances",
+      "Effect": "Allow",
+      "Action": [
+        "ec2:DescribeInstances",
+        "ec2:DescribeImages",
+        "ec2:DescribeTags",
+        "ec2:GetEbsEncryptionByDefault",
+        "ec2:DescribeInstanceAttribute",
+        "ssm:DescribeInstanceInformation",
+        "ssm:ListComplianceItems",
+        "ssm:DescribeInstancePatchStates",
+        "ssm:DescribeInstancePatchStatesForPatchGroup",
+        "ssm:GetInventory"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Sid": "EBSVolumes",
+      "Effect": "Allow",
+      "Action": [
+        "ec2:DescribeVolumes",
+        "ec2:DescribeSnapshots",
+        "ec2:DescribeSnapshotAttribute"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Sid": "S3Buckets",
+      "Effect": "Allow",
+      "Action": [
+        "s3:GetBucketPolicy",
+        "s3:GetBucketPolicyStatus",
+        "s3:GetBucketAcl",
+        "s3:GetBucketPublicAccessBlock",
+        "s3:GetAccountPublicAccessBlock",
+        "s3:GetEncryptionConfiguration",
+        "s3:GetBucketVersioning",
+        "s3:GetBucketLogging",
+        "s3:GetBucketTagging",
+        "s3:GetLifecycleConfiguration",
+        "s3:GetBucketOwnershipControls",
+        "s3:GetBucketNotification",
+        "s3:GetBucketObjectLockConfiguration",
+        "s3:GetReplicationConfiguration",
+        "s3:ListAllMyBuckets",
+        "s3:GetBucketLocation"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Sid": "KMS",
+      "Effect": "Allow",
+      "Action": [
+        "kms:ListKeys",
+        "kms:DescribeKey",
+        "kms:GetKeyRotationStatus",
+        "kms:GetKeyPolicy",
+        "kms:ListAliases",
+        "kms:ListResourceTags"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Sid": "RDS",
+      "Effect": "Allow",
+      "Action": [
+        "rds:DescribeDBInstances",
+        "rds:DescribeDBClusters",
+        "rds:DescribeDBSnapshots",
+        "rds:DescribeDBClusterSnapshots",
+        "rds:DescribeDBSnapshotAttributes",
+        "rds:DescribeDBClusterSnapshotAttributes",
+        "rds:DescribeDBParameterGroups",
+        "rds:DescribeDBParameters",
+        "rds:ListTagsForResource"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Sid": "OtherDataStores",
+      "Effect": "Allow",
+      "Action": [
+        "dynamodb:DescribeTable",
+        "dynamodb:DescribeContinuousBackups",
+        "dynamodb:ListTagsOfResource",
+        "elasticache:DescribeCacheClusters",
+        "elasticache:DescribeReplicationGroups",
+        "redshift:DescribeClusters",
+        "redshift:DescribeClusterParameters",
+        "redshift:DescribeLoggingStatus",
+        "es:DescribeDomain",
+        "es:ListDomainNames",
+        "opensearch:DescribeDomain",
+        "opensearch:ListDomainNames"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Sid": "ComputeServices",
+      "Effect": "Allow",
+      "Action": [
+        "lambda:ListFunctions",
+        "lambda:GetFunction",
+        "lambda:GetFunctionConfiguration",
+        "lambda:GetPolicy",
+        "ecs:ListClusters",
+        "ecs:DescribeClusters",
+        "ecs:ListTaskDefinitions",
+        "ecs:DescribeTaskDefinition",
+        "eks:ListClusters",
+        "eks:DescribeCluster"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Sid": "CloudFormation",
+      "Effect": "Allow",
+      "Action": [
+        "cloudformation:DescribeStacks",
+        "cloudformation:DescribeStackResources",
+        "cloudformation:DetectStackDrift",
+        "cloudformation:DescribeStackDriftDetectionStatus",
+        "cloudformation:GetTemplate"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Sid": "CertificatesTLS",
+      "Effect": "Allow",
+      "Action": [
+        "acm:ListCertificates",
+        "acm:DescribeCertificate"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Sid": "LoadBalancers",
+      "Effect": "Allow",
+      "Action": [
+        "elasticloadbalancing:DescribeLoadBalancers",
+        "elasticloadbalancing:DescribeListeners",
+        "elasticloadbalancing:DescribeSSLPolicies",
+        "elasticloadbalancing:DescribeTargetGroups",
+        "elasticloadbalancing:DescribeTargetHealth",
+        "elasticloadbalancing:DescribeTags"
+      ],
+      "Resource": "*"
+    }
+  ]
+}
+ 
+GRC Policy 3 -> Security Monitoring
+ 
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "CloudTrail",
+      "Effect": "Allow",
+      "Action": [
+        "cloudtrail:DescribeTrails",
+        "cloudtrail:GetTrailStatus",
+        "cloudtrail:GetEventSelectors",
+        "cloudtrail:GetInsightSelectors",
+        "cloudtrail:ListTrails",
+        "cloudtrail:ListTags",
+        "cloudtrail:LookupEvents"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Sid": "AWSConfig",
+      "Effect": "Allow",
+      "Action": [
+        "config:DescribeConfigurationRecorders",
+        "config:DescribeConfigurationRecorderStatus",
+        "config:DescribeDeliveryChannels",
+        "config:DescribeDeliveryChannelStatus",
+        "config:DescribeConfigRules",
+        "config:DescribeComplianceByConfigRule",
+        "config:DescribeComplianceByResource",
+        "config:GetComplianceDetailsByResource",
+        "config:GetComplianceDetailsByConfigRule",
+        "config:GetComplianceSummaryByConfigRule",
+        "config:GetResourceConfigHistory"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Sid": "GuardDuty",
+      "Effect": "Allow",
+      "Action": [
+        "guardduty:ListDetectors",
+        "guardduty:GetDetector",
+        "guardduty:ListFindings",
+        "guardduty:GetFindings",
+        "guardduty:ListMembers",
+        "guardduty:GetMasterAccount"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Sid": "SecurityHub",
+      "Effect": "Allow",
+      "Action": [
+        "securityhub:DescribeHub",
+        "securityhub:GetFindings",
+        "securityhub:GetEnabledStandards",
+        "securityhub:GetInsights",
+        "securityhub:DescribeStandardsControls",
+        "securityhub:ListEnabledProductsForImport"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Sid": "Inspector",
+      "Effect": "Allow",
+      "Action": [
+        "inspector2:ListFindings",
+        "inspector2:BatchGetAccountStatus",
+        "inspector2:GetConfiguration",
+        "inspector2:ListCoverage"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Sid": "Macie",
+      "Effect": "Allow",
+      "Action": [
+        "macie2:GetMacieSession",
+        "macie2:ListFindings",
+        "macie2:GetFindings",
+        "macie2:ListClassificationJobs",
+        "macie2:GetClassificationJob"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Sid": "LoggingMonitoring",
+      "Effect": "Allow",
+      "Action": [
+        "cloudwatch:DescribeAlarms",
+        "cloudwatch:GetMetricData",
+        "logs:DescribeLogGroups",
+        "logs:DescribeMetricFilters",
+        "logs:DescribeSubscriptionFilters",
+        "logs:GetLogGroupFields",
+        "sns:ListTopics",
+        "sns:GetTopicAttributes",
+        "sns:ListSubscriptionsByTopic"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Sid": "Backup",
+      "Effect": "Allow",
+      "Action": [
+        "backup:ListBackupPlans",
+        "backup:GetBackupPlan",
+        "backup:ListBackupVaults",
+        "backup:GetBackupVaultAccessPolicy",
+        "backup:ListBackupJobs",
+        "backup:ListBackupSelections",
+        "backup:GetBackupSelection"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Sid": "SecretsMetadataOnly",
+      "Effect": "Allow",
+      "Action": [
+        "secretsmanager:ListSecrets",
+        "secretsmanager:DescribeSecret",
+        "ssm:DescribeParameters",
+        "ssm:GetParametersByPath"
+      ],
+      "Resource": "*"
+    }
+  ]
+}
+ 
+STS Assume Role
+ 
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": "sts:AssumeRole",
+            "Resource": "arn:aws:iam::<account_id>:role/grc_readonly"
+        }
+    ]
+}

@@ -1,0 +1,7 @@
+ Create per-category translators and TranslatorRegistry
+[ ] Add raw_payload to _discover_* functions, remove group/name
+[ ] Update IngestionService to use TranslatorRegistry instead of AWSMapper
+[ ] Simplify endpoints — remove legacy response models (AWSImportResponse, SyncResult)
+[ ] Remove legacy frontend pages (AWSPage, CloudResources, ServiceDetail, S3Detail) and routes
+[ ] Update sidebar for explicit routes (devices, people)
+[ ] Verify build + alembic consistency

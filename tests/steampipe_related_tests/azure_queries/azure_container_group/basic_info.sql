@@ -1,0 +1,9 @@
+select
+  name,
+  id,
+  provisioning_state,
+  restart_policy,
+  sku,
+  region
+from
+  azure_container_group;

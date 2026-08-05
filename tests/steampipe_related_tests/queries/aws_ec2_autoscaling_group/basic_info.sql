@@ -1,0 +1,11 @@
+select
+  name,
+  load_balancer_names,
+  availability_zones,
+  service_linked_role_arn,
+  default_cooldown,
+  max_size,
+  min_size,
+  new_instances_protected_from_scale_in
+from
+  aws_ec2_autoscaling_group;

@@ -1,0 +1,71 @@
+Meeting - 1
+-----------
+
+1) From System Level, every asset must be taken into consideration.
+2) Threat Modelling -> MITRE, STRIDE.
+
+
+Meeting - 2
+-----------
+1) Turn the entire application in to the path of Canonical Form of Extraction.
+
+Consider the cloud resource itself 
+
+we have 
+
+a) AWS -> boto3.()
+b) Azure -> Graph.()
+c) Gcp -> compute.()
+d) zoho -> zoho.()
+
+To integrate each of them, its a nightmare (each of them will have VMs,IAMs 
+etc )... Also zoho has 1000s of internal services that might need compliance ...
+
+Hence we "build placeholders" through which we collect them and turn them into
+a single canonical form.
+
+Ex: If aws has aws_id
+    If azure has azure_id
+    If gcp has gcp_id
+
+All these will be converted to {"id": }
+------------------------------------
+Look below: 
+
+class ComputeAsset:
+    id: str
+    provider: str
+    native_id: str
+    name: str
+    state: str
+    region: str
+    tags: dict
+
+Aws, Azure, GCP fill these same fields.
+
+----------------------------------------
+
+You cannot build an Azure integration without the Azure APIs. 
+That's impossible.
+
+What you can build without Azure is the contract that Azure will 
+eventually implement.
+
+------------------------------------------------------------
+
+So think what related to the GRC policies we will need and get that through
+these resources ?
+
+
+GRC policy (Data must be encrypted at rest)
+	|
+	v
+Evidence needed (Storage | Encryption)
+	|
+	v
+Do you have AWS ? (placeholder in website) -> Fill Creds and , import assets and extract evidence then verify.
+Do you have Azure ? (Placeholder in website) -> Same as above to fill creds , import and evaluate.
+etc ...
+	|
+	v
+

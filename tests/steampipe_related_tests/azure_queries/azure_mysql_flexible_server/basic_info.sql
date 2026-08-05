@@ -1,0 +1,9 @@
+select
+  name,
+  id,
+  location,
+  backup_retention_days,
+  storage_iops,
+  public_network_access
+from
+  azure_mysql_flexible_server;

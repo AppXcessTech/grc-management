@@ -1,0 +1,17 @@
+source_table: github_actions_repository_workflow_run
+canonical_category: Pipeline
+provider: GitHub
+token_type: fine_grained
+canonical_id_template: $.node_id or $.id or $.run_id or $.repository_full_name
+
+mappings:
+  display_name: $.event or $.head_branch or $.run_number or $.node_id or $.repository_full_name
+
+required_canonical_fields:
+  - display_name
+
+defaults:
+  source_system: github
+
+version: 2
+last_modified: '2026-07-28'

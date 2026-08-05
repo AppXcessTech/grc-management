@@ -1,0 +1,11 @@
+select
+  name,
+  display_name,
+  create_time,
+  location_id,
+  maintenance_policy,
+  maintenance_schedule,
+  maintenance_version,
+  available_maintenance_versions
+from
+  gcp_redis_instance;

@@ -1,0 +1,9 @@
+select
+  name,
+  id,
+  description,
+  disabled
+from
+  gcp_compute_firewall
+where
+  disabled;

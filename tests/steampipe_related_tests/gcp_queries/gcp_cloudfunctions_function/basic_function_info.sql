@@ -1,0 +1,11 @@
+select
+  name,
+  description,
+  status,
+  runtime,
+  available_memory_mb,
+  max_instances,
+  ingress_settings,
+  service_timeout
+from
+  gcp_cloudfunctions_function;

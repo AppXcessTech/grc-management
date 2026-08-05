@@ -1,0 +1,9 @@
+select
+  name,
+  id,
+  self_link,
+  backend_service,
+  ip_address,
+  load_balancing_scheme
+from
+  gcp_compute_forwarding_rule;

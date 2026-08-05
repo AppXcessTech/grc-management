@@ -1,0 +1,19 @@
+source_table: azure_cosmosdb_account
+canonical_category: Database
+provider: Azure
+canonical_id_template: $.id or $.name or $.title
+
+mappings:
+  display_name: $.name or $.Name or $.id or $.self_link or $.title
+  region: $.region
+  account_id: $.account_id
+  subscription_id: $.subscription_id
+
+required_canonical_fields:
+  - display_name
+
+defaults:
+  source_system: azure
+
+version: 1
+last_modified: '2026-07-30'

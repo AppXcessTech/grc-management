@@ -1,0 +1,9 @@
+select
+  id,
+  name,
+  type,
+  provisioning_state,
+  etag,
+  region
+from
+  azure_lb;

@@ -1,0 +1,13 @@
+Here's a summary of what's done and what's left:
+✅ Done
+1. Fixed  app/services/steampipe_github.py  — two-pass approach with proper qualifiers
+2. Tested — Import now discovers 42 resources across 8 tables (was 0)
+📋 Remaining To-Do
+┌─────┬─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┬───────────┐
+│ #   │ Task                                                                                                                        │ Priority  │
+├─────┼─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼───────────┤
+│ 1   │ Run full API end-to-end test — trigger /sync via the server, poll status, verify assets get stored in DB                    │ 🔴 High   │
+│ 2   │ Handle two-qualifier tables (github_team_member, github_team_repository need organization + slug) — currently silently fail │ 🟡 Medium │
+│ 3   │ Clean up dead code in _process_table (the github_my_repository special case is unreachable)                                 │ 🟢 Low    │
+│ 4   │ Build/verify frontend UI — check if the GitHub integration page has the sync/import button working                          │ 🟢 Low    │
+└─────┴─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┴───────────┘

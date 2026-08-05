@@ -1,0 +1,21 @@
+source_table: gitlab_project_variable
+canonical_category: Configuration
+provider: GitLab
+canonical_id_template: $.key or $.id or $.project_id
+
+mappings:
+  display_name: $.key or $.id
+  variable_type: $.variable_type
+  environment_scope: $.environment_scope
+  masked: $.masked
+  protected: $.protected
+  raw: $.raw
+
+required_canonical_fields:
+  - display_name
+
+defaults:
+  source_system: gitlab
+
+version: 1
+last_modified: '2026-07-30'

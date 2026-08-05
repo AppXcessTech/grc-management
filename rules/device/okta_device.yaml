@@ -1,0 +1,24 @@
+source_table: okta_device
+canonical_category: Device
+provider: Okta
+canonical_id_template: $.id or $.display_name or $.name
+
+mappings:
+  display_name: $.display_name or $.name or $.id
+  platform: $.platform
+  status: $.status
+  created: $.created
+  last_updated: $.last_updated
+  device_type: $.type
+  model: $.model
+  os_version: $.os_version
+  managed_status: $.managed_status
+
+required_canonical_fields:
+  - display_name
+
+defaults:
+  source_system: okta
+
+version: 1
+last_modified: '2026-07-27'

@@ -1,0 +1,9 @@
+select
+  name,
+  uid,
+  type,
+  location,
+  concurrency_mode,
+  create_time
+from
+  gcp_firestore_database;

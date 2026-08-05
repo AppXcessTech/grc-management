@@ -1,0 +1,17 @@
+source_table: github_repository_collaborator
+canonical_category: Identity
+provider: GitHub
+token_type: fine_grained
+canonical_id_template: "{repository_full_name}:{user_login}"
+
+mappings:
+  display_name: $.user_login or $.repository_full_name
+
+required_canonical_fields:
+  - display_name
+
+defaults:
+  source_system: github
+
+version: 2
+last_modified: '2026-07-28'

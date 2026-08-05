@@ -1,0 +1,10 @@
+select
+  repository_name,
+  registry_id,
+  arn,
+  repository_uri,
+  created_at,
+  region,
+  account_id
+from
+  aws_ecr_repository;

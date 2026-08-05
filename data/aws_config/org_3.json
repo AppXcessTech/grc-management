@@ -1,0 +1,6 @@
+{
+  "role_arn": "arn:aws:iam::533266996320:role/Philips_Role",
+  "account_name": "GRC",
+  "external_id": "",
+  "region": "us-east-1"
+}

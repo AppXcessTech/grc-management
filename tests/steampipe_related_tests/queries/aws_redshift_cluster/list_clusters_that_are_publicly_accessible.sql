@@ -1,0 +1,9 @@
+select
+  cluster_identifier,
+  node_type,
+  number_of_nodes,
+  publicly_accessible
+from
+  aws_redshift_cluster
+where
+  publicly_accessible;

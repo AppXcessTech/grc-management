@@ -1,0 +1,9 @@
+select
+  name,
+  cluster_name,
+  initial_node_count,
+  version,
+  status,
+  location
+from
+  gcp_kubernetes_node_pool;

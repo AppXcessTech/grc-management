@@ -1,0 +1,18 @@
+source_table: gitlab_application
+canonical_category: Application
+provider: GitLab
+canonical_id_template: $.id or $.application_id or $.application_name
+
+mappings:
+  display_name: $.application_name or $.application_id or $.id
+  callback_url: $.callback_url
+  confidential: $.confidential
+
+required_canonical_fields:
+  - display_name
+
+defaults:
+  source_system: gitlab
+
+version: 1
+last_modified: '2026-07-30'

@@ -1,0 +1,23 @@
+source_table: okta_factor
+canonical_category: Policy
+provider: Okta
+canonical_id_template: $.id or $.factorType or $.provider
+
+mappings:
+  display_name: $.factorType or $.provider or $.id
+  factor_type: $.factorType
+  provider: $.provider
+  status: $.status
+  user_id: $.user_id
+  created: $.created
+  last_updated: $.last_updated
+  verify_enabled: $.verify.enabled
+
+required_canonical_fields:
+  - display_name
+
+defaults:
+  source_system: okta
+
+version: 1
+last_modified: '2026-07-27'

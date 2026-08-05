@@ -1,0 +1,16 @@
+source_table: gitlab_setting
+canonical_category: Policy
+provider: GitLab
+canonical_id_template: $.id or $.title
+
+mappings:
+  display_name: $.title or $.id
+
+required_canonical_fields:
+  - display_name
+
+defaults:
+  source_system: gitlab
+
+version: 1
+last_modified: '2026-07-30'

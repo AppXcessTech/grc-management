@@ -1,0 +1,10 @@
+select
+  name,
+  display_name,
+  state,
+  reconciling,
+  update_time
+from
+  gcp_workstations_workstation
+where
+  reconciling;

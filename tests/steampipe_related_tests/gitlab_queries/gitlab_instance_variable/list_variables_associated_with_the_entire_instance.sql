@@ -1,0 +1,9 @@
+select
+  key,
+  value,
+  variable_type,
+  masked,
+  protected,
+  raw
+from 
+  gitlab_instance_variable

@@ -1,0 +1,11 @@
+select
+  name,
+  managed_zone_name,
+  type,
+  kind,
+  routing_policy,
+  rrdatas,
+  signature_rrdatas,
+  ttl
+from
+  gcp_dns_record_set;

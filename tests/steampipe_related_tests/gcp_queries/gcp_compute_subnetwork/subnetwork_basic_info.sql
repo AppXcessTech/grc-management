@@ -1,0 +1,10 @@
+select
+  name,
+  gateway_address,
+  ip_cidr_range,
+  ipv6_cidr_range,
+  private_ip_google_access,
+  id,
+  network_name
+from
+  gcp_compute_subnetwork;

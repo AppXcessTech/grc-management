@@ -1,0 +1,21 @@
+source_table: gitlab_group_project
+canonical_category: Group
+provider: GitLab
+canonical_id_template: $.id or $.full_path or $.name
+
+mappings:
+  display_name: $.full_path or $.name or $.id
+  description: $.description
+  default_branch: $.default_branch
+  visibility: $.visibility
+  archived: $.archived
+  web_url: $.web_url
+
+required_canonical_fields:
+  - display_name
+
+defaults:
+  source_system: gitlab
+
+version: 1
+last_modified: '2026-07-30'

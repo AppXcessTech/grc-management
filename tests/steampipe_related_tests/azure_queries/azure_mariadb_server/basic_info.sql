@@ -1,0 +1,9 @@
+select
+  name,
+  version,
+  sku_name,
+  user_visible_state,
+  region,
+  resource_group
+from
+  azure_mariadb_server;

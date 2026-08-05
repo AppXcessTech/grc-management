@@ -1,0 +1,20 @@
+source_table: gitlab_project_access_request
+canonical_category: Group
+provider: GitLab
+canonical_id_template: $.id or $.username
+
+mappings:
+  display_name: $.username or $.name or $.id
+  state: $.state
+  access_level: $.access_level
+  requested_at: $.requested_at
+  created_at: $.created_at
+
+required_canonical_fields:
+  - display_name
+
+defaults:
+  source_system: gitlab
+
+version: 1
+last_modified: '2026-07-30'

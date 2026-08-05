@@ -1,0 +1,9 @@
+config
+describe_configuration_recorders
+describe_configuration_recorder_status
+describe_delivery_channels
+describe_delivery_channel_status
+describe_config_rules
+describe_conformance_packs
+list_tags_for_resource
+

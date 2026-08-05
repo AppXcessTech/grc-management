@@ -1,0 +1,10 @@
+select
+  name,
+  id,
+  code_bucket,
+  database_type,
+  default_hostname,
+  gcr_domain,
+  serving_status
+from
+  gcp_app_engine_application;

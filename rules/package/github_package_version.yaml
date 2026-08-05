@@ -1,0 +1,17 @@
+source_table: github_package_version
+canonical_category: Package
+provider: GitHub
+token_type: fine_grained
+canonical_id_template: $.node_id or $.id or $.package_version_id or $.package_name
+
+mappings:
+  display_name: $.package_name or $.package_version_id or $.node_id
+
+required_canonical_fields:
+  - display_name
+
+defaults:
+  source_system: github
+
+version: 1
+last_modified: '2026-07-28'

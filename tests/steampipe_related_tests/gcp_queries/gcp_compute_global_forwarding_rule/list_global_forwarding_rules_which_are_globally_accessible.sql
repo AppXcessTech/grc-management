@@ -1,0 +1,9 @@
+select
+  name,
+  id,
+  ip_address,
+  allow_global_access
+from
+  gcp_compute_global_forwarding_rule
+where
+  allow_global_access;
