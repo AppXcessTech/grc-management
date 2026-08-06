@@ -1646,3 +1646,279 @@ WHERE in_app_notifications.user_id = $1::INTEGER AND in_app_notifications.organi
 2026-08-06 18:46:14.920 | INFO     | sqlalchemy.log:info:159 - [cached since 644.9s ago] (42, 3)
 2026-08-06 18:46:14.921 | INFO     | sqlalchemy.log:info:159 - ROLLBACK
 2026-08-06 18:46:14.922 | INFO     | app.core.database:session:104 - Database Connections closed
+2026-08-06 18:46:31.050 | INFO     | app.core.database:session:97 - Database Connection established!
+2026-08-06 18:46:31.051 | INFO     | sqlalchemy.log:info:159 - BEGIN (implicit)
+2026-08-06 18:46:31.051 | INFO     | sqlalchemy.log:info:159 - SELECT users.id, users.organization_id, users.department_id, users.email, users.first_name, users.last_name, users.hashed_password, users.status, users.mfa_enabled, users.mfa_method, users.sso_provider, users.external_subject_id, users.last_login_at, users.user_metadata, users.created_at, users.deleted_at 
+FROM users 
+WHERE users.email = $1::VARCHAR
+2026-08-06 18:46:31.051 | INFO     | sqlalchemy.log:info:159 - [cached since 661.1s ago] ('philip@appxcess.com',)
+2026-08-06 18:46:31.053 | INFO     | sqlalchemy.log:info:159 - SELECT in_app_notifications.id, in_app_notifications.organization_id, in_app_notifications.user_id, in_app_notifications.title, in_app_notifications.message, in_app_notifications.notification_type, in_app_notifications.reference_type, in_app_notifications.reference_id, in_app_notifications.is_read, in_app_notifications.created_at 
+FROM in_app_notifications 
+WHERE in_app_notifications.user_id = $1::INTEGER AND in_app_notifications.organization_id = $2::INTEGER AND in_app_notifications.is_read = false
+2026-08-06 18:46:31.053 | INFO     | sqlalchemy.log:info:159 - [cached since 661.1s ago] (42, 3)
+2026-08-06 18:46:31.054 | INFO     | sqlalchemy.log:info:159 - ROLLBACK
+2026-08-06 18:46:31.056 | INFO     | app.core.database:session:104 - Database Connections closed
+2026-08-06 18:46:46.060 | INFO     | app.core.database:session:97 - Database Connection established!
+2026-08-06 18:46:46.062 | INFO     | sqlalchemy.log:info:159 - BEGIN (implicit)
+2026-08-06 18:46:46.063 | INFO     | sqlalchemy.log:info:159 - SELECT users.id, users.organization_id, users.department_id, users.email, users.first_name, users.last_name, users.hashed_password, users.status, users.mfa_enabled, users.mfa_method, users.sso_provider, users.external_subject_id, users.last_login_at, users.user_metadata, users.created_at, users.deleted_at 
+FROM users 
+WHERE users.email = $1::VARCHAR
+2026-08-06 18:46:46.063 | INFO     | sqlalchemy.log:info:159 - [cached since 676.1s ago] ('philip@appxcess.com',)
+2026-08-06 18:46:46.068 | INFO     | sqlalchemy.log:info:159 - SELECT in_app_notifications.id, in_app_notifications.organization_id, in_app_notifications.user_id, in_app_notifications.title, in_app_notifications.message, in_app_notifications.notification_type, in_app_notifications.reference_type, in_app_notifications.reference_id, in_app_notifications.is_read, in_app_notifications.created_at 
+FROM in_app_notifications 
+WHERE in_app_notifications.user_id = $1::INTEGER AND in_app_notifications.organization_id = $2::INTEGER AND in_app_notifications.is_read = false
+2026-08-06 18:46:46.069 | INFO     | sqlalchemy.log:info:159 - [cached since 676.1s ago] (42, 3)
+2026-08-06 18:46:46.071 | INFO     | sqlalchemy.log:info:159 - ROLLBACK
+2026-08-06 18:46:46.073 | INFO     | app.core.database:session:104 - Database Connections closed
+2026-08-06 18:47:01.059 | INFO     | app.core.database:session:97 - Database Connection established!
+2026-08-06 18:47:01.061 | INFO     | sqlalchemy.log:info:159 - BEGIN (implicit)
+2026-08-06 18:47:01.063 | INFO     | sqlalchemy.log:info:159 - SELECT users.id, users.organization_id, users.department_id, users.email, users.first_name, users.last_name, users.hashed_password, users.status, users.mfa_enabled, users.mfa_method, users.sso_provider, users.external_subject_id, users.last_login_at, users.user_metadata, users.created_at, users.deleted_at 
+FROM users 
+WHERE users.email = $1::VARCHAR
+2026-08-06 18:47:01.064 | INFO     | sqlalchemy.log:info:159 - [cached since 691.1s ago] ('philip@appxcess.com',)
+2026-08-06 18:47:01.069 | INFO     | sqlalchemy.log:info:159 - SELECT in_app_notifications.id, in_app_notifications.organization_id, in_app_notifications.user_id, in_app_notifications.title, in_app_notifications.message, in_app_notifications.notification_type, in_app_notifications.reference_type, in_app_notifications.reference_id, in_app_notifications.is_read, in_app_notifications.created_at 
+FROM in_app_notifications 
+WHERE in_app_notifications.user_id = $1::INTEGER AND in_app_notifications.organization_id = $2::INTEGER AND in_app_notifications.is_read = false
+2026-08-06 18:47:01.070 | INFO     | sqlalchemy.log:info:159 - [cached since 691.1s ago] (42, 3)
+2026-08-06 18:47:01.072 | INFO     | sqlalchemy.log:info:159 - ROLLBACK
+2026-08-06 18:47:01.074 | INFO     | app.core.database:session:104 - Database Connections closed
+2026-08-06 18:47:16.063 | INFO     | app.core.database:session:97 - Database Connection established!
+2026-08-06 18:47:16.065 | INFO     | sqlalchemy.log:info:159 - BEGIN (implicit)
+2026-08-06 18:47:16.066 | INFO     | sqlalchemy.log:info:159 - SELECT users.id, users.organization_id, users.department_id, users.email, users.first_name, users.last_name, users.hashed_password, users.status, users.mfa_enabled, users.mfa_method, users.sso_provider, users.external_subject_id, users.last_login_at, users.user_metadata, users.created_at, users.deleted_at 
+FROM users 
+WHERE users.email = $1::VARCHAR
+2026-08-06 18:47:16.067 | INFO     | sqlalchemy.log:info:159 - [cached since 706.1s ago] ('philip@appxcess.com',)
+2026-08-06 18:47:16.071 | INFO     | sqlalchemy.log:info:159 - SELECT in_app_notifications.id, in_app_notifications.organization_id, in_app_notifications.user_id, in_app_notifications.title, in_app_notifications.message, in_app_notifications.notification_type, in_app_notifications.reference_type, in_app_notifications.reference_id, in_app_notifications.is_read, in_app_notifications.created_at 
+FROM in_app_notifications 
+WHERE in_app_notifications.user_id = $1::INTEGER AND in_app_notifications.organization_id = $2::INTEGER AND in_app_notifications.is_read = false
+2026-08-06 18:47:16.072 | INFO     | sqlalchemy.log:info:159 - [cached since 706.1s ago] (42, 3)
+2026-08-06 18:47:16.074 | INFO     | sqlalchemy.log:info:159 - ROLLBACK
+2026-08-06 18:47:16.076 | INFO     | app.core.database:session:104 - Database Connections closed
+2026-08-06 18:47:31.061 | INFO     | app.core.database:session:97 - Database Connection established!
+2026-08-06 18:47:31.063 | INFO     | sqlalchemy.log:info:159 - BEGIN (implicit)
+2026-08-06 18:47:31.063 | INFO     | sqlalchemy.log:info:159 - SELECT users.id, users.organization_id, users.department_id, users.email, users.first_name, users.last_name, users.hashed_password, users.status, users.mfa_enabled, users.mfa_method, users.sso_provider, users.external_subject_id, users.last_login_at, users.user_metadata, users.created_at, users.deleted_at 
+FROM users 
+WHERE users.email = $1::VARCHAR
+2026-08-06 18:47:31.063 | INFO     | sqlalchemy.log:info:159 - [cached since 721.1s ago] ('philip@appxcess.com',)
+2026-08-06 18:47:31.068 | INFO     | sqlalchemy.log:info:159 - SELECT in_app_notifications.id, in_app_notifications.organization_id, in_app_notifications.user_id, in_app_notifications.title, in_app_notifications.message, in_app_notifications.notification_type, in_app_notifications.reference_type, in_app_notifications.reference_id, in_app_notifications.is_read, in_app_notifications.created_at 
+FROM in_app_notifications 
+WHERE in_app_notifications.user_id = $1::INTEGER AND in_app_notifications.organization_id = $2::INTEGER AND in_app_notifications.is_read = false
+2026-08-06 18:47:31.069 | INFO     | sqlalchemy.log:info:159 - [cached since 721.1s ago] (42, 3)
+2026-08-06 18:47:31.071 | INFO     | sqlalchemy.log:info:159 - ROLLBACK
+2026-08-06 18:47:31.071 | INFO     | app.core.database:session:104 - Database Connections closed
+2026-08-06 18:47:46.050 | INFO     | app.core.database:session:97 - Database Connection established!
+2026-08-06 18:47:46.051 | INFO     | sqlalchemy.log:info:159 - BEGIN (implicit)
+2026-08-06 18:47:46.051 | INFO     | sqlalchemy.log:info:159 - SELECT users.id, users.organization_id, users.department_id, users.email, users.first_name, users.last_name, users.hashed_password, users.status, users.mfa_enabled, users.mfa_method, users.sso_provider, users.external_subject_id, users.last_login_at, users.user_metadata, users.created_at, users.deleted_at 
+FROM users 
+WHERE users.email = $1::VARCHAR
+2026-08-06 18:47:46.051 | INFO     | sqlalchemy.log:info:159 - [cached since 736.1s ago] ('philip@appxcess.com',)
+2026-08-06 18:47:46.052 | INFO     | sqlalchemy.log:info:159 - SELECT in_app_notifications.id, in_app_notifications.organization_id, in_app_notifications.user_id, in_app_notifications.title, in_app_notifications.message, in_app_notifications.notification_type, in_app_notifications.reference_type, in_app_notifications.reference_id, in_app_notifications.is_read, in_app_notifications.created_at 
+FROM in_app_notifications 
+WHERE in_app_notifications.user_id = $1::INTEGER AND in_app_notifications.organization_id = $2::INTEGER AND in_app_notifications.is_read = false
+2026-08-06 18:47:46.053 | INFO     | sqlalchemy.log:info:159 - [cached since 736.1s ago] (42, 3)
+2026-08-06 18:47:46.053 | INFO     | sqlalchemy.log:info:159 - ROLLBACK
+2026-08-06 18:47:46.054 | INFO     | app.core.database:session:104 - Database Connections closed
+2026-08-06 18:48:01.061 | INFO     | app.core.database:session:97 - Database Connection established!
+2026-08-06 18:48:01.062 | INFO     | sqlalchemy.log:info:159 - BEGIN (implicit)
+2026-08-06 18:48:01.063 | INFO     | sqlalchemy.log:info:159 - SELECT users.id, users.organization_id, users.department_id, users.email, users.first_name, users.last_name, users.hashed_password, users.status, users.mfa_enabled, users.mfa_method, users.sso_provider, users.external_subject_id, users.last_login_at, users.user_metadata, users.created_at, users.deleted_at 
+FROM users 
+WHERE users.email = $1::VARCHAR
+2026-08-06 18:48:01.064 | INFO     | sqlalchemy.log:info:159 - [cached since 751.1s ago] ('philip@appxcess.com',)
+2026-08-06 18:48:01.069 | INFO     | sqlalchemy.log:info:159 - SELECT in_app_notifications.id, in_app_notifications.organization_id, in_app_notifications.user_id, in_app_notifications.title, in_app_notifications.message, in_app_notifications.notification_type, in_app_notifications.reference_type, in_app_notifications.reference_id, in_app_notifications.is_read, in_app_notifications.created_at 
+FROM in_app_notifications 
+WHERE in_app_notifications.user_id = $1::INTEGER AND in_app_notifications.organization_id = $2::INTEGER AND in_app_notifications.is_read = false
+2026-08-06 18:48:01.070 | INFO     | sqlalchemy.log:info:159 - [cached since 751.1s ago] (42, 3)
+2026-08-06 18:48:01.072 | INFO     | sqlalchemy.log:info:159 - ROLLBACK
+2026-08-06 18:48:01.073 | INFO     | app.core.database:session:104 - Database Connections closed
+2026-08-06 18:48:16.061 | INFO     | app.core.database:session:97 - Database Connection established!
+2026-08-06 18:48:16.063 | INFO     | sqlalchemy.log:info:159 - BEGIN (implicit)
+2026-08-06 18:48:16.064 | INFO     | sqlalchemy.log:info:159 - SELECT users.id, users.organization_id, users.department_id, users.email, users.first_name, users.last_name, users.hashed_password, users.status, users.mfa_enabled, users.mfa_method, users.sso_provider, users.external_subject_id, users.last_login_at, users.user_metadata, users.created_at, users.deleted_at 
+FROM users 
+WHERE users.email = $1::VARCHAR
+2026-08-06 18:48:16.064 | INFO     | sqlalchemy.log:info:159 - [cached since 766.1s ago] ('philip@appxcess.com',)
+2026-08-06 18:48:16.069 | INFO     | sqlalchemy.log:info:159 - SELECT in_app_notifications.id, in_app_notifications.organization_id, in_app_notifications.user_id, in_app_notifications.title, in_app_notifications.message, in_app_notifications.notification_type, in_app_notifications.reference_type, in_app_notifications.reference_id, in_app_notifications.is_read, in_app_notifications.created_at 
+FROM in_app_notifications 
+WHERE in_app_notifications.user_id = $1::INTEGER AND in_app_notifications.organization_id = $2::INTEGER AND in_app_notifications.is_read = false
+2026-08-06 18:48:16.069 | INFO     | sqlalchemy.log:info:159 - [cached since 766.1s ago] (42, 3)
+2026-08-06 18:48:16.072 | INFO     | sqlalchemy.log:info:159 - ROLLBACK
+2026-08-06 18:48:16.073 | INFO     | app.core.database:session:104 - Database Connections closed
+2026-08-06 18:48:31.580 | INFO     | app.core.database:session:97 - Database Connection established!
+2026-08-06 18:48:31.580 | INFO     | sqlalchemy.log:info:159 - BEGIN (implicit)
+2026-08-06 18:48:31.581 | INFO     | sqlalchemy.log:info:159 - SELECT users.id, users.organization_id, users.department_id, users.email, users.first_name, users.last_name, users.hashed_password, users.status, users.mfa_enabled, users.mfa_method, users.sso_provider, users.external_subject_id, users.last_login_at, users.user_metadata, users.created_at, users.deleted_at 
+FROM users 
+WHERE users.email = $1::VARCHAR
+2026-08-06 18:48:31.581 | INFO     | sqlalchemy.log:info:159 - [cached since 781.6s ago] ('philip@appxcess.com',)
+2026-08-06 18:48:31.583 | INFO     | sqlalchemy.log:info:159 - SELECT in_app_notifications.id, in_app_notifications.organization_id, in_app_notifications.user_id, in_app_notifications.title, in_app_notifications.message, in_app_notifications.notification_type, in_app_notifications.reference_type, in_app_notifications.reference_id, in_app_notifications.is_read, in_app_notifications.created_at 
+FROM in_app_notifications 
+WHERE in_app_notifications.user_id = $1::INTEGER AND in_app_notifications.organization_id = $2::INTEGER AND in_app_notifications.is_read = false
+2026-08-06 18:48:31.583 | INFO     | sqlalchemy.log:info:159 - [cached since 781.6s ago] (42, 3)
+2026-08-06 18:48:31.585 | INFO     | sqlalchemy.log:info:159 - ROLLBACK
+2026-08-06 18:48:31.586 | INFO     | app.core.database:session:104 - Database Connections closed
+2026-08-06 18:48:47.103 | INFO     | app.core.database:session:97 - Database Connection established!
+2026-08-06 18:48:47.105 | INFO     | sqlalchemy.log:info:159 - BEGIN (implicit)
+2026-08-06 18:48:47.106 | INFO     | sqlalchemy.log:info:159 - SELECT users.id, users.organization_id, users.department_id, users.email, users.first_name, users.last_name, users.hashed_password, users.status, users.mfa_enabled, users.mfa_method, users.sso_provider, users.external_subject_id, users.last_login_at, users.user_metadata, users.created_at, users.deleted_at 
+FROM users 
+WHERE users.email = $1::VARCHAR
+2026-08-06 18:48:47.107 | INFO     | sqlalchemy.log:info:159 - [cached since 797.1s ago] ('philip@appxcess.com',)
+2026-08-06 18:48:47.111 | INFO     | sqlalchemy.log:info:159 - SELECT in_app_notifications.id, in_app_notifications.organization_id, in_app_notifications.user_id, in_app_notifications.title, in_app_notifications.message, in_app_notifications.notification_type, in_app_notifications.reference_type, in_app_notifications.reference_id, in_app_notifications.is_read, in_app_notifications.created_at 
+FROM in_app_notifications 
+WHERE in_app_notifications.user_id = $1::INTEGER AND in_app_notifications.organization_id = $2::INTEGER AND in_app_notifications.is_read = false
+2026-08-06 18:48:47.112 | INFO     | sqlalchemy.log:info:159 - [cached since 797.1s ago] (42, 3)
+2026-08-06 18:48:47.115 | INFO     | sqlalchemy.log:info:159 - ROLLBACK
+2026-08-06 18:48:47.116 | INFO     | app.core.database:session:104 - Database Connections closed
+2026-08-06 18:49:02.104 | INFO     | app.core.database:session:97 - Database Connection established!
+2026-08-06 18:49:02.106 | INFO     | sqlalchemy.log:info:159 - BEGIN (implicit)
+2026-08-06 18:49:02.106 | INFO     | sqlalchemy.log:info:159 - SELECT users.id, users.organization_id, users.department_id, users.email, users.first_name, users.last_name, users.hashed_password, users.status, users.mfa_enabled, users.mfa_method, users.sso_provider, users.external_subject_id, users.last_login_at, users.user_metadata, users.created_at, users.deleted_at 
+FROM users 
+WHERE users.email = $1::VARCHAR
+2026-08-06 18:49:02.107 | INFO     | sqlalchemy.log:info:159 - [cached since 812.1s ago] ('philip@appxcess.com',)
+2026-08-06 18:49:02.111 | INFO     | sqlalchemy.log:info:159 - SELECT in_app_notifications.id, in_app_notifications.organization_id, in_app_notifications.user_id, in_app_notifications.title, in_app_notifications.message, in_app_notifications.notification_type, in_app_notifications.reference_type, in_app_notifications.reference_id, in_app_notifications.is_read, in_app_notifications.created_at 
+FROM in_app_notifications 
+WHERE in_app_notifications.user_id = $1::INTEGER AND in_app_notifications.organization_id = $2::INTEGER AND in_app_notifications.is_read = false
+2026-08-06 18:49:02.112 | INFO     | sqlalchemy.log:info:159 - [cached since 812.1s ago] (42, 3)
+2026-08-06 18:49:02.114 | INFO     | sqlalchemy.log:info:159 - ROLLBACK
+2026-08-06 18:49:02.116 | INFO     | app.core.database:session:104 - Database Connections closed
+2026-08-06 18:49:17.104 | INFO     | app.core.database:session:97 - Database Connection established!
+2026-08-06 18:49:17.105 | INFO     | sqlalchemy.log:info:159 - BEGIN (implicit)
+2026-08-06 18:49:17.106 | INFO     | sqlalchemy.log:info:159 - SELECT users.id, users.organization_id, users.department_id, users.email, users.first_name, users.last_name, users.hashed_password, users.status, users.mfa_enabled, users.mfa_method, users.sso_provider, users.external_subject_id, users.last_login_at, users.user_metadata, users.created_at, users.deleted_at 
+FROM users 
+WHERE users.email = $1::VARCHAR
+2026-08-06 18:49:17.107 | INFO     | sqlalchemy.log:info:159 - [cached since 827.1s ago] ('philip@appxcess.com',)
+2026-08-06 18:49:17.112 | INFO     | sqlalchemy.log:info:159 - SELECT in_app_notifications.id, in_app_notifications.organization_id, in_app_notifications.user_id, in_app_notifications.title, in_app_notifications.message, in_app_notifications.notification_type, in_app_notifications.reference_type, in_app_notifications.reference_id, in_app_notifications.is_read, in_app_notifications.created_at 
+FROM in_app_notifications 
+WHERE in_app_notifications.user_id = $1::INTEGER AND in_app_notifications.organization_id = $2::INTEGER AND in_app_notifications.is_read = false
+2026-08-06 18:49:17.112 | INFO     | sqlalchemy.log:info:159 - [cached since 827.1s ago] (42, 3)
+2026-08-06 18:49:17.115 | INFO     | sqlalchemy.log:info:159 - ROLLBACK
+2026-08-06 18:49:17.116 | INFO     | app.core.database:session:104 - Database Connections closed
+2026-08-06 18:49:32.107 | INFO     | app.core.database:session:97 - Database Connection established!
+2026-08-06 18:49:32.108 | INFO     | sqlalchemy.log:info:159 - BEGIN (implicit)
+2026-08-06 18:49:32.109 | INFO     | sqlalchemy.log:info:159 - SELECT users.id, users.organization_id, users.department_id, users.email, users.first_name, users.last_name, users.hashed_password, users.status, users.mfa_enabled, users.mfa_method, users.sso_provider, users.external_subject_id, users.last_login_at, users.user_metadata, users.created_at, users.deleted_at 
+FROM users 
+WHERE users.email = $1::VARCHAR
+2026-08-06 18:49:32.110 | INFO     | sqlalchemy.log:info:159 - [cached since 842.1s ago] ('philip@appxcess.com',)
+2026-08-06 18:49:32.114 | INFO     | sqlalchemy.log:info:159 - SELECT in_app_notifications.id, in_app_notifications.organization_id, in_app_notifications.user_id, in_app_notifications.title, in_app_notifications.message, in_app_notifications.notification_type, in_app_notifications.reference_type, in_app_notifications.reference_id, in_app_notifications.is_read, in_app_notifications.created_at 
+FROM in_app_notifications 
+WHERE in_app_notifications.user_id = $1::INTEGER AND in_app_notifications.organization_id = $2::INTEGER AND in_app_notifications.is_read = false
+2026-08-06 18:49:32.115 | INFO     | sqlalchemy.log:info:159 - [cached since 842.1s ago] (42, 3)
+2026-08-06 18:49:32.117 | INFO     | sqlalchemy.log:info:159 - ROLLBACK
+2026-08-06 18:49:32.118 | INFO     | app.core.database:session:104 - Database Connections closed
+2026-08-06 18:49:47.105 | INFO     | app.core.database:session:97 - Database Connection established!
+2026-08-06 18:49:47.107 | INFO     | sqlalchemy.log:info:159 - BEGIN (implicit)
+2026-08-06 18:49:47.108 | INFO     | sqlalchemy.log:info:159 - SELECT users.id, users.organization_id, users.department_id, users.email, users.first_name, users.last_name, users.hashed_password, users.status, users.mfa_enabled, users.mfa_method, users.sso_provider, users.external_subject_id, users.last_login_at, users.user_metadata, users.created_at, users.deleted_at 
+FROM users 
+WHERE users.email = $1::VARCHAR
+2026-08-06 18:49:47.108 | INFO     | sqlalchemy.log:info:159 - [cached since 857.1s ago] ('philip@appxcess.com',)
+2026-08-06 18:49:47.113 | INFO     | sqlalchemy.log:info:159 - SELECT in_app_notifications.id, in_app_notifications.organization_id, in_app_notifications.user_id, in_app_notifications.title, in_app_notifications.message, in_app_notifications.notification_type, in_app_notifications.reference_type, in_app_notifications.reference_id, in_app_notifications.is_read, in_app_notifications.created_at 
+FROM in_app_notifications 
+WHERE in_app_notifications.user_id = $1::INTEGER AND in_app_notifications.organization_id = $2::INTEGER AND in_app_notifications.is_read = false
+2026-08-06 18:49:47.114 | INFO     | sqlalchemy.log:info:159 - [cached since 857.1s ago] (42, 3)
+2026-08-06 18:49:47.116 | INFO     | sqlalchemy.log:info:159 - ROLLBACK
+2026-08-06 18:49:47.117 | INFO     | app.core.database:session:104 - Database Connections closed
+2026-08-06 18:50:02.099 | INFO     | app.core.database:session:97 - Database Connection established!
+2026-08-06 18:50:02.101 | INFO     | sqlalchemy.log:info:159 - BEGIN (implicit)
+2026-08-06 18:50:02.101 | INFO     | sqlalchemy.log:info:159 - SELECT users.id, users.organization_id, users.department_id, users.email, users.first_name, users.last_name, users.hashed_password, users.status, users.mfa_enabled, users.mfa_method, users.sso_provider, users.external_subject_id, users.last_login_at, users.user_metadata, users.created_at, users.deleted_at 
+FROM users 
+WHERE users.email = $1::VARCHAR
+2026-08-06 18:50:02.102 | INFO     | sqlalchemy.log:info:159 - [cached since 872.1s ago] ('philip@appxcess.com',)
+2026-08-06 18:50:02.105 | INFO     | sqlalchemy.log:info:159 - SELECT in_app_notifications.id, in_app_notifications.organization_id, in_app_notifications.user_id, in_app_notifications.title, in_app_notifications.message, in_app_notifications.notification_type, in_app_notifications.reference_type, in_app_notifications.reference_id, in_app_notifications.is_read, in_app_notifications.created_at 
+FROM in_app_notifications 
+WHERE in_app_notifications.user_id = $1::INTEGER AND in_app_notifications.organization_id = $2::INTEGER AND in_app_notifications.is_read = false
+2026-08-06 18:50:02.105 | INFO     | sqlalchemy.log:info:159 - [cached since 872.1s ago] (42, 3)
+2026-08-06 18:50:02.106 | INFO     | sqlalchemy.log:info:159 - ROLLBACK
+2026-08-06 18:50:02.107 | INFO     | app.core.database:session:104 - Database Connections closed
+2026-08-06 18:50:17.107 | INFO     | app.core.database:session:97 - Database Connection established!
+2026-08-06 18:50:17.109 | INFO     | sqlalchemy.log:info:159 - BEGIN (implicit)
+2026-08-06 18:50:17.111 | INFO     | sqlalchemy.log:info:159 - SELECT users.id, users.organization_id, users.department_id, users.email, users.first_name, users.last_name, users.hashed_password, users.status, users.mfa_enabled, users.mfa_method, users.sso_provider, users.external_subject_id, users.last_login_at, users.user_metadata, users.created_at, users.deleted_at 
+FROM users 
+WHERE users.email = $1::VARCHAR
+2026-08-06 18:50:17.111 | INFO     | sqlalchemy.log:info:159 - [cached since 887.1s ago] ('philip@appxcess.com',)
+2026-08-06 18:50:17.116 | INFO     | sqlalchemy.log:info:159 - SELECT in_app_notifications.id, in_app_notifications.organization_id, in_app_notifications.user_id, in_app_notifications.title, in_app_notifications.message, in_app_notifications.notification_type, in_app_notifications.reference_type, in_app_notifications.reference_id, in_app_notifications.is_read, in_app_notifications.created_at 
+FROM in_app_notifications 
+WHERE in_app_notifications.user_id = $1::INTEGER AND in_app_notifications.organization_id = $2::INTEGER AND in_app_notifications.is_read = false
+2026-08-06 18:50:17.117 | INFO     | sqlalchemy.log:info:159 - [cached since 887.1s ago] (42, 3)
+2026-08-06 18:50:17.119 | INFO     | sqlalchemy.log:info:159 - ROLLBACK
+2026-08-06 18:50:17.120 | INFO     | app.core.database:session:104 - Database Connections closed
+2026-08-06 18:50:32.223 | INFO     | app.core.database:session:97 - Database Connection established!
+2026-08-06 18:50:32.224 | INFO     | sqlalchemy.log:info:159 - BEGIN (implicit)
+2026-08-06 18:50:32.224 | INFO     | sqlalchemy.log:info:159 - SELECT users.id, users.organization_id, users.department_id, users.email, users.first_name, users.last_name, users.hashed_password, users.status, users.mfa_enabled, users.mfa_method, users.sso_provider, users.external_subject_id, users.last_login_at, users.user_metadata, users.created_at, users.deleted_at 
+FROM users 
+WHERE users.email = $1::VARCHAR
+2026-08-06 18:50:32.224 | INFO     | sqlalchemy.log:info:159 - [cached since 902.3s ago] ('philip@appxcess.com',)
+2026-08-06 18:50:32.225 | INFO     | sqlalchemy.log:info:159 - SELECT in_app_notifications.id, in_app_notifications.organization_id, in_app_notifications.user_id, in_app_notifications.title, in_app_notifications.message, in_app_notifications.notification_type, in_app_notifications.reference_type, in_app_notifications.reference_id, in_app_notifications.is_read, in_app_notifications.created_at 
+FROM in_app_notifications 
+WHERE in_app_notifications.user_id = $1::INTEGER AND in_app_notifications.organization_id = $2::INTEGER AND in_app_notifications.is_read = false
+2026-08-06 18:50:32.225 | INFO     | sqlalchemy.log:info:159 - [cached since 902.3s ago] (42, 3)
+2026-08-06 18:50:32.226 | INFO     | sqlalchemy.log:info:159 - ROLLBACK
+2026-08-06 18:50:32.226 | INFO     | app.core.database:session:104 - Database Connections closed
+2026-08-06 18:50:47.234 | INFO     | app.core.database:session:97 - Database Connection established!
+2026-08-06 18:50:47.236 | INFO     | sqlalchemy.log:info:159 - BEGIN (implicit)
+2026-08-06 18:50:47.237 | INFO     | sqlalchemy.log:info:159 - SELECT users.id, users.organization_id, users.department_id, users.email, users.first_name, users.last_name, users.hashed_password, users.status, users.mfa_enabled, users.mfa_method, users.sso_provider, users.external_subject_id, users.last_login_at, users.user_metadata, users.created_at, users.deleted_at 
+FROM users 
+WHERE users.email = $1::VARCHAR
+2026-08-06 18:50:47.238 | INFO     | sqlalchemy.log:info:159 - [cached since 917.3s ago] ('philip@appxcess.com',)
+2026-08-06 18:50:47.243 | INFO     | sqlalchemy.log:info:159 - SELECT in_app_notifications.id, in_app_notifications.organization_id, in_app_notifications.user_id, in_app_notifications.title, in_app_notifications.message, in_app_notifications.notification_type, in_app_notifications.reference_type, in_app_notifications.reference_id, in_app_notifications.is_read, in_app_notifications.created_at 
+FROM in_app_notifications 
+WHERE in_app_notifications.user_id = $1::INTEGER AND in_app_notifications.organization_id = $2::INTEGER AND in_app_notifications.is_read = false
+2026-08-06 18:50:47.243 | INFO     | sqlalchemy.log:info:159 - [cached since 917.3s ago] (42, 3)
+2026-08-06 18:50:47.246 | INFO     | sqlalchemy.log:info:159 - ROLLBACK
+2026-08-06 18:50:47.247 | INFO     | app.core.database:session:104 - Database Connections closed
+2026-08-06 18:51:02.237 | INFO     | app.core.database:session:97 - Database Connection established!
+2026-08-06 18:51:02.239 | INFO     | sqlalchemy.log:info:159 - BEGIN (implicit)
+2026-08-06 18:51:02.240 | INFO     | sqlalchemy.log:info:159 - SELECT users.id, users.organization_id, users.department_id, users.email, users.first_name, users.last_name, users.hashed_password, users.status, users.mfa_enabled, users.mfa_method, users.sso_provider, users.external_subject_id, users.last_login_at, users.user_metadata, users.created_at, users.deleted_at 
+FROM users 
+WHERE users.email = $1::VARCHAR
+2026-08-06 18:51:02.241 | INFO     | sqlalchemy.log:info:159 - [cached since 932.3s ago] ('philip@appxcess.com',)
+2026-08-06 18:51:02.246 | INFO     | sqlalchemy.log:info:159 - SELECT in_app_notifications.id, in_app_notifications.organization_id, in_app_notifications.user_id, in_app_notifications.title, in_app_notifications.message, in_app_notifications.notification_type, in_app_notifications.reference_type, in_app_notifications.reference_id, in_app_notifications.is_read, in_app_notifications.created_at 
+FROM in_app_notifications 
+WHERE in_app_notifications.user_id = $1::INTEGER AND in_app_notifications.organization_id = $2::INTEGER AND in_app_notifications.is_read = false
+2026-08-06 18:51:02.247 | INFO     | sqlalchemy.log:info:159 - [cached since 932.3s ago] (42, 3)
+2026-08-06 18:51:02.250 | INFO     | sqlalchemy.log:info:159 - ROLLBACK
+2026-08-06 18:51:02.251 | INFO     | app.core.database:session:104 - Database Connections closed
+2026-08-06 18:51:17.234 | INFO     | app.core.database:session:97 - Database Connection established!
+2026-08-06 18:51:17.235 | INFO     | sqlalchemy.log:info:159 - BEGIN (implicit)
+2026-08-06 18:51:17.235 | INFO     | sqlalchemy.log:info:159 - SELECT users.id, users.organization_id, users.department_id, users.email, users.first_name, users.last_name, users.hashed_password, users.status, users.mfa_enabled, users.mfa_method, users.sso_provider, users.external_subject_id, users.last_login_at, users.user_metadata, users.created_at, users.deleted_at 
+FROM users 
+WHERE users.email = $1::VARCHAR
+2026-08-06 18:51:17.236 | INFO     | sqlalchemy.log:info:159 - [cached since 947.3s ago] ('philip@appxcess.com',)
+2026-08-06 18:51:17.237 | INFO     | sqlalchemy.log:info:159 - SELECT in_app_notifications.id, in_app_notifications.organization_id, in_app_notifications.user_id, in_app_notifications.title, in_app_notifications.message, in_app_notifications.notification_type, in_app_notifications.reference_type, in_app_notifications.reference_id, in_app_notifications.is_read, in_app_notifications.created_at 
+FROM in_app_notifications 
+WHERE in_app_notifications.user_id = $1::INTEGER AND in_app_notifications.organization_id = $2::INTEGER AND in_app_notifications.is_read = false
+2026-08-06 18:51:17.238 | INFO     | sqlalchemy.log:info:159 - [cached since 947.3s ago] (42, 3)
+2026-08-06 18:51:17.238 | INFO     | sqlalchemy.log:info:159 - ROLLBACK
+2026-08-06 18:51:17.239 | INFO     | app.core.database:session:104 - Database Connections closed
+2026-08-06 18:51:32.230 | INFO     | app.core.database:session:97 - Database Connection established!
+2026-08-06 18:51:32.231 | INFO     | sqlalchemy.log:info:159 - BEGIN (implicit)
+2026-08-06 18:51:32.232 | INFO     | sqlalchemy.log:info:159 - SELECT users.id, users.organization_id, users.department_id, users.email, users.first_name, users.last_name, users.hashed_password, users.status, users.mfa_enabled, users.mfa_method, users.sso_provider, users.external_subject_id, users.last_login_at, users.user_metadata, users.created_at, users.deleted_at 
+FROM users 
+WHERE users.email = $1::VARCHAR
+2026-08-06 18:51:32.232 | INFO     | sqlalchemy.log:info:159 - [cached since 962.3s ago] ('philip@appxcess.com',)
+2026-08-06 18:51:32.233 | INFO     | sqlalchemy.log:info:159 - SELECT in_app_notifications.id, in_app_notifications.organization_id, in_app_notifications.user_id, in_app_notifications.title, in_app_notifications.message, in_app_notifications.notification_type, in_app_notifications.reference_type, in_app_notifications.reference_id, in_app_notifications.is_read, in_app_notifications.created_at 
+FROM in_app_notifications 
+WHERE in_app_notifications.user_id = $1::INTEGER AND in_app_notifications.organization_id = $2::INTEGER AND in_app_notifications.is_read = false
+2026-08-06 18:51:32.234 | INFO     | sqlalchemy.log:info:159 - [cached since 962.3s ago] (42, 3)
+2026-08-06 18:51:32.234 | INFO     | sqlalchemy.log:info:159 - ROLLBACK
+2026-08-06 18:51:32.235 | INFO     | app.core.database:session:104 - Database Connections closed
+2026-08-06 18:51:47.238 | INFO     | app.core.database:session:97 - Database Connection established!
+2026-08-06 18:51:47.240 | INFO     | sqlalchemy.log:info:159 - BEGIN (implicit)
+2026-08-06 18:51:47.242 | INFO     | sqlalchemy.log:info:159 - SELECT users.id, users.organization_id, users.department_id, users.email, users.first_name, users.last_name, users.hashed_password, users.status, users.mfa_enabled, users.mfa_method, users.sso_provider, users.external_subject_id, users.last_login_at, users.user_metadata, users.created_at, users.deleted_at 
+FROM users 
+WHERE users.email = $1::VARCHAR
+2026-08-06 18:51:47.243 | INFO     | sqlalchemy.log:info:159 - [cached since 977.3s ago] ('philip@appxcess.com',)
+2026-08-06 18:51:47.248 | INFO     | sqlalchemy.log:info:159 - SELECT in_app_notifications.id, in_app_notifications.organization_id, in_app_notifications.user_id, in_app_notifications.title, in_app_notifications.message, in_app_notifications.notification_type, in_app_notifications.reference_type, in_app_notifications.reference_id, in_app_notifications.is_read, in_app_notifications.created_at 
+FROM in_app_notifications 
+WHERE in_app_notifications.user_id = $1::INTEGER AND in_app_notifications.organization_id = $2::INTEGER AND in_app_notifications.is_read = false
+2026-08-06 18:51:47.249 | INFO     | sqlalchemy.log:info:159 - [cached since 977.3s ago] (42, 3)
+2026-08-06 18:51:47.252 | INFO     | sqlalchemy.log:info:159 - ROLLBACK
+2026-08-06 18:51:47.253 | INFO     | app.core.database:session:104 - Database Connections closed
+2026-08-06 18:52:02.230 | INFO     | app.core.database:session:97 - Database Connection established!
+2026-08-06 18:52:02.231 | INFO     | sqlalchemy.log:info:159 - BEGIN (implicit)
+2026-08-06 18:52:02.232 | INFO     | sqlalchemy.log:info:159 - SELECT users.id, users.organization_id, users.department_id, users.email, users.first_name, users.last_name, users.hashed_password, users.status, users.mfa_enabled, users.mfa_method, users.sso_provider, users.external_subject_id, users.last_login_at, users.user_metadata, users.created_at, users.deleted_at 
+FROM users 
+WHERE users.email = $1::VARCHAR
+2026-08-06 18:52:02.232 | INFO     | sqlalchemy.log:info:159 - [cached since 992.3s ago] ('philip@appxcess.com',)
+2026-08-06 18:52:02.235 | INFO     | sqlalchemy.log:info:159 - SELECT in_app_notifications.id, in_app_notifications.organization_id, in_app_notifications.user_id, in_app_notifications.title, in_app_notifications.message, in_app_notifications.notification_type, in_app_notifications.reference_type, in_app_notifications.reference_id, in_app_notifications.is_read, in_app_notifications.created_at 
+FROM in_app_notifications 
+WHERE in_app_notifications.user_id = $1::INTEGER AND in_app_notifications.organization_id = $2::INTEGER AND in_app_notifications.is_read = false
+2026-08-06 18:52:02.235 | INFO     | sqlalchemy.log:info:159 - [cached since 992.3s ago] (42, 3)
+2026-08-06 18:52:02.236 | INFO     | sqlalchemy.log:info:159 - ROLLBACK
+2026-08-06 18:52:02.237 | INFO     | app.core.database:session:104 - Database Connections closed
