@@ -42,6 +42,7 @@ from app.services.steampipe_gitlab import import_gitlab_resources_via_steampipe
 from app.services.steampipe_microsoft365 import import_microsoft365_resources_via_steampipe
 from app.services.steampipe_gcp import import_gcp_resources_via_steampipe
 from app.services.steampipe_bitbucket import import_bitbucket_resources_via_steampipe
+from app.services.steampipe_slack import import_slack_resources_via_steampipe
 from app.services.ingestion import IngestionService
 from app.utils.crypto import decrypt_value
 from app.services.steampipe_process import (
@@ -66,6 +67,7 @@ CONFIG_DIRS = {
     "microsoft365": Path("data/microsoft365_config"),
     "gcp": Path("data/gcp_config"),
     "bitbucket": Path("data/bitbucket_config"),
+    "slack": Path("data/slack_config"),
 }
 
 # ---------------------------------------------------------------------------
@@ -239,6 +241,25 @@ def _is_microsoft365_configured(org_id: int) -> dict:
         cfg = json.loads(path.read_text())
         if cfg.get("tenant_id") and cfg.get("client_id") and cfg.get("client_secret"):
             return cfg
+    return {}
+
+
+def _is_slack_configured(org_id: int) -> dict:
+    """Check if Slack is configured.
+
+    Prefers the dedicated ``data/slack_config`` dir (synced by the generic
+    config router), falling back to the generic ``data/integrations/slack``
+    location for configs saved before the dedicated sync existed.
+    """
+    for path in (
+        CONFIG_DIRS["slack"] / f"org_{org_id}.json",
+        Path("data/integrations/slack") / f"org_{org_id}.json",
+    ):
+        if path.exists():
+            cfg = json.loads(path.read_text())
+            token = (cfg.get("token") or cfg.get("slack_token") or "").strip()
+            if token:
+                return cfg
     return {}
 
 
@@ -1216,6 +1237,125 @@ def _import_microsoft365_phase(
         return {"status": "error", "error": str(e), "warnings": []}
 
 
+def _import_slack_phase(
+    org_id: int,
+    cfg: dict,
+    sync_db_url: str,
+    job_id: str = "",
+    step_progress_base: int = 5,
+    step_progress_range: int = 30,
+) -> dict:
+    """Run Slack import (Steampipe discovery + ingestion)."""
+    slack_token = (cfg.get("token") or cfg.get("slack_token") or "").strip()
+    workspace = (cfg.get("profile") or "").strip()
+
+    if not slack_token:
+        return {"status": "error", "error": "Slack not fully configured", "warnings": []}
+
+    engine = create_engine(sync_db_url, pool_pre_ping=True)
+
+    def _slack_progress_cb(info: dict):
+        if not job_id:
+            return
+        # Check if cancellation was requested
+        if _is_cancelled(job_id):
+            raise ImportCancelledError("Import cancelled by user")
+        total = info.get("total_tables", 1)
+        completed = info.get("completed_tables", 0)
+        table = info.get("current_table", "")
+        resources = info.get("resources_found", 0)
+        msg = info.get("message", "")
+        frac = (completed / total) if total > 0 else 0
+        phase_pct = int(frac * 100)
+        overall = step_progress_base + int(frac * step_progress_range)
+        _update_job(
+            job_id,
+            current_progress=phase_pct,
+            current_message=f"Slack: {msg}" if msg else "Slack: Querying...",
+            current_phase=f"slack_discovery ({completed}/{total})",
+            progress=overall,
+            last_activity_at=datetime.now(timezone.utc).isoformat(),
+        )
+
+    def _store_and_ingest(result: dict) -> dict:
+        resources_detail = result.get("resources_detail", [])
+        account_id = result.get("account_id", workspace or "slack")
+
+        with engine.begin() as conn:
+            if resources_detail:
+                discovery_run_id = str(uuid4())
+                for idx, r in enumerate(resources_detail):
+                    if idx % 100 == 0:
+                        _raise_if_cancelled(job_id)
+                    conn.execute(
+                        text("""\
+                            INSERT INTO raw_api_responses
+                                (discovery_run_id, provider, account_id, region, service,
+                                 resource_type, provider_resource_id, api_call, api_response)
+                            VALUES
+                                (:discovery_run_id, :provider, :account_id, :region, :service,
+                                 :resource_type, :provider_resource_id, :api_call, :api_response)
+                        """),
+                        {
+                            "discovery_run_id": discovery_run_id,
+                            "provider": "Slack",
+                            "account_id": account_id,
+                            "region": r.get("region", "global"),
+                            "service": r["resource_type"],
+                            "resource_type": r["resource_type"],
+                            "provider_resource_id": r["resource_id"],
+                            "api_call": "steampipe_query",
+                            "api_response": json.dumps(r["details"]),
+                        },
+                    )
+
+        svc = IngestionService()
+        ingest_result = asyncio.run(svc.ingest_from_result(
+            org_id,
+            result,
+            "global",
+            account_id,
+            cancel_check=lambda: _raise_if_cancelled(job_id),
+        ))
+        return ingest_result
+
+    try:
+        result = asyncio.run(import_slack_resources_via_steampipe(
+            slack_token=slack_token,
+            workspace=workspace,
+            db=None,
+            progress_callback=_slack_progress_cb,
+            cancel_check=lambda: _raise_if_cancelled(job_id),
+        ))
+
+        ingest_result = _store_and_ingest(result)
+
+        logger.info(
+            "Slack bulk import complete: %d resources",
+            result.get("resources_discovered", 0),
+        )
+
+        return {
+            "status": "completed",
+            "resources_discovered": result.get("resources_discovered", 0),
+            "assets_stored": ingest_result.get("assets_stored", 0),
+            "relationships_created": ingest_result.get("relationships_created", 0),
+            "warnings": result.get("warnings", []),
+        }
+    except ImportCancelledError:
+        logger.warning("Slack bulk import cancelled by user")
+        return {"status": "cancelled", "message": "Cancelled by user", "warnings": []}
+    except NetworkUnavailableError as e:
+        logger.error("Network unavailable during Slack bulk import: %s", e)
+        return {"status": "network_error", "error": str(e), "warnings": []}
+    except Exception as e:
+        if _is_cancelled(job_id):
+            logger.warning("Slack bulk import interrupted by cancellation")
+            return {"status": "cancelled", "message": "Cancelled by user", "warnings": []}
+        logger.exception("Slack bulk import failed")
+        return {"status": "error", "error": str(e), "warnings": []}
+
+
 # ---------------------------------------------------------------------------
 # Background runner — sequential execution of configured integrations
 # ---------------------------------------------------------------------------
@@ -1251,6 +1391,7 @@ def _run_bulk_import_in_background(
         microsoft365_cfg = _is_microsoft365_configured(org_id)
         gcp_cfg = _is_gcp_configured(org_id)
         bitbucket_cfg = _is_bitbucket_configured(org_id)
+        slack_cfg = _is_slack_configured(org_id)
 
         if integrations_to_run is None:
             integrations_to_run = []
@@ -1270,6 +1411,8 @@ def _run_bulk_import_in_background(
                 integrations_to_run.append("gcp")
             if bitbucket_cfg:
                 integrations_to_run.append("bitbucket")
+            if slack_cfg:
+                integrations_to_run.append("slack")
 
         if not integrations_to_run:
             _update_job(
@@ -1396,6 +1539,16 @@ def _run_bulk_import_in_background(
                     step_progress_range=step_progress_range,
                 )
                 results["microsoft365"] = result
+
+            elif integration_name == "slack":
+                _update_job(job_id, current_message="Discovering Slack resources via Steampipe...")
+                result = _import_slack_phase(
+                    org_id, slack_cfg, sync_db_url,
+                    job_id=job_id,
+                    step_progress_base=step_progress_base,
+                    step_progress_range=step_progress_range,
+                )
+                results["slack"] = result
 
             elif integration_name == "bitbucket":
                 _update_job(job_id, current_message="Discovering Bitbucket resources via Steampipe...")
@@ -1534,6 +1687,7 @@ class BulkConfigResponse(BaseModel):
     microsoft365_configured: bool = False
     gcp_configured: bool = False
     bitbucket_configured: bool = False
+    slack_configured: bool = False
     integrations_to_run: list[str] = []
 
 
@@ -1579,6 +1733,7 @@ async def get_bulk_config(current_user: CurrentUserDep):
     microsoft365_cfg = _is_microsoft365_configured(org_id)
     gcp_cfg = _is_gcp_configured(org_id)
     bitbucket_cfg = _is_bitbucket_configured(org_id)
+    slack_cfg = _is_slack_configured(org_id)
 
     integrations = []
     if aws_cfg:
@@ -1597,6 +1752,8 @@ async def get_bulk_config(current_user: CurrentUserDep):
         integrations.append("gcp")
     if bitbucket_cfg:
         integrations.append("bitbucket")
+    if slack_cfg:
+        integrations.append("slack")
 
     return BulkConfigResponse(
         aws_configured=bool(aws_cfg),
@@ -1607,6 +1764,7 @@ async def get_bulk_config(current_user: CurrentUserDep):
         microsoft365_configured=bool(microsoft365_cfg),
         gcp_configured=bool(gcp_cfg),
         bitbucket_configured=bool(bitbucket_cfg),
+        slack_configured=bool(slack_cfg),
         integrations_to_run=integrations,
     )
 
@@ -1632,6 +1790,7 @@ async def start_bulk_sync(
     microsoft365_cfg = _is_microsoft365_configured(org_id)
     gcp_cfg = _is_gcp_configured(org_id)
     bitbucket_cfg = _is_bitbucket_configured(org_id)
+    slack_cfg = _is_slack_configured(org_id)
 
     # Build the requested list
     requested = body.integrations or []
@@ -1642,12 +1801,13 @@ async def start_bulk_sync(
         "microsoft365": microsoft365_cfg,
         "gcp": gcp_cfg,
         "bitbucket": bitbucket_cfg,
+        "slack": slack_cfg,
     }
 
     integrations_to_run = []
     if not requested:
         # Import all configured
-        for name in ["aws", "azure", "okta", "github", "gitlab", "microsoft365", "gcp", "bitbucket"]:
+        for name in ["aws", "azure", "okta", "github", "gitlab", "microsoft365", "gcp", "bitbucket", "slack"]:
             if configured_map[name]:
                 integrations_to_run.append(name)
     else:
@@ -1674,7 +1834,7 @@ async def start_bulk_sync(
     )
     thread.start()
 
-    configured_labels = {"aws": "AWS", "azure": "Azure", "okta": "Okta", "github": "GitHub", "gitlab": "GitLab", "microsoft365": "Microsoft 365", "gcp": "GCP", "bitbucket": "Bitbucket"}
+    configured_labels = {"aws": "AWS", "azure": "Azure", "okta": "Okta", "github": "GitHub", "gitlab": "GitLab", "microsoft365": "Microsoft 365", "gcp": "GCP", "bitbucket": "Bitbucket", "slack": "Slack"}
     labels = [configured_labels[n] for n in integrations_to_run]
 
     return BulkSyncStartResponse(

@@ -1,0 +1,23 @@
+source_table: slack_connection
+canonical_category: Organization
+provider: Slack
+canonical_id_template: $.team_id or $.workspace_domain
+
+mappings:
+  display_name: $.team or $.workspace_domain or $.team_id
+  account_id: $.workspace_domain
+  team: $.team
+  team_id: $.team_id
+  workspace_domain: $.workspace_domain
+  bot_id: $.bot_id
+  user_id: $.user_id
+  enterprise_id: $.enterprise_id
+
+required_canonical_fields:
+  - display_name
+
+defaults:
+  source_system: slack
+
+version: 1
+last_modified: '2026-08-06'

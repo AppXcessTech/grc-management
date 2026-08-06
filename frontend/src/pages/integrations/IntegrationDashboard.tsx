@@ -1,10 +1,10 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
-import { Cloud, Fingerprint, Database, Code2, GitBranch, Loader2, CheckCircle, XCircle, ListChecks, Upload, Search, X } from 'lucide-react';
+import { Cloud, Fingerprint, Database, Code2, GitBranch, MessageSquare, Loader2, CheckCircle, XCircle, ListChecks, Upload, Search, X } from 'lucide-react';
 import api from '../../services/api';
 import { saveActiveImportJob, loadActiveImportJob, clearActiveImportJob } from '../../utils/activeImportJob';
 import { useOnlineStatus } from '../../utils/useOnlineStatus';
 
-const ALL_INTEGRATIONS = ['aws', 'azure', 'gcp', 'okta', 'github', 'gitlab', 'bitbucket', 'microsoft365'];
+const ALL_INTEGRATIONS = ['aws', 'azure', 'gcp', 'okta', 'github', 'gitlab', 'bitbucket', 'microsoft365', 'slack'];
 
 const INTEGRATION_META: Record<string, { label: string; icon: React.ReactNode; category: string; description: string }> = {
   aws: {
@@ -54,6 +54,12 @@ const INTEGRATION_META: Record<string, { label: string; icon: React.ReactNode; c
     icon: <Fingerprint size={18} />,
     category: 'Communication Platforms',
     description: 'Teams, team members, and Microsoft 365 resources',
+  },
+  slack: {
+    label: 'Slack',
+    icon: <MessageSquare size={18} />,
+    category: 'Communication Platforms',
+    description: 'Users, channels, user groups, access logs, and workspace connection',
   },
 };
 

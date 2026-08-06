@@ -40,6 +40,7 @@ DEDICATED_CONFIG_DIRS: dict[str, Path] = {
     "gitlab": Path("data/gitlab_config"),
     "microsoft365": Path("data/microsoft365_config"),
     "bitbucket": Path("data/bitbucket_config"),
+    "slack": Path("data/slack_config"),
     # Frontend sends "teams" as the provider slug for Microsoft Teams
     "teams": Path("data/microsoft365_config"),
 }
@@ -47,7 +48,7 @@ DEDICATED_CONFIG_DIRS: dict[str, Path] = {
 # ---------------------------------------------------------------------------
 # Providers that support real connection validation (API call)
 # ---------------------------------------------------------------------------
-TESTABLE_PROVIDERS = {"okta", "github", "gitlab", "microsoft365", "teams", "bitbucket"}
+TESTABLE_PROVIDERS = {"okta", "github", "gitlab", "microsoft365", "teams", "bitbucket", "slack"}
 
 
 class GenericSetupRequest(BaseModel):
@@ -153,6 +154,12 @@ def _sync_to_dedicated_config(provider: str, org_id: int, cfg: dict) -> None:
             "username": cfg.get("username", "").strip(),
             "password": cfg.get("password", "").strip(),
             "workspace_slug": (cfg.get("workspace_slug") or "").strip(),
+        }
+    elif provider == "slack":
+        # The generic form uses fields "profile" (workspace name/domain) + "token".
+        dedicated_cfg = {
+            "profile": cfg.get("profile", "").strip(),
+            "token": (cfg.get("token", "") or cfg.get("slack_token", "")).strip(),
         }
     else:
         dedicated_cfg = dict(cfg)
@@ -408,6 +415,43 @@ async def _test_bitbucket_connection(cfg: dict) -> TestResult:
         )
 
 
+async def _test_slack_connection(cfg: dict) -> TestResult:
+    """Validate Slack credentials via the Slack auth.test endpoint."""
+    slack_token = (cfg.get("token", "") or cfg.get("slack_token", "")).strip()
+
+    if not slack_token:
+        return TestResult(
+            success=False,
+            message="Slack Bot Token is required.",
+        )
+
+    try:
+        from app.services.steampipe_slack import validate_slack_connection
+        result = validate_slack_connection(slack_token)
+        if result.get("success"):
+            return TestResult(
+                success=True,
+                message=f"Slack connection successful! {result.get('message', '')}",
+            )
+        else:
+            return TestResult(
+                success=False,
+                message=result.get("error", "Connection failed. Check your token."),
+            )
+    except ImportError:
+        return TestResult(
+            success=False,
+            message="Slack Steampipe plugin is not available. "
+                    "Ensure steampipe-plugin-slack is installed.",
+        )
+    except Exception as e:
+        logger.exception("Slack connection test failed unexpectedly")
+        return TestResult(
+            success=False,
+            message=f"Connection test failed: {str(e)[:200]}",
+        )
+
+
 async def _test_microsoft365_connection(cfg: dict) -> TestResult:
     """Validate Microsoft 365 credentials via Microsoft Graph API."""
     tenant_id = cfg.get("tenant_id", "").strip()
@@ -503,6 +547,9 @@ async def test_generic_connection(
 
     if provider == "bitbucket":
         return await _test_bitbucket_connection(cfg)
+
+    if provider == "slack":
+        return await _test_slack_connection(cfg)
 
     # Default: just confirm config exists (no real test yet)
     return TestResult(

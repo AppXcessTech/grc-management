@@ -2,7 +2,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import {
   ArrowLeft, Check, Download, Package, RefreshCw, Trash2, X, AlertTriangle,
-  Cloud, Fingerprint, Database, ListChecks, Code2, GitBranch, Filter,
+  Cloud, Fingerprint, Database, ListChecks, Code2, GitBranch, MessageSquare, Filter,
 } from 'lucide-react';
 import { saveActiveImportJob, loadActiveImportJob, clearActiveImportJob } from '../../utils/activeImportJob';
 import { useOnlineStatus } from '../../utils/useOnlineStatus';
@@ -38,6 +38,7 @@ interface BulkConfigResponse {
   gitlab_configured: boolean;
   gcp_configured: boolean;
   bitbucket_configured: boolean;
+  slack_configured: boolean;
   integrations_to_run: string[];
 }
 
@@ -94,6 +95,11 @@ const PROVIDER_META: Record<string, { label: string; icon: React.ReactNode; desc
     label: 'Bitbucket',
     icon: <GitBranch size={18} />,
     description: 'Repositories, projects, workspaces, members, branch restrictions',
+  },
+  slack: {
+    label: 'Slack',
+    icon: <MessageSquare size={18} />,
+    description: 'Users, channels, user groups, access logs, workspace connection',
   },
 };
 
@@ -494,7 +500,7 @@ const CanonicalCategoryPage = () => {
   }, []);
 
   // Determine which providers are configured and available
-  const configuredProviders = ['aws', 'azure', 'gcp', 'okta', 'github', 'gitlab', 'bitbucket'].filter(k =>
+  const configuredProviders = ['aws', 'azure', 'gcp', 'okta', 'github', 'gitlab', 'bitbucket', 'slack'].filter(k =>
     bulkConfig?.[`${k}_configured` as keyof BulkConfigResponse]
   );
   const hasConfiguredProviders = configuredProviders.length > 0;

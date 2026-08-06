@@ -1,0 +1,22 @@
+source_table: slack_group
+canonical_category: Group
+provider: Slack
+canonical_id_template: $.id
+
+mappings:
+  display_name: $.name or $.handle or $.id
+  account_id: $.workspace_domain
+  handle: $.handle
+  description: $.description
+  is_external: $.is_external
+  is_user_group: $.is_user_group
+  user_count: $.user_count
+
+required_canonical_fields:
+  - display_name
+
+defaults:
+  source_system: slack
+
+version: 1
+last_modified: '2026-08-06'

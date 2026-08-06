@@ -98,7 +98,8 @@ const VENDOR_CONFIGS: Record<string, VendorConfig> = {
     title: 'Slack',
     categoryLabel: 'Communication Platforms',
     fields: [
-      { name: 'token', label: 'Bot / User Token', type: 'password', required: true, placeholder: 'xoxp-your-user-or-bot-token' },
+      { name: 'profile', label: 'Workspace Name / Domain', type: 'text', required: true, placeholder: 'acme-workspace', hint: 'Your Slack workspace name or domain (e.g. acme-workspace). Used to label the connection and as the account ID on imported assets.' },
+      { name: 'token', label: 'Bot Token', type: 'password', required: true, placeholder: 'xoxb-your-bot-token', hint: 'Create a Slack app, add the required scopes (users:read, channels:read, groups:read, team:read, usergroups:read, team.access_logs:read) and install it to your workspace to get a Bot User OAuth Token (xoxb-...).' },
     ],
   },
   teams: {

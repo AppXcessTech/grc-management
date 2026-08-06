@@ -321,6 +321,7 @@ class Provider(str, PyEnum):
     okta = "Okta"
     github = "GitHub"
     gitlab = "GitLab"
+    slack = "Slack"
     crowdstrike = "CrowdStrike"
     intune = "Intune"
     manual = "Manual"

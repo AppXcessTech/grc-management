@@ -1,0 +1,19 @@
+source_table: slack_conversation_member
+canonical_category: Group
+provider: Slack
+canonical_id_template: 'slack:cm:{conversation_id}:{member_id}'
+
+mappings:
+  display_name: $.member_id or $.conversation_id
+  conversation_id: $.conversation_id
+  member_id: $.member_id
+  account_id: $.workspace_domain
+
+required_canonical_fields:
+  - display_name
+
+defaults:
+  source_system: slack
+
+version: 1
+last_modified: '2026-08-06'

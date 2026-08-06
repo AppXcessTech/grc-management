@@ -4,7 +4,8 @@ Canonical mapping — loaded from YAML rule files under ``rules/``.
 This module exists for backward compatibility with code that imports
 ``STEAMPIPE_TABLE_TO_TYPE``, ``AZURE_STEAMPIPE_TABLE_TO_TYPE``,
 ``OKTA_STEAMPIPE_TABLE_TO_TYPE``, ``GITHUB_STEAMPIPE_TABLE_TO_TYPE``,
-``GITLAB_STEAMPIPE_TABLE_TO_TYPE``, ``BITBUCKET_STEAMPIPE_TABLE_TO_TYPE``
+``GITLAB_STEAMPIPE_TABLE_TO_TYPE``, ``BITBUCKET_STEAMPIPE_TABLE_TO_TYPE``,
+``SLACK_STEAMPIPE_TABLE_TO_TYPE``
 and ``get_type()``.  The authoritative source of truth is now the YAML
 files in the ``rules/`` directory.
 """
@@ -23,10 +24,10 @@ _ALL_RULES: dict[str, CanonicalMappingRule] = load_all_rules()
 _TYPE_MAP: dict[str, str] = build_type_map(_ALL_RULES) if _ALL_RULES else {}
 
 
-def _split_by_provider() -> tuple[dict[str, str], dict[str, str], dict[str, str], dict[str, str], dict[str, str], dict[str, str], dict[str, str], dict[str, str]]:
+def _split_by_provider() -> tuple[dict[str, str], dict[str, str], dict[str, str], dict[str, str], dict[str, str], dict[str, str], dict[str, str], dict[str, str], dict[str, str]]:
     """Split the full type map into provider-specific dicts.
 
-    Returns (aws, azure, gcp, okta, github, gitlab, microsoft365, bitbucket).
+    Returns (aws, azure, gcp, okta, github, gitlab, microsoft365, bitbucket, slack).
     """
     aws = {}
     azure = {}
@@ -36,6 +37,7 @@ def _split_by_provider() -> tuple[dict[str, str], dict[str, str], dict[str, str]
     gitlab = {}
     microsoft365 = {}
     bitbucket = {}
+    slack = {}
     for table, ctype in _TYPE_MAP.items():
         if table.startswith("aws_"):
             aws[table] = ctype
@@ -53,10 +55,12 @@ def _split_by_provider() -> tuple[dict[str, str], dict[str, str], dict[str, str]
             microsoft365[table] = ctype
         elif table.startswith("bitbucket_"):
             bitbucket[table] = ctype
-    return aws, azure, gcp, okta, github, gitlab, microsoft365, bitbucket
+        elif table.startswith("slack_"):
+            slack[table] = ctype
+    return aws, azure, gcp, okta, github, gitlab, microsoft365, bitbucket, slack
 
 
-STEAMPIPE_TABLE_TO_TYPE, AZURE_STEAMPIPE_TABLE_TO_TYPE, GCP_STEAMPIPE_TABLE_TO_TYPE, OKTA_STEAMPIPE_TABLE_TO_TYPE, GITHUB_STEAMPIPE_TABLE_TO_TYPE, GITLAB_STEAMPIPE_TABLE_TO_TYPE, M365_STEAMPIPE_TABLE_TO_TYPE, BITBUCKET_STEAMPIPE_TABLE_TO_TYPE = _split_by_provider()
+STEAMPIPE_TABLE_TO_TYPE, AZURE_STEAMPIPE_TABLE_TO_TYPE, GCP_STEAMPIPE_TABLE_TO_TYPE, OKTA_STEAMPIPE_TABLE_TO_TYPE, GITHUB_STEAMPIPE_TABLE_TO_TYPE, GITLAB_STEAMPIPE_TABLE_TO_TYPE, M365_STEAMPIPE_TABLE_TO_TYPE, BITBUCKET_STEAMPIPE_TABLE_TO_TYPE, SLACK_STEAMPIPE_TABLE_TO_TYPE = _split_by_provider()
 
 
 def get_type(table_name: str) -> str:
@@ -95,8 +99,8 @@ def get_rule(table_name: str) -> CanonicalMappingRule:
 def reload_rules() -> None:
     """Reload all rules from disk (useful for testing or hot-reload)."""
     global _ALL_RULES, _TYPE_MAP
-    global STEAMPIPE_TABLE_TO_TYPE, AZURE_STEAMPIPE_TABLE_TO_TYPE, GCP_STEAMPIPE_TABLE_TO_TYPE, OKTA_STEAMPIPE_TABLE_TO_TYPE, GITHUB_STEAMPIPE_TABLE_TO_TYPE, GITLAB_STEAMPIPE_TABLE_TO_TYPE, M365_STEAMPIPE_TABLE_TO_TYPE, BITBUCKET_STEAMPIPE_TABLE_TO_TYPE
+    global STEAMPIPE_TABLE_TO_TYPE, AZURE_STEAMPIPE_TABLE_TO_TYPE, GCP_STEAMPIPE_TABLE_TO_TYPE, OKTA_STEAMPIPE_TABLE_TO_TYPE, GITHUB_STEAMPIPE_TABLE_TO_TYPE, GITLAB_STEAMPIPE_TABLE_TO_TYPE, M365_STEAMPIPE_TABLE_TO_TYPE, BITBUCKET_STEAMPIPE_TABLE_TO_TYPE, SLACK_STEAMPIPE_TABLE_TO_TYPE
     _ALL_RULES = load_all_rules()
     _TYPE_MAP = build_type_map(_ALL_RULES) if _ALL_RULES else {}
-    STEAMPIPE_TABLE_TO_TYPE, AZURE_STEAMPIPE_TABLE_TO_TYPE, GCP_STEAMPIPE_TABLE_TO_TYPE, OKTA_STEAMPIPE_TABLE_TO_TYPE, GITHUB_STEAMPIPE_TABLE_TO_TYPE, GITLAB_STEAMPIPE_TABLE_TO_TYPE, M365_STEAMPIPE_TABLE_TO_TYPE, BITBUCKET_STEAMPIPE_TABLE_TO_TYPE = _split_by_provider()
+    STEAMPIPE_TABLE_TO_TYPE, AZURE_STEAMPIPE_TABLE_TO_TYPE, GCP_STEAMPIPE_TABLE_TO_TYPE, OKTA_STEAMPIPE_TABLE_TO_TYPE, GITHUB_STEAMPIPE_TABLE_TO_TYPE, GITLAB_STEAMPIPE_TABLE_TO_TYPE, M365_STEAMPIPE_TABLE_TO_TYPE, BITBUCKET_STEAMPIPE_TABLE_TO_TYPE, SLACK_STEAMPIPE_TABLE_TO_TYPE = _split_by_provider()
     logger.info("Reloaded %d canonical mapping rules", len(_ALL_RULES))

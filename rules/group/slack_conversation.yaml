@@ -1,0 +1,24 @@
+source_table: slack_conversation
+canonical_category: Group
+provider: Slack
+canonical_id_template: $.id
+
+mappings:
+  display_name: $.name or $.name_normalized or $.id
+  account_id: $.workspace_domain
+  is_channel: $.is_channel
+  is_private: $.is_private
+  is_general: $.is_general
+  is_archived: $.is_archived
+  is_ext_shared: $.is_ext_shared
+  is_org_shared: $.is_org_shared
+  num_members: $.num_members
+
+required_canonical_fields:
+  - display_name
+
+defaults:
+  source_system: slack
+
+version: 1
+last_modified: '2026-08-06'

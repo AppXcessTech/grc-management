@@ -1,0 +1,24 @@
+source_table: slack_access_log
+canonical_category: Logging
+provider: Slack
+canonical_id_template: 'slack:access_log:{user_id}:{date_first}'
+
+mappings:
+  display_name: $.user_name or $.user_id
+  user_id: $.user_id
+  account_id: $.workspace_domain
+  date_first: $.date_first
+  date_last: $.date_last
+  ip: $.ip
+  country: $.country
+  region: $.region
+  user_agent: $.user_agent
+
+required_canonical_fields:
+  - display_name
+
+defaults:
+  source_system: slack
+
+version: 1
+last_modified: '2026-08-06'

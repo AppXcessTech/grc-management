@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { getCategoryBySlug } from '../../data/integrations';
-import { PlugZap, ExternalLink, Loader2, CheckCircle, XCircle, AlertTriangle, Cloud, Fingerprint, Database, ListChecks, Code2, GitBranch, Search, X } from 'lucide-react';
+import { PlugZap, ExternalLink, Loader2, CheckCircle, XCircle, AlertTriangle, Cloud, Fingerprint, Database, ListChecks, Code2, GitBranch, MessageSquare, Search, X } from 'lucide-react';
 import api from '../../services/api';
 import { saveActiveImportJob, loadActiveImportJob, clearActiveImportJob } from '../../utils/activeImportJob';
 import { useOnlineStatus } from '../../utils/useOnlineStatus';
@@ -61,6 +61,7 @@ const IMPORTABLE_INTEGRATIONS: Record<string, string[]> = {
   'cloud-providers': ['AWS', 'Azure', 'GCP'],
   'identity-providers': ['Okta'],
   'version-control': ['GitHub', 'GitLab', 'Bitbucket'],
+  'communication-platforms': ['Slack'],
 };
 
 // Provider icon mapping
@@ -72,6 +73,7 @@ const PROVIDER_ICONS: Record<string, React.ReactNode> = {
   github: <Code2 size={14} />,
   gitlab: <GitBranch size={14} />,
   bitbucket: <GitBranch size={14} />,
+  slack: <MessageSquare size={14} />,
 };
 
 const PROVIDER_LABELS: Record<string, string> = {
@@ -82,6 +84,7 @@ const PROVIDER_LABELS: Record<string, string> = {
   github: 'GitHub',
   gitlab: 'GitLab',
   bitbucket: 'Bitbucket',
+  slack: 'Slack',
 };
 
 // Number of ms between status-poll requests
@@ -103,6 +106,7 @@ const IntegrationPlaceholder = () => {
     gcp_configured: boolean;
     gitlab_configured: boolean;
     bitbucket_configured: boolean;
+    slack_configured: boolean;
     integrations_to_run: string[];
   } | null>(null);
   const [configLoading, setConfigLoading] = useState(true);
@@ -368,10 +372,11 @@ const IntegrationPlaceholder = () => {
     GitHub: 'github',
     GitLab: 'gitlab',
     Bitbucket: 'bitbucket',
+    Slack: 'slack',
   };
 
   // Map from internal key to bulk config boolean field
-  const PROVIDER_TO_CONFIG_FIELD: Record<string, 'aws_configured' | 'azure_configured' | 'okta_configured' | 'github_configured' | 'gcp_configured' | 'gitlab_configured' | 'bitbucket_configured'> = {
+  const PROVIDER_TO_CONFIG_FIELD: Record<string, 'aws_configured' | 'azure_configured' | 'okta_configured' | 'github_configured' | 'gcp_configured' | 'gitlab_configured' | 'bitbucket_configured' | 'slack_configured'> = {
     aws: 'aws_configured',
     azure: 'azure_configured',
     gcp: 'gcp_configured',
@@ -379,6 +384,7 @@ const IntegrationPlaceholder = () => {
     github: 'github_configured',
     gitlab: 'gitlab_configured',
     bitbucket: 'bitbucket_configured',
+    slack: 'slack_configured',
   };
 
   /**
@@ -513,7 +519,8 @@ const IntegrationPlaceholder = () => {
                      key === 'okta' ? 'People assets' :
                      key === 'github' ? 'Repositories & code' :
                      key === 'gitlab' ? 'Repositories & code' :
-                     key === 'bitbucket' ? 'Repositories & code' : ''}
+                     key === 'bitbucket' ? 'Repositories & code' :
+                     key === 'slack' ? 'Users, channels & logs' : ''}
                   </span>
                 </label>
               ))}

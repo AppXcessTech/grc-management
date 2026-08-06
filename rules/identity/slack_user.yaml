@@ -1,0 +1,22 @@
+source_table: slack_user
+canonical_category: Identity
+provider: Slack
+canonical_id_template: $.id or $.email
+
+mappings:
+  display_name: $.display_name or $.real_name or $.email or $.id
+  email: $.email
+  account_id: $.workspace_domain
+  deleted: $.deleted
+  is_admin: $.is_admin
+  is_owner: $.is_owner
+  is_bot: $.is_bot
+
+required_canonical_fields:
+  - display_name
+
+defaults:
+  source_system: slack
+
+version: 1
+last_modified: '2026-08-06'
