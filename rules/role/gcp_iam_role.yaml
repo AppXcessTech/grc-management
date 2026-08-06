@@ -1,7 +1,7 @@
 source_table: gcp_iam_role
 canonical_category: Role
 provider: GCP
-canonical_id_template: $.arn or $.name or $.id or $.self_link or $.title
+canonical_id_template: $.name
 
 mappings:
   display_name: $.name or $.Name or $.id or $.self_link or $.title

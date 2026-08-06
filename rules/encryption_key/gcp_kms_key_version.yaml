@@ -1,7 +1,7 @@
 source_table: gcp_kms_key_version
 canonical_category: EncryptionKey
 provider: GCP
-canonical_id_template: $.id or $.name or $.self_link or $.title
+canonical_id_template: 'gcp:kms:{key_ring_name}:{key_name}:{crypto_key_version}'
 
 mappings:
   display_name: $.name or $.Name or $.id or $.self_link or $.title

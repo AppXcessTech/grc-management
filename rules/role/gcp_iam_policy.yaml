@@ -1,7 +1,7 @@
 source_table: gcp_iam_policy
 canonical_category: Role
 provider: GCP
-canonical_id_template: $.arn or $.name or $.id or $.self_link or $.title
+canonical_id_template: 'gcp:policy:{project}'
 
 mappings:
   display_name: $.name or $.Name or $.id or $.self_link or $.title

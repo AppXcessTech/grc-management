@@ -6,7 +6,6 @@ directly from the frontend. The backend parses the JSON, extracts the necessary 
 (project_id, client_email, private_key, etc.), encrypts the private key at rest, and
 stores the full credentials for use by the Steampipe GCP plugin during resource discovery.
 """
-import asyncio
 import json
 import logging
 import threading
@@ -171,22 +170,21 @@ def _save_config(org_id: int, data: dict):
     if path.exists():
         existing = json.loads(path.read_text())
 
-    # Preserve existing private_key if a new one is not provided
-    if not data.get("private_key", "").strip():
-        if existing.get("private_key"):
-            data["private_key"] = existing["private_key"]
+    # Preserve existing values when a new one is not provided. Secrets are
+    # already encrypted on disk, so skipping re-encryption here also avoids
+    # double-encrypting them on update-without-upload saves; metadata fields
+    # (client_email, client_id, ...) are kept so a region-only update doesn't
+    # wipe them.
+    preserved: set[str] = set()
+    for field in ("private_key", "credentials_json", "client_email", "client_id", "private_key_id", "project_id"):
+        if not data.get(field, "").strip() and existing.get(field):
+            data[field] = existing[field]
+            preserved.add(field)
 
-    # Encrypt the private_key before storing
-    if data.get("private_key", "").strip():
-        data["private_key"] = encrypt_value(data["private_key"])
-
-    # Also store the full credentials JSON for Steampipe
-    if data.get("credentials_json", "").strip():
-        data["credentials_json"] = encrypt_value(data["credentials_json"])
-    else:
-        # Preserve existing encrypted credentials_json
-        if existing.get("credentials_json"):
-            data["credentials_json"] = existing["credentials_json"]
+    # Encrypt fresh plaintext values before storing
+    for field in ("private_key", "credentials_json"):
+        if field not in preserved and data.get(field, "").strip():
+            data[field] = encrypt_value(data[field])
 
     _config_path(org_id).write_text(json.dumps(data, indent=2))
 
@@ -369,9 +367,6 @@ async def setup_gcp(
     """
     data = {}
 
-    # Load existing config to check for previously stored values
-    existing = _load_config(current_user.organization_id)
-
     if file and file.filename:
         try:
             content = await file.read()
@@ -409,16 +404,13 @@ async def setup_gcp(
                 detail="Invalid JSON file. Please upload a valid GCP service account key JSON file.",
             )
     else:
-        # No file uploaded — use form fields and preserve existing secrets
+        # No file uploaded — use form fields. _save_config() preserves the
+        # existing (already-encrypted) secrets from disk on its own; copying
+        # them here from _load_config() would mix a decrypted private_key with
+        # an encrypted credentials_json and double-encrypt on re-save.
         data["project_id"] = project_id
         data["client_email"] = client_email
         data["region"] = region
-
-        # If updating without uploading a new file, preserve existing credentials
-        if existing.get("credentials_json"):
-            data["credentials_json"] = existing["credentials_json"]
-        if existing.get("private_key"):
-            data["private_key"] = existing["private_key"]
 
     # Always apply the region field
     data["region"] = region

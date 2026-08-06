@@ -1,7 +1,7 @@
 source_table: gcp_bigquery_dataset
 canonical_category: DataWarehouse
 provider: GCP
-canonical_id_template: $.id or $.name or $.self_link or $.title
+canonical_id_template: $.id or $.dataset_id
 
 mappings:
   display_name: $.name or $.Name or $.id or $.self_link or $.title

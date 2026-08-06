@@ -1,7 +1,7 @@
 source_table: gcp_dns_record_set
 canonical_category: DNS
 provider: GCP
-canonical_id_template: $.id or $.name or $.self_link or $.title
+canonical_id_template: 'gcp:dns:{project}:{managed_zone_name}:{name}:{type}'
 
 mappings:
   display_name: $.name or $.Name or $.id or $.self_link or $.title

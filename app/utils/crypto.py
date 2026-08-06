@@ -4,18 +4,25 @@ Uses AES-256-GCM for symmetric encryption with a secret key.
 """
 import os
 import base64
+
 from cryptography.hazmat.primitives.ciphers.aead import AESGCM
 from cryptography.exceptions import InvalidTag
+from dotenv import load_dotenv
 from typing import Optional
 
 
 # Key should be 32 bytes for AES-256
 def get_encryption_key() -> bytes:
     """Get encryption key from environment variable.
-    
+
     The key must be a base64-encoded 32-byte value.
     Generate one with: python -c "import os,base64; print(base64.b64encode(os.urandom(32)).decode())"
+
+    Loads ``.env`` into the process environment first (idempotent, and never
+    overrides variables already exported by the shell) so the key is found
+    regardless of how the app was started (uvicorn, celery, scripts).
     """
+    load_dotenv()
     key_b64 = os.environ.get("AWS_CREDENTIALS_ENCRYPTION_KEY", "")
     if not key_b64:
         raise ValueError(

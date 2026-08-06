@@ -1,4 +1,3 @@
-import asyncio
 import json
 import threading
 from datetime import datetime, timezone
@@ -185,13 +184,16 @@ def _save_config(org_id: int, data: dict):
     if path.exists():
         existing = json.loads(path.read_text())
 
-    # Preserve existing client_secret if a new one is not provided
+    # Preserve existing encrypted client_secret when a new one is not provided
+    # — it is already encrypted, so skip re-encryption to avoid double-encrypting.
+    preserved = False
     if not data.get("client_secret", "").strip():
         if existing.get("client_secret"):
             data["client_secret"] = existing["client_secret"]
+            preserved = True
 
-    # Encrypt the client_secret before storing
-    if data.get("client_secret", "").strip():
+    # Encrypt a fresh plaintext client_secret before storing
+    if data.get("client_secret", "").strip() and not preserved:
         data["client_secret"] = encrypt_value(data["client_secret"])
 
     # Only store encrypted form — never store raw secret in the file

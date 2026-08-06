@@ -1,7 +1,7 @@
 source_table: gcp_compute_firewall
 canonical_category: Firewall
 provider: GCP
-canonical_id_template: $.id or $.name or $.self_link or $.title
+canonical_id_template: $.id
 
 mappings:
   display_name: $.name or $.Name or $.id or $.self_link or $.title

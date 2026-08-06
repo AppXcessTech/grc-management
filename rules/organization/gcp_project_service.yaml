@@ -1,7 +1,7 @@
 source_table: gcp_project_service
 canonical_category: Organization
 provider: GCP
-canonical_id_template: $.id or $.name or $.self_link or $.title
+canonical_id_template: 'gcp:service:{project}:{name}'
 
 mappings:
   display_name: $.name or $.Name or $.id or $.self_link or $.title

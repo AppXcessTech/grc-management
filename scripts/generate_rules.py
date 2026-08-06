@@ -3,9 +3,17 @@
 
 This script has the mapping data INLINE so it doesn't depend on the
 app package (which now loads rules from the YAML files itself).
+
+Usage:
+    python scripts/generate_rules.py                  # all providers
+    python scripts/generate_rules.py --provider gcp   # GCP rules only
+
+Regenerating every provider is destructive to rules that were hand-curated
+after the last generation (e.g. richer aws_ec2_instance mappings), so prefer
+scoping regeneration with ``--provider`` unless you intend a full refresh.
 """
 
-import os
+import argparse
 from pathlib import Path
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
@@ -305,9 +313,111 @@ AWS_ID_TEMPLATES: dict[str, str] = {
     "aws_identitystore_user": "$.name",
 }
 
+# GCP verified per-table templates — every identifier below was validated
+# against the real Steampipe gcp plugin schema (v1.13.1) and sample data from
+# grc-platform-498907. Templates are one of:
+#   - ``$.id``            — numeric API id, unique per project (compute family)
+#   - ``$.name``          — full resource path, globally unique
+#   - ``$.field or $.f2`` — preferred field with fallback chain
+#   - ``gcp:{...}``       — composite template for tables with no single
+#                           unique column ({field} -> value of $.field)
 GCP_ID_TEMPLATES: dict[str, str] = {
-    "gcp_iam_role": "$.arn or $.name or $.id or $.self_link",
-    "gcp_iam_policy": "$.arn or $.name or $.id or $.self_link",
+    # ── Compute (numeric `id`) ──────────────────────────────────────
+    "gcp_compute_instance": "$.id",
+    "gcp_compute_instance_group": "$.id",
+    "gcp_compute_instance_group_manager": "$.id",
+    "gcp_compute_instance_template": "$.id",
+    "gcp_compute_autoscaler": "$.id",
+    "gcp_compute_image": "$.id",
+    "gcp_compute_machine_image": "$.id",
+    "gcp_compute_node_group": "$.id",
+    "gcp_compute_node_template": "$.id",
+    "gcp_compute_tpu": "$.id",  # DEPRECATED in plugin -> use gcp_tpu_vm
+    "gcp_tpu_vm": "$.id",
+    "gcp_compute_resource_policy": "$.id",
+    "gcp_compute_firewall": "$.id",
+    "gcp_compute_security_policy": "$.id",
+    "gcp_compute_backend_bucket": "$.id",
+    "gcp_compute_backend_service": "$.id",
+    "gcp_compute_forwarding_rule": "$.id",
+    "gcp_compute_global_forwarding_rule": "$.id",
+    "gcp_compute_target_https_proxy": "$.id",
+    "gcp_compute_target_pool": "$.id",
+    "gcp_compute_target_ssl_proxy": "$.id",
+    "gcp_compute_url_map": "$.id",
+    "gcp_compute_ssl_policy": "$.id",
+    "gcp_compute_network": "$.id",
+    "gcp_compute_subnetwork": "$.id",
+    "gcp_compute_address": "$.id",
+    "gcp_compute_global_address": "$.id",
+    "gcp_compute_router": "$.id",
+    "gcp_compute_disk": "$.id",
+    "gcp_compute_ha_vpn_gateway": "$.id",
+    "gcp_compute_vpn_tunnel": "$.id",
+    "gcp_compute_target_vpn_gateway": "$.id",
+
+    # ── Name (full resource path, globally unique) ──────────────────
+    "gcp_compute_snapshot": "$.name",
+    "gcp_redis_cluster": "$.name",
+    "gcp_redis_instance": "$.name",
+    "gcp_workstations_workstation": "$.name",
+    "gcp_workstations_workstation_cluster": "$.name",
+    "gcp_kubernetes_cluster": "$.name",
+    "gcp_artifact_registry_repository": "$.name",
+    "gcp_sql_database_instance": "$.name",
+    "gcp_alloydb_cluster": "$.name",
+    "gcp_alloydb_instance": "$.name",
+    "gcp_bigtable_instance": "$.name",
+    "gcp_firestore_database": "$.name",
+    "gcp_dataproc_metastore_service": "$.name",
+    "gcp_dns_managed_zone": "$.id or $.name",
+    "gcp_dns_policy": "$.id or $.name",
+    "gcp_kms_key": "$.name",
+    "gcp_kms_key_ring": "$.name",
+    "gcp_cloud_identity_group": "$.name",
+    "gcp_cloud_identity_group_membership": "$.name",
+    "gcp_service_account": "$.name",
+    "gcp_service_account_key": "$.name",
+    "gcp_logging_bucket": "$.name",
+    "gcp_logging_exclusion": "$.name",
+    "gcp_logging_metric": "$.name",
+    "gcp_logging_sink": "$.name",
+    "gcp_monitoring_alert_policy": "$.name",
+    "gcp_monitoring_group": "$.name",
+    "gcp_monitoring_notification_channel": "$.name",
+    "gcp_vpc_access_connector": "$.name",
+    "gcp_billing_account": "$.name",
+    "gcp_billing_budget": "$.name",
+    "gcp_iam_role": "$.name",
+    "gcp_secret_manager_secret": "$.name",
+    "gcp_apikeys_key": "$.name",
+    "gcp_cloudfunctions_function": "$.name",
+    "gcp_cloud_run_job": "$.name",
+    "gcp_cloud_run_service": "$.name",
+    "gcp_app_engine_application": "$.name",
+    "gcp_storage_bucket": "$.name",
+    "gcp_organization": "$.name or $.organization_id",
+
+    # ── Special single-column identifiers ───────────────────────────
+    "gcp_project": "$.project_id",
+    "gcp_organization_project": "$.project_id or $.project_number",
+    "gcp_dataproc_cluster": "$.cluster_name",
+    "gcp_project_organization_policy": "$.id",
+    "gcp_sql_backup": "$.id",
+
+    # ── Composite identifiers (no single unique column) ─────────────
+    "gcp_sql_database": "gcp:sql:{project}:{instance_name}:{name}",
+    "gcp_kubernetes_node_pool": "gcp:gke:{project}:{cluster_name}:{name}",
+    "gcp_dns_record_set": "gcp:dns:{project}:{managed_zone_name}:{name}:{type}",
+    "gcp_kms_key_version": "gcp:kms:{key_ring_name}:{key_name}:{crypto_key_version}",
+    "gcp_storage_object": "gcp:gs:{bucket}:{name}",
+    "gcp_bigquery_dataset": "$.id or $.dataset_id",
+    "gcp_bigquery_table": "$.id or $.dataset_id or $.table_id",
+    "gcp_project_service": "gcp:service:{project}:{name}",
+    "gcp_iam_policy": "gcp:policy:{project}",
+    "gcp_audit_policy": "gcp:audit:{project}:{service}",
+    "gcp_organization_audit_policy": "gcp:audit:{organization_id}:{service}",
+    "gcp_logging_log_entry": "gcp:log:{project}:{log_name}:{insert_id}",
 }
 
 AZURE_ID_TEMPLATES: dict[str, str] = {}
@@ -337,8 +447,12 @@ def _get_id_template(table_name: str, provider: str) -> str:
             return AZURE_ID_TEMPLATES[table_name] + " or $.title"
         return "$.id or $.name or $.title"
     if provider == "GCP":
+        # GCP templates are verified per-table (see GCP_ID_TEMPLATES) and are
+        # returned exactly as-authored — no generic "or $.title" suffix, since
+        # that would corrupt composite {placeholder} templates like
+        # ``gcp:sql:{project}:{instance_name}:{name}``.
         if table_name in GCP_ID_TEMPLATES:
-            return GCP_ID_TEMPLATES[table_name] + " or $.title"
+            return GCP_ID_TEMPLATES[table_name]
         return "$.id or $.name or $.self_link or $.title"
     return "$.id or $.name or $.title"
 
@@ -410,9 +524,20 @@ def _provider_for_table(table_name: str) -> str:
 
 
 def main():
+    parser = argparse.ArgumentParser(description="Generate YAML rule files from static mapping data")
+    parser.add_argument(
+        "--provider",
+        type=str.lower,
+        choices=["aws", "azure", "gcp"],
+        help="Only regenerate rules for this provider (default: all)",
+    )
+    args = parser.parse_args()
+
     created = 0
     for table_name, category in AWS_MAPPINGS + GCP_MAPPINGS + AZURE_MAPPINGS:
         provider = _provider_for_table(table_name)
+        if args.provider and provider.lower() != args.provider:
+            continue
         dir_name = CATEGORY_TO_DIR.get(category, "other")
         target_dir = RULES_DIR / dir_name
         target_dir.mkdir(parents=True, exist_ok=True)

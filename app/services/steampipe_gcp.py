@@ -329,7 +329,7 @@ async def import_gcp_resources_via_steampipe(
         spc_lines = [
             'connection "gcp" {',
             '  plugin = "gcp"',
-            f'  credential_file = "{creds_file_path}"',
+            f'  credentials = "{creds_file_path}"',
         ]
         if project_id:
             spc_lines.append(f'  project = "{project_id}"')
@@ -536,7 +536,7 @@ def validate_gcp_connection(
             spc_lines = [
                 'connection "gcp" {',
                 '  plugin = "gcp"',
-                f'  credential_file = "{creds_file_path}"',
+                f'  credentials = "{creds_file_path}"',
             ]
             if project_id:
                 spc_lines.append(f'  project = "{project_id}"')
