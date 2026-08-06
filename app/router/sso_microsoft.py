@@ -1,6 +1,9 @@
+import json
+import logging
+import os
 import secrets
 import urllib.parse
-from datetime import timedelta
+from datetime import datetime, timezone
 
 import httpx
 import jwt
@@ -14,22 +17,32 @@ from sqlalchemy.orm import selectinload
 
 from app.core.database import get_db
 from app.core.dependencies import CurrentSuperAdminDep, DBSessionDep
-from app.core.security import ACCESS_TOKEN_EXPIRE_MINUTES, create_access_token
+from app.core.settings import settings
 from app.models.enums import SSOProvider, UserStatus
 from app.models.sso_configuration import SSOConfiguration
 from app.models.user import User
+from app.router.auth import _issue_token_pair
 
 router = APIRouter(prefix="/api/auth/sso/microsoft", tags=["sso-microsoft"])
 
 MICROSOFT_OAUTH_SCOPES = "openid email profile"
-FRONTEND_URL = "http://localhost:5173"
-BACKEND_URL = "http://localhost:8000"
+STATE_DIR = "/tmp/microsoft_state"
+
+logger = logging.getLogger("sso.microsoft")
 
 
 class MicrosoftConfigRequest(BaseModel):
     tenant_id: str
     client_id: str
     client_secret: str
+
+
+def _redirect_error(params: str) -> RedirectResponse:
+    """Redirect back to the frontend with an error query string."""
+    return RedirectResponse(
+        url=f"{settings.frontend_url.rstrip('/')}/login?{params}",
+        status_code=302,
+    )
 
 
 @router.post("/configure", status_code=status.HTTP_200_OK)
@@ -99,7 +112,7 @@ async def microsoft_login(
         select(SSOConfiguration).where(
             SSOConfiguration.organization_id == org_id,
             SSOConfiguration.provider == SSOProvider.Microsoft,
-            SSOConfiguration.is_active == True,
+            SSOConfiguration.is_active.is_(True),
         )
     )
     sso = result.scalar_one_or_none()
@@ -118,13 +131,10 @@ async def microsoft_login(
 
     state = secrets.token_urlsafe(32)
     nonce = secrets.token_urlsafe(16)
-    callback_url = f"{BACKEND_URL}/api/auth/sso/microsoft/callback"
-    backend_callback = f"{BACKEND_URL}/api/auth/sso/microsoft/callback"
+    callback_url = f"{settings.backend_url.rstrip('/')}/api/auth/sso/microsoft/callback"
 
-    import json, os
-    state_dir = "/tmp/microsoft_state"
-    os.makedirs(state_dir, exist_ok=True)
-    with open(os.path.join(state_dir, f"{state}.json"), "w") as f:
+    os.makedirs(STATE_DIR, exist_ok=True)
+    with open(os.path.join(STATE_DIR, f"{state}.json"), "w") as f:
         json.dump({"nonce": nonce, "org_id": org_id, "tenant_id": tenant_id}, f)
 
     auth_url = f"https://login.microsoftonline.com/{tenant_id}/oauth2/v2.0/authorize"
@@ -133,12 +143,12 @@ async def microsoft_login(
         "response_type": "code",
         "response_mode": "query",
         "scope": MICROSOFT_OAUTH_SCOPES,
-        "redirect_uri": backend_callback,
+        "redirect_uri": callback_url,
         "prompt": "select_account",
         "state": state,
         "nonce": nonce,
     }
-    redirect_url = f"{auth_url}?{'&'.join(f'{k}={v}' for k, v in params.items())}"
+    redirect_url = f"{auth_url}?{urllib.parse.urlencode(params)}"
 
     return RedirectResponse(url=redirect_url, status_code=302)
 
@@ -153,30 +163,21 @@ async def microsoft_callback(
     error = request.query_params.get("error")
 
     if error:
-        return RedirectResponse(
-            url=f"{FRONTEND_URL}/login?error={error}",
-            status_code=302,
-        )
+        return _redirect_error(f"error={urllib.parse.quote(error)}")
 
     if not code or not state:
-        return RedirectResponse(
-            url=f"{FRONTEND_URL}/login?error=missing_params",
-            status_code=302,
-        )
+        return _redirect_error("error=missing_params")
 
-    import json, os
-    state_path = f"/tmp/microsoft_state/{state}.json"
+    state_path = f"{STATE_DIR}/{state}.json"
     if not os.path.exists(state_path):
-        return RedirectResponse(
-            url=f"{FRONTEND_URL}/login?error=invalid_state",
-            status_code=302,
-        )
+        return _redirect_error("error=invalid_state")
     with open(state_path) as f:
         state_data = json.load(f)
     os.remove(state_path)
 
     org_id = state_data["org_id"]
     tenant_id = state_data["tenant_id"]
+    expected_nonce = state_data["nonce"]
 
     result = await db.execute(
         select(SSOConfiguration).where(
@@ -186,12 +187,9 @@ async def microsoft_callback(
     )
     sso = result.scalar_one_or_none()
     if not sso:
-        return RedirectResponse(
-            url=f"{FRONTEND_URL}/login?error=config_not_found",
-            status_code=302,
-        )
+        return _redirect_error("error=config_not_found")
 
-    callback_url = f"{BACKEND_URL}/api/auth/sso/microsoft/callback"
+    callback_url = f"{settings.backend_url.rstrip('/')}/api/auth/sso/microsoft/callback"
     token_url = f"https://login.microsoftonline.com/{tenant_id}/oauth2/v2.0/token"
 
     async with httpx.AsyncClient() as client:
@@ -208,18 +206,13 @@ async def microsoft_callback(
         )
 
     if token_resp.status_code != 200:
-        return RedirectResponse(
-            url=f"{FRONTEND_URL}/login?error=token_exchange_failed",
-            status_code=302,
-        )
+        logger.error("Microsoft token exchange failed: %s", token_resp.text)
+        return _redirect_error("error=token_exchange_failed")
 
     token_data = token_resp.json()
     id_token = token_data.get("id_token")
     if not id_token:
-        return RedirectResponse(
-            url=f"{FRONTEND_URL}/login?error=no_id_token",
-            status_code=302,
-        )
+        return _redirect_error("error=no_id_token")
 
     try:
         jwks_url = f"https://login.microsoftonline.com/{tenant_id}/discovery/v2.0/keys"
@@ -228,17 +221,12 @@ async def microsoft_callback(
         jwks = jwks_resp.json()
 
         header = jwt.get_unverified_header(id_token)
-        key_data = None
-        for key in jwks.get("keys", []):
-            if key.get("kid") == header.get("kid"):
-                key_data = key
-                break
-
+        key_data = next(
+            (k for k in jwks.get("keys", []) if k.get("kid") == header.get("kid")),
+            None,
+        )
         if not key_data:
-            return RedirectResponse(
-                url=f"{FRONTEND_URL}/login?error=no_verifying_key",
-                status_code=302,
-            )
+            return _redirect_error("error=no_verifying_key")
 
         claims = jwt.decode(
             id_token,
@@ -247,20 +235,23 @@ async def microsoft_callback(
             audience=sso.client_id,
             issuer=f"https://login.microsoftonline.com/{tenant_id}/v2.0",
         )
+
+        # Verify the nonce we embedded in the authorize request to prevent
+        # token replay / CSRF against the callback.
+        if claims.get("nonce") != expected_nonce:
+            return _redirect_error("error=nonce_mismatch")
     except Exception as e:
-        import logging
-        logging.error(f"Microsoft SSO token verification failed: {e}")
-        return RedirectResponse(
-            url=f"{FRONTEND_URL}/login?error=invalid_token&detail={urllib.parse.quote(str(e))}",
-            status_code=302,
+        logger.exception("Microsoft SSO token verification failed")
+        return _redirect_error(
+            f"error=invalid_token&detail={urllib.parse.quote(str(e))}"
         )
 
-    email = claims.get("email")
+    # Entra ID (Azure AD) v2.0 tokens often omit the `email` claim (guests,
+    # users without an Exchange mailbox, etc.). `preferred_username` is always
+    # present and carries the sign-in UPN (user@domain).
+    email = claims.get("email") or claims.get("preferred_username")
     if not email:
-        return RedirectResponse(
-            url=f"{FRONTEND_URL}/login?error=no_email",
-            status_code=302,
-        )
+        return _redirect_error("error=no_email")
 
     result = await db.execute(
         select(User).where(User.email == email).options(selectinload(User.roles))
@@ -268,29 +259,29 @@ async def microsoft_callback(
     user = result.scalar_one_or_none()
 
     if not user:
-        return RedirectResponse(
-            url=f"{FRONTEND_URL}/login?error=no_account",
-            status_code=302,
-        )
+        return _redirect_error("error=no_account")
 
     if user.status == UserStatus.invited:
         user.status = UserStatus.active
-        db.add(user)
-        await db.commit()
 
     if user.status not in (UserStatus.active, UserStatus.invited):
-        return RedirectResponse(
-            url=f"{FRONTEND_URL}/login?error=account_inactive",
-            status_code=302,
-        )
+        return _redirect_error("error=account_inactive")
 
-    role_names = [r.name for r in user.roles]
-    access_token = create_access_token(
-        data={"sub": user.email, "org_id": user.organization_id, "roles": role_names},
-        expires_delta=timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES),
-    )
+    # Bind the SSO identity to the account so the flow is consistent on
+    # subsequent logins and the SSO provider is visible in user profiles.
+    oid = claims.get("oid")
+    if user.sso_provider != SSOProvider.Microsoft or user.external_subject_id != oid:
+        user.sso_provider = SSOProvider.Microsoft
+        user.external_subject_id = oid
+    user.last_login_at = datetime.now(timezone.utc)
+
+    tokens = await _issue_token_pair(db, user)
+    await db.commit()
 
     return RedirectResponse(
-        url=f"{FRONTEND_URL}/login?token={access_token}",
+        url=(
+            f"{settings.frontend_url.rstrip('/')}/login"
+            f"?token={tokens['access_token']}&refresh_token={tokens['refresh_token']}"
+        ),
         status_code=302,
     )

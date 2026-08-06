@@ -114,7 +114,9 @@ async def login(form_data: OAuth2PasswordRequestForm = Depends(), db: AsyncSessi
     if user.status not in (UserStatus.active, UserStatus.invited):
         raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail=f"Account is {user.status.value}")
 
-    return await _issue_token_pair(db, user)
+    tokens = await _issue_token_pair(db, user)
+    await db.commit()
+    return tokens
 
 GOOGLE_CLIENT_ID = "369022549081-qbv4ivuvlvpgu5cch1ksi0vajlevgns5.apps.googleusercontent.com"
 
@@ -157,7 +159,9 @@ async def google_auth(payload: GoogleAuthRequest, db: AsyncSession = Depends(get
     if user.status not in (UserStatus.active, UserStatus.invited):
         raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail=f"Account is {user.status.value}")
 
-    return await _issue_token_pair(db, user)
+    tokens = await _issue_token_pair(db, user)
+    await db.commit()
+    return tokens
 
 
 class RefreshRequest(BaseModel):
@@ -199,7 +203,9 @@ async def refresh_token(payload: RefreshRequest, db: AsyncSession = Depends(get_
         )
 
     await db.flush()
-    return await _issue_token_pair(db, user)
+    tokens = await _issue_token_pair(db, user)
+    await db.commit()
+    return tokens
 
 
 @router.get("/me", response_model=UserProfile)
@@ -340,7 +346,7 @@ async def get_sso_providers(
     result = await db.execute(
         select(SSOConfiguration).where(
             SSOConfiguration.organization_id == target_org_id,
-            SSOConfiguration.is_active == True,
+            SSOConfiguration.is_active.is_(True),
         )
     )
     configs = result.scalars().all()

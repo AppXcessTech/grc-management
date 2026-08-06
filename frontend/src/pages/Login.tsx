@@ -16,10 +16,11 @@ const Login = () => {
 
   useEffect(() => {
     const token = searchParams.get('token');
+    const refreshToken = searchParams.get('refresh_token') || undefined;
     const errorMsg = searchParams.get('error');
     const detailMsg = searchParams.get('detail');
     if (token) {
-      login(token);
+      login(token, refreshToken);
       navigate('/', { replace: true });
     } else if (errorMsg) {
       setError(detailMsg ? `${errorMsg}: ${detailMsg}` : errorMsg);

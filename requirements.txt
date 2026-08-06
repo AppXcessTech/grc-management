@@ -1,0 +1,68 @@
+# GRC Management Platform - Python dependencies
+# Generated from actual imports across the project (app/, alembic/, scripts/, tests/, files/)
+# Versions pinned to match the project's venv.
+#
+# Install all:          pip install -r requirements.txt
+# Install runtime only: pip install -r requirements.txt --no-deps ... (see sections below)
+# Install dev only:     pip install -r requirements-dev.txt (dev section below)
+
+# ---------------------------------------------------------------------------
+# Runtime dependencies
+# ---------------------------------------------------------------------------
+
+# Web framework / API
+fastapi==0.115.12
+uvicorn[standard]==0.34.2
+gunicorn==23.0.0
+python-multipart==0.0.20
+email-validator==2.2.0
+
+# Data validation / settings
+pydantic==2.11.3
+pydantic-extra-types==2.10.3
+pydantic-settings==2.9.1
+
+# Database / ORM
+SQLAlchemy==2.0.40
+asyncpg==0.30.0
+psycopg2-binary==2.9.12
+alembic==1.15.2
+redis==8.0.0
+
+# Async task queue
+celery==5.5.3
+
+# Auth / security
+PyJWT==2.13.0
+passlib[bcrypt]==1.7.4
+cryptography==49.0.0
+
+# HTTP clients
+httpx==0.28.1
+requests==2.34.2
+
+# Cloud integrations
+boto3==1.43.25
+botocore==1.43.26
+
+# Parsing / config
+PyYAML==6.0.2
+python-dotenv==1.1.0
+openpyxl==3.1.5
+
+# Logging
+loguru==0.7.3
+
+# ---------------------------------------------------------------------------
+# Development / testing dependencies
+# ---------------------------------------------------------------------------
+
+# Testing
+pytest==8.3.5
+pytest-cov==6.2.1
+coverage==7.9.1
+beautifulsoup4==4.15.0
+
+# Linting / type checking
+ruff==0.11.7
+mypy==1.15.0
